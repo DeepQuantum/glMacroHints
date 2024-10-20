@@ -1,26 +1,45 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import fs from 'fs';
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
+const config: vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration('opengl-macro-ext');
+
+const version: string = config.get("version") || "gl4";
+const active: boolean = config.get("active") || true;
+const jsonPath: string = "src/json/" + version + ".json";
+
+const getDocumentationString = (word: string): vscode.MarkdownString => {
+	const data = fs.readFileSync(jsonPath);
+	const json = JSON.parse(data.toString());
+	const entry = json[word];
+	return new vscode.MarkdownString().appendCodeblock(entry.signature, 'cpp').appendMarkdown(entry.description);
+};
+
+const getWorkspaceColors = (): any => {
+	const colors = vscode.workspace.getConfiguration('workbench');
+	const currentTheme = colors.get<string>('colorTheme');
+	console.log(currentTheme);
+	return colors;
+};
+
 export function activate(context: vscode.ExtensionContext) {
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Activasdasdasde');
+	if (!active) {
+		return;
+	}
+
+	getWorkspaceColors();
 
 	let disposable = vscode.languages.registerHoverProvider('cpp', {
 	 	async provideHover(document, position, token) {
 			const word = document.getText(document.getWordRangeAtPosition(position));
-			const type = document.getText(document.getWordRangeAtPosition(position.translate(0, 1)));
-			if (word.startsWith("gl") || word.startsWith("GL")) {
-				getIndex();
-				return new vscode.Hover(`This is a ${type} function`);
+			if (word.toLowerCase().startsWith("gl")) {
+				var md = new vscode.MarkdownString().appendCodeblock("void glGetTexParameterfv(GLenum target)", 'cpp');
+				md.appendMarkdown("## Description\n");
+				md.supportHtml = true;
+				return new vscode.Hover(md);
 			}
 		}
 	});
-	
 
 	context.subscriptions.push(disposable);
 }

@@ -14,10 +14,26 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
-    "commands": [
+    "configuration":[
       {
-        "command": "opengl-macro-ext.helloWorld",
-        "title": "Hello World"
+        "title": "OpenGL Documentation",
+        "properties": {
+          "openglMacroExt.enable": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable/Disable the extension"
+          },
+          "openglMacroExt.language": {
+            "type": "[string]",
+            "default": "[cpp, c]",
+            "description": "The languages to use for the documentation"
+          },
+          "openglMacroExt.glVersion": {
+            "type": ["es1.1", "es2.0", "es3", "es3.0", "es3.1", "gl2.1", "gl4"],
+            "default": "gl4",
+            "description": "The OpenGL version to use for the documentation"
+          }
+        }
       }
     ]
   },
