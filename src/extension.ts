@@ -5,20 +5,20 @@ const config: vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration(
 
 const version: string = config.get("version") || "gl4";
 const active: boolean = config.get("active") || true;
-const jsonPath: string = "src/json/" + version + ".json";
+const jsonPath: string = __dirname.slice(0, -3) + `src/docs/${version}/docmap.json`;
 
 const getDocumentationString = (word: string): vscode.MarkdownString => {
-	const data = fs.readFileSync(jsonPath);
+	var data;
+	try {
+		data = fs.readFileSync(jsonPath);
+	}
+	catch (err) {
+		console.error(err);
+		throw err;
+	}
 	const json = JSON.parse(data.toString());
 	const entry = json[word];
-	return new vscode.MarkdownString().appendCodeblock(entry.signature, 'cpp').appendMarkdown(entry.description);
-};
-
-const getWorkspaceColors = (): any => {
-	const colors = vscode.workspace.getConfiguration('workbench');
-	const currentTheme = colors.get<string>('colorTheme');
-	console.log(currentTheme);
-	return colors;
+	return new vscode.MarkdownString().appendCodeblock(entry.signature, 'cpp').appendMarkdown(entry.purpose);
 };
 
 export function activate(context: vscode.ExtensionContext) {
@@ -27,16 +27,12 @@ export function activate(context: vscode.ExtensionContext) {
 		return;
 	}
 
-	getWorkspaceColors();
-
 	let disposable = vscode.languages.registerHoverProvider('cpp', {
 	 	async provideHover(document, position, token) {
 			const word = document.getText(document.getWordRangeAtPosition(position));
 			if (word.toLowerCase().startsWith("gl")) {
-				var md = new vscode.MarkdownString().appendCodeblock("void glGetTexParameterfv(GLenum target)", 'cpp');
-				md.appendMarkdown("## Description\n");
-				md.supportHtml = true;
-				return new vscode.Hover(md);
+				const text = getDocumentationString(word);
+				return new vscode.Hover(text);
 			}
 		}
 	});

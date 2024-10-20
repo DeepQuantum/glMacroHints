@@ -1,7 +1,8 @@
+import json
 import os
 import re
 import xml.etree.ElementTree as ET
-import json
+from typing import NoReturn
 
 VERSIONS = ("es1.1", "es2.0", "es3", "es3.0", "es3.1", "gl2.1", "gl4")
 
@@ -10,8 +11,14 @@ NAMESPACE = "{http://docbook.org/ns/docbook}"
 TAG_REGEX = "(<\/?(function|parameter)>)"
 
 
-def find(xml: ET.Element, name: str) -> ET.Element:
-    return xml.find(f".//{name}") or xml.find(f".//{NAMESPACE}{name}")
+def find(xml: ET.Element, name: str) -> ET.Element | NoReturn:
+    ns = xml.find(f".//{name}")
+    no_ns = xml.find(f".//{NAMESPACE}{name}")
+    if ns is not None:
+        return ns
+    if no_ns is not None:
+        return no_ns
+    raise ValueError("couldn't find element " + name)
 
 
 def find_all(xml: ET.Element, name: str) -> list[ET.Element]:
@@ -31,30 +38,37 @@ def process_file_refs(path: str) -> list[str]:
     return refs
 
 
-def create_function_sig(prototype: ET.Element) -> str:
+def create_function_sig(prototype: ET.Element) -> tuple[str, str]:
     funcdef = find(prototype, "funcdef")
-    if funcdef is None:
+    if funcdef[0] is None or funcdef.text is None or funcdef[0].text is None:
         print("couldn't find funcdef for prototype")
-        return ""
-    functext = re.sub(TAG_REGEX, "", funcdef.text)
+        return "", ""
+    funcname = funcdef[0].text
+    functext = funcdef.text + funcname
     paramdefs = find_all(prototype, "paramdef")
-    paramtext = ", ".join([re.sub(TAG_REGEX, "", paramdef.text) for paramdef in paramdefs])
-    return f"{functext}({paramtext})"
+    paramtext = ", ".join([(paramdef.text or "") + (paramdef[0].text if len(paramdef) > 0 else "") for paramdef in paramdefs])
+    return funcdef[0].text, f"{functext}({paramtext})"
 
 
-def get_doc_from_xml(xml: ET.Element) -> dict:
+def get_doc_from_xml(xml: ET.Element) -> dict[str, dict[str, str]]:
     purpose = find(xml, "refpurpose")
-    purposetext = ""
-    if purpose:
-        purposetext = purpose.text
+    purposetext = (purpose.text or "").replace("\n", "")
     prototypes: list[ET.Element] = find_all(xml, "funcprototype")
-    function_sigs: list[str] = [create_function_sig(prototype) for prototype in prototypes]
-    return
+    function_sigs: list[tuple[str, str]] = [create_function_sig(prototype) for prototype in prototypes]
+    return {
+        signature[0]: {
+            "signature": signature[1],
+            "purpose": purposetext,
+        }
+        for signature in function_sigs
+    }
 
 
 def create_gldoc_json() -> None:
     for v in VERSIONS:
-        jsonf = json.load(f"src/docs/{v}/docmap.json")
+        jsonf = open(f"src/docs/{v}/docmap.json", "r+")
+        jsonf.seek(0)
+        docs: dict[str, dict[str, str]] = {}
         for fp in os.listdir(f"src/docs/{v}/"):
             if not fp.endswith(".xml"):
                 continue
@@ -62,7 +76,12 @@ def create_gldoc_json() -> None:
                 content = f.read().replace("mml:", "")
             content = re.sub(r"&\w+;", "", content)
             xml = ET.XML(content)
-            output_str = get_doc_from_xml(xml)
+            if xml.tag not in ("refentry", f"{NAMESPACE}refentry"):
+                continue
+            function_doc = get_doc_from_xml(xml)
+            docs |= function_doc
+        json.dump(docs, jsonf, indent=4)
+        jsonf.close()
 
 
 def main():
