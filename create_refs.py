@@ -8,7 +8,7 @@ VERSIONS = ("es1.1", "es2.0", "es3", "es3.0", "es3.1", "gl2.1", "gl4")
 
 NAMESPACE = "{http://docbook.org/ns/docbook}"
 
-TAG_REGEX = "(<\/?(function|parameter)>)"
+TAG_REGEX = re.compile(r"(<\/?(function|parameter)>)")
 
 
 def find(xml: ET.Element, name: str) -> ET.Element | NoReturn:
@@ -46,19 +46,31 @@ def create_function_sig(prototype: ET.Element) -> tuple[str, str]:
     funcname = funcdef[0].text
     functext = funcdef.text + funcname
     paramdefs = find_all(prototype, "paramdef")
-    paramtext = ", ".join([(paramdef.text or "") + (paramdef[0].text if len(paramdef) > 0 else "") for paramdef in paramdefs])
+    paramtext = ", ".join([(paramdef.text or "") + (paramdef[0].text or "" if len(paramdef) > 0 else "") for paramdef in paramdefs])
     return funcdef[0].text, f"{functext}({paramtext})"
 
 
-def get_doc_from_xml(xml: ET.Element) -> dict[str, dict[str, str]]:
+def text_recursive(element: ET.Element) -> str:
+    return " ".join(ET.tostring(element, encoding="unicode").split())
+
+
+def get_doc_from_xml(xml: ET.Element) -> dict[str, dict[str, str | dict[str, str]]]:
     purpose = find(xml, "refpurpose")
     purposetext = (purpose.text or "").replace("\n", "")
     prototypes: list[ET.Element] = find_all(xml, "funcprototype")
     function_sigs: list[tuple[str, str]] = [create_function_sig(prototype) for prototype in prototypes]
+    parameter_list = xml.findall(".//refsect1[@id='parameters']/variablelist/")
+    parameters: dict[str, str] = {}
+    for param in parameter_list:
+        term = find(param, "term")[0].text or ""
+        item = find(param, "listitem")
+        itemtext = text_recursive(item)
+        parameters[term] = itemtext
     return {
         signature[0]: {
             "signature": signature[1],
             "purpose": purposetext,
+            "parameters": parameters,
         }
         for signature in function_sigs
     }
@@ -68,7 +80,7 @@ def create_gldoc_json() -> None:
     for v in VERSIONS:
         jsonf = open(f"src/docs/{v}/docmap.json", "r+")
         jsonf.seek(0)
-        docs: dict[str, dict[str, str]] = {}
+        docs: dict[str, dict[str, str | dict[str, str]]] = {}
         for fp in os.listdir(f"src/docs/{v}/"):
             if not fp.endswith(".xml"):
                 continue
@@ -82,6 +94,7 @@ def create_gldoc_json() -> None:
             docs |= function_doc
         json.dump(docs, jsonf, indent=4)
         jsonf.close()
+        print(f"wrote {v} docs to json")
 
 
 def main():
