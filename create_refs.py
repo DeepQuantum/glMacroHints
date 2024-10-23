@@ -10,20 +10,7 @@ NAMESPACE = "{http://docbook.org/ns/docbook}"
 
 TAG_REGEX = re.compile(r"(<\/?(function|parameter)>)")
 
-
-def find(xml: ET.Element, name: str) -> ET.Element | NoReturn:
-    ns = xml.find(f".//{name}")
-    no_ns = xml.find(f".//{NAMESPACE}{name}")
-    if ns is not None:
-        return ns
-    if no_ns is not None:
-        return no_ns
-    raise ValueError("couldn't find element " + name)
-
-
-def find_all(xml: ET.Element, name: str) -> list[ET.Element]:
-    return xml.findall(f".//{name}") + xml.findall(f".//{NAMESPACE}{name}")
-
+NAMESPACE_RE = re.compile(r"(\{.*\})|(.*:)")
 
 def process_file_refs(path: str) -> list[str]:
     refs: list[str] = []
@@ -31,7 +18,7 @@ def process_file_refs(path: str) -> list[str]:
         content = f.read().replace("mml:", "").replace("ï»¿", "")
     content = re.sub(r"&\w+;", "", content)
     xml = ET.fromstring(content)
-    refnames = find_all(xml, "refname")
+    refnames = xml.findall("refname")
     if len(refnames) < 2:
         return refs
     refs = [refname.text or "" for refname in refnames[1:]]
@@ -39,33 +26,52 @@ def process_file_refs(path: str) -> list[str]:
 
 
 def create_function_sig(prototype: ET.Element) -> tuple[str, str]:
-    funcdef = find(prototype, "funcdef")
+    funcdef = prototype.find(".//funcdef")
+    if funcdef is None:
+        raise ValueError("funcdef shouldn't be none here " + str(prototype))
     if funcdef[0] is None or funcdef.text is None or funcdef[0].text is None:
         print("couldn't find funcdef for prototype")
         return "", ""
     funcname = funcdef[0].text
     functext = funcdef.text + funcname
-    paramdefs = find_all(prototype, "paramdef")
+    paramdefs = prototype.findall(".//paramdef")
     paramtext = ", ".join([(paramdef.text or "") + (paramdef[0].text or "" if len(paramdef) > 0 else "") for paramdef in paramdefs])
     return funcdef[0].text, f"{functext}({paramtext})"
 
 
+def remove_namespaces(element: ET.Element) -> ET.Element:
+    copy = ET.Element(re.sub(NAMESPACE_RE, "", element.tag, count=1))
+    copy.attrib = {re.sub(NAMESPACE_RE, "", k, count=1): v for k, v in element.attrib.items()}
+    copy.text = element.text
+    copy.tail = element.tail
+    for child in element:
+        copy.append(remove_namespaces(child))
+    return copy
+
+
 def text_recursive(element: ET.Element) -> str:
-    return " ".join(ET.tostring(element, encoding="unicode").split())
+    return " ".join(ET.tostring(element, encoding="unicode").split()).replace("<constant>", "`").replace("</constant>", "`")
 
 
 def get_doc_from_xml(xml: ET.Element) -> dict[str, dict[str, str | dict[str, str]]]:
-    purpose = find(xml, "refpurpose")
+    purpose = xml.find(".//refpurpose")
+    if purpose is None:
+        raise ValueError("refpurpose shouldn't be None here")
     purposetext = (purpose.text or "").replace("\n", "")
-    prototypes: list[ET.Element] = find_all(xml, "funcprototype")
+    prototypes: list[ET.Element] = xml.findall(".//funcprototype")
     function_sigs: list[tuple[str, str]] = [create_function_sig(prototype) for prototype in prototypes]
     parameter_list = xml.findall(".//refsect1[@id='parameters']/variablelist/")
     parameters: dict[str, str] = {}
     for param in parameter_list:
-        term = find(param, "term")[0].text or ""
-        item = find(param, "listitem")
+        term = param.find(".//term")
+        if term is None:
+            raise ValueError("")
+        term_text = term[0].text or ""
+        item = param.find(".//listitem")
+        if item is None:
+            raise ValueError("")
         itemtext = text_recursive(item)
-        parameters[term] = itemtext
+        parameters[term_text] = itemtext
     return {
         signature[0]: {
             "signature": signature[1],
@@ -77,24 +83,26 @@ def get_doc_from_xml(xml: ET.Element) -> dict[str, dict[str, str | dict[str, str
 
 
 def create_gldoc_json() -> None:
-    for v in VERSIONS:
-        jsonf = open(f"src/docs/{v}/docmap.json", "r+")
-        jsonf.seek(0)
-        docs: dict[str, dict[str, str | dict[str, str]]] = {}
-        for fp in os.listdir(f"src/docs/{v}/"):
+    jsonf = open(f"src/doclibrary.json", "r+")
+    jsonf.seek(0)
+    library: dict[str, dict[str, dict[str, str | dict[str, str]]]] = {k: {} for k in VERSIONS}
+    for ver in VERSIONS:
+        for fp in os.listdir(f"src/docs/{ver}/"):
             if not fp.endswith(".xml"):
                 continue
-            with open(f"src/docs/{v}/{fp}", "r", encoding="utf-8") as f:
+            with open(f"src/docs/{ver}/{fp}", "r", encoding="utf-8") as f:
                 content = f.read().replace("mml:", "")
             content = re.sub(r"&\w+;", "", content)
             xml = ET.XML(content)
-            if xml.tag not in ("refentry", f"{NAMESPACE}refentry"):
+            xml = remove_namespaces(xml)
+            if xml.tag != "refentry":
                 continue
             function_doc = get_doc_from_xml(xml)
-            docs |= function_doc
-        json.dump(docs, jsonf, indent=4)
-        jsonf.close()
-        print(f"wrote {v} docs to json")
+            for k, v in function_doc.items():
+                library[ver][k] = v
+        print(f"added {ver} docs to json")
+    json.dump(library, jsonf, indent=2)
+    jsonf.close()
 
 
 def main():
