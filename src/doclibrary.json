@@ -2946,7 +2946,7 @@
       "signature": "void glBindBuffer(GLenum target, GLuint buffer)",
       "purpose": "bind a named buffer object",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the buffer object is bound, which must be one of the buffer binding targets in the following table: </para> <include href=\"bufferbindings.xml\" /> </listitem>",
+        "target": "<listitem> <para> Specifies the target to which the buffer object is bound, which must be one of the following buffer bindings: `GL_ARRAY_BUFFER`, `GL_ATOMIC_COUNTER_BUFFER`, `GL_COPY_READ_BUFFER`, `GL_COPY_WRITE_BUFFER`, `GL_DISPATCH_INDIRECT_BUFFER`, `GL_DRAW_INDIRECT_BUFFER`, `GL_ELEMENT_ARRAY_BUFFER`, `GL_PIXEL_PACK_BUFFER`, `GL_PIXEL_UNPACK_BUFFER`, `GL_QUERY_BUFFER`, `GL_SHADER_STORAGE_BUFFER`, `GL_TEXTURE_BUFFER`, `GL_TRANSFORM_FEEDBACK_BUFFER`, `GL_UNIFORM_BUFFER` </listitem>",
         "buffer": "<listitem> <para> Specifies the name of a buffer object. </para> </listitem>"
       }
     },
@@ -3063,7 +3063,6 @@
       "signature": "void glBlendEquation(GLenum mode)",
       "purpose": "specify the equation used for both the RGB blend equation and the Alpha blend equation",
       "parameters": {
-        "buf": "<listitem> <para> for <function>glBlendEquationi</function>, specifies the index of the draw buffer for which to set the blend equation. </para> </listitem>",
         "mode": "<listitem> <para> specifies how source and destination colors are combined. It must be `GL_FUNC_ADD`, `GL_FUNC_SUBTRACT`, `GL_FUNC_REVERSE_SUBTRACT`, `GL_MIN`, `GL_MAX`. </para> </listitem>"
       }
     },
@@ -3079,7 +3078,6 @@
       "signature": "void glBlendEquationSeparate(GLenum modeRGB, GLenum modeAlpha)",
       "purpose": "set the RGB blend equation and the alpha blend equation separately",
       "parameters": {
-        "buf": "<listitem> <para> for <function>glBlendEquationSeparatei</function>, specifies the index of the draw buffer for which to set the blend equations. </para> </listitem>",
         "modeRGB": "<listitem> <para> specifies the RGB blend equation, how the red, green, and blue components of the source and destination colors are combined. It must be `GL_FUNC_ADD`, `GL_FUNC_SUBTRACT`, `GL_FUNC_REVERSE_SUBTRACT`, `GL_MIN`, `GL_MAX`. </para> </listitem>",
         "modeAlpha": "<listitem> <para> specifies the alpha blend equation, how the alpha component of the source and destination colors are combined. It must be `GL_FUNC_ADD`, `GL_FUNC_SUBTRACT`, `GL_FUNC_REVERSE_SUBTRACT`, `GL_MIN`, `GL_MAX`. </para> </listitem>"
       }
@@ -3147,7 +3145,7 @@
       "signature": "void glBufferData(GLenum target, GLsizeiptr size, const void * data, GLenum usage)",
       "purpose": "creates and initializes a buffer object's data store",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glBufferData</function>, which must be one of the buffer binding targets in the following table: </para> <include href=\"bufferbindings.xml\" /> </listitem>",
+        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glBufferData</function>, which must be one of the following buffer bindings: `GL_ARRAY_BUFFER`, `GL_ATOMIC_COUNTER_BUFFER`, `GL_COPY_READ_BUFFER`, `GL_COPY_WRITE_BUFFER`, `GL_DISPATCH_INDIRECT_BUFFER`, `GL_DRAW_INDIRECT_BUFFER`, `GL_ELEMENT_ARRAY_BUFFER`, `GL_PIXEL_PACK_BUFFER`, `GL_PIXEL_UNPACK_BUFFER`, `GL_QUERY_BUFFER`, `GL_SHADER_STORAGE_BUFFER`, `GL_TEXTURE_BUFFER`, `GL_TRANSFORM_FEEDBACK_BUFFER`, `GL_UNIFORM_BUFFER` </listitem>",
         "size": "<listitem> <para> Specifies the size in bytes of the buffer object's new data store. </para> </listitem>",
         "data": "<listitem> <para> Specifies a pointer to data that will be copied into the data store for initialization, or `NULL` if no data is to be copied. </para> </listitem>",
         "usage": "<listitem> <para> Specifies the expected usage pattern of the data store. The symbolic constant must be `GL_STREAM_DRAW`, `GL_STREAM_READ`, `GL_STREAM_COPY`, `GL_STATIC_DRAW`, `GL_STATIC_READ`, `GL_STATIC_COPY`, `GL_DYNAMIC_DRAW`, `GL_DYNAMIC_READ`, or `GL_DYNAMIC_COPY`. </para> </listitem>"
@@ -3157,7 +3155,7 @@
       "signature": "void glBufferSubData(GLenum target, GLintptr offset, GLsizeiptr size, const void * data)",
       "purpose": "updates a subset of a buffer object's data store",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glBufferSubData</function>, which must be one of the buffer binding targets in the following table: </para> <include href=\"bufferbindings.xml\" /> </listitem>",
+        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glBufferSubData</function>, which must be one of the following buffer bindings: `GL_ARRAY_BUFFER`, `GL_ATOMIC_COUNTER_BUFFER`, `GL_COPY_READ_BUFFER`, `GL_COPY_WRITE_BUFFER`, `GL_DISPATCH_INDIRECT_BUFFER`, `GL_DRAW_INDIRECT_BUFFER`, `GL_ELEMENT_ARRAY_BUFFER`, `GL_PIXEL_PACK_BUFFER`, `GL_PIXEL_UNPACK_BUFFER`, `GL_QUERY_BUFFER`, `GL_SHADER_STORAGE_BUFFER`, `GL_TEXTURE_BUFFER`, `GL_TRANSFORM_FEEDBACK_BUFFER`, `GL_UNIFORM_BUFFER` </listitem>",
         "offset": "<listitem> <para> Specifies the offset into the buffer object's data store where data replacement will begin, measured in bytes. </para> </listitem>",
         "size": "<listitem> <para> Specifies the size in bytes of the data store region being replaced. </para> </listitem>",
         "data": "<listitem> <para> Specifies a pointer to the new data that will be copied into the data store. </para> </listitem>"
@@ -3722,32 +3720,28 @@
       "signature": "void glEnable(GLenum cap)",
       "purpose": "enable or disable server-side GL capabilities",
       "parameters": {
-        "cap": "<listitem> <para> Specifies a symbolic constant indicating a GL capability. </para> </listitem>",
-        "index": "<listitem> <para> Specifies the index of the switch to disable (for <function>glEnablei</function> and <function>glDisablei</function> only). </para> </listitem>"
+        "cap": "<listitem> <para> Specifies a symbolic constant indicating a GL capability. </para> </listitem>"
       }
     },
     "glDisable": {
       "signature": "void glDisable(GLenum cap)",
       "purpose": "enable or disable server-side GL capabilities",
       "parameters": {
-        "cap": "<listitem> <para> Specifies a symbolic constant indicating a GL capability. </para> </listitem>",
-        "index": "<listitem> <para> Specifies the index of the switch to disable (for <function>glEnablei</function> and <function>glDisablei</function> only). </para> </listitem>"
+        "cap": "<listitem> <para> Specifies a symbolic constant indicating a GL capability. </para> </listitem>"
       }
     },
     "glEnablei": {
       "signature": "void glEnablei(GLenum cap, GLuint index)",
       "purpose": "enable or disable server-side GL capabilities",
       "parameters": {
-        "cap": "<listitem> <para> Specifies a symbolic constant indicating a GL capability. </para> </listitem>",
-        "index": "<listitem> <para> Specifies the index of the switch to disable (for <function>glEnablei</function> and <function>glDisablei</function> only). </para> </listitem>"
+        "cap": "<listitem> <para> Specifies a symbolic constant indicating a GL capability. </para> </listitem>"
       }
     },
     "glDisablei": {
       "signature": "void glDisablei(GLenum cap, GLuint index)",
       "purpose": "enable or disable server-side GL capabilities",
       "parameters": {
-        "cap": "<listitem> <para> Specifies a symbolic constant indicating a GL capability. </para> </listitem>",
-        "index": "<listitem> <para> Specifies the index of the switch to disable (for <function>glEnablei</function> and <function>glDisablei</function> only). </para> </listitem>"
+        "cap": "<listitem> <para> Specifies a symbolic constant indicating a GL capability. </para> </listitem>"
       }
     },
     "glEnableVertexAttribArray": {
@@ -3786,7 +3780,7 @@
       "signature": "void glFlushMappedBufferRange(GLenum target, GLintptr offset, GLsizeiptr length)",
       "purpose": "indicate modifications to a range of a mapped buffer",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glFlushMappedBufferRange</function>, which must be one of the buffer binding targets in the following table: </para> <include href=\"bufferbindings.xml\" /> </listitem>",
+        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glFlushMappedBufferRange</function>, which must be one of the following buffer bindings: `GL_ARRAY_BUFFER`, `GL_ATOMIC_COUNTER_BUFFER`, `GL_COPY_READ_BUFFER`, `GL_COPY_WRITE_BUFFER`, `GL_DISPATCH_INDIRECT_BUFFER`, `GL_DRAW_INDIRECT_BUFFER`, `GL_ELEMENT_ARRAY_BUFFER`, `GL_PIXEL_PACK_BUFFER`, `GL_PIXEL_UNPACK_BUFFER`, `GL_QUERY_BUFFER`, `GL_SHADER_STORAGE_BUFFER`, `GL_TEXTURE_BUFFER`, `GL_TRANSFORM_FEEDBACK_BUFFER`, `GL_UNIFORM_BUFFER` </listitem>",
         "offset": "<listitem> <para> Specifies the start of the buffer subrange, in basic machine units. </para> </listitem>",
         "length": "<listitem> <para> Specifies the length of the buffer subrange, in basic machine units. </para> </listitem>"
       }
@@ -4078,7 +4072,6 @@
       "signature": "void glGetBufferParameteriv(GLenum target, GLenum value, GLint * data)",
       "purpose": "return parameters of a buffer object",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glGetBufferParameteriv</function> and <function>glGetBufferParameteri64v</function>. Must be one of the buffer binding targets in the following table: </para> <include href=\"bufferbindings.xml\" /> </listitem>",
         "value": "<listitem> <para> Specifies the symbolic name of a buffer object parameter. Accepted values are `GL_BUFFER_ACCESS_FLAGS`, `GL_BUFFER_MAPPED`, `GL_BUFFER_MAP_LENGTH`, `GL_BUFFER_MAP_OFFSET`, `GL_BUFFER_SIZE`, or `GL_BUFFER_USAGE`. </para> </listitem>",
         "data": "<listitem> <para> Returns the requested parameter. </para> </listitem>"
       }
@@ -4087,7 +4080,6 @@
       "signature": "void glGetBufferParameteri64v(GLenum target, GLenum value, GLint64 * data)",
       "purpose": "return parameters of a buffer object",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glGetBufferParameteriv</function> and <function>glGetBufferParameteri64v</function>. Must be one of the buffer binding targets in the following table: </para> <include href=\"bufferbindings.xml\" /> </listitem>",
         "value": "<listitem> <para> Specifies the symbolic name of a buffer object parameter. Accepted values are `GL_BUFFER_ACCESS_FLAGS`, `GL_BUFFER_MAPPED`, `GL_BUFFER_MAP_LENGTH`, `GL_BUFFER_MAP_OFFSET`, `GL_BUFFER_SIZE`, or `GL_BUFFER_USAGE`. </para> </listitem>",
         "data": "<listitem> <para> Returns the requested parameter. </para> </listitem>"
       }
@@ -4096,7 +4088,7 @@
       "signature": "void glGetBufferPointerv(GLenum target, GLenum pname, void ** params)",
       "purpose": "return the pointer to a mapped buffer object's data store",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glGetBufferPointerv</function>, which must be one of the buffer binding targets in the following table: </para> <include href=\"bufferbindings.xml\" /> </listitem>",
+        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glGetBufferPointerv</function>, which must be one of the following buffer bindings: `GL_ARRAY_BUFFER`, `GL_ATOMIC_COUNTER_BUFFER`, `GL_COPY_READ_BUFFER`, `GL_COPY_WRITE_BUFFER`, `GL_DISPATCH_INDIRECT_BUFFER`, `GL_DRAW_INDIRECT_BUFFER`, `GL_ELEMENT_ARRAY_BUFFER`, `GL_PIXEL_PACK_BUFFER`, `GL_PIXEL_UNPACK_BUFFER`, `GL_QUERY_BUFFER`, `GL_SHADER_STORAGE_BUFFER`, `GL_TEXTURE_BUFFER`, `GL_TRANSFORM_FEEDBACK_BUFFER`, `GL_UNIFORM_BUFFER` </listitem>",
         "pname": "<listitem> <para> Specifies the pointer to be returned. The symbolic constant must be `GL_BUFFER_MAP_POINTER`. </para> </listitem>",
         "params": "<listitem> <para> Returns the pointer value specified by <parameter>pname</parameter>. </para> </listitem>"
       }
@@ -4775,7 +4767,7 @@
       "signature": "void *glMapBufferRange(GLenum target, GLintptr offset, GLsizeiptr length, GLbitfield access)",
       "purpose": "map a section of a buffer object's data store",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glMapBufferRange</function>, which must be one of the buffer binding targets in the following table: </para> <include href=\"bufferbindings.xml\" /> </listitem>",
+        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glMapBufferRange</function>, which must be one of the following buffer bindings: `GL_ARRAY_BUFFER`, `GL_ATOMIC_COUNTER_BUFFER`, `GL_COPY_READ_BUFFER`, `GL_COPY_WRITE_BUFFER`, `GL_DISPATCH_INDIRECT_BUFFER`, `GL_DRAW_INDIRECT_BUFFER`, `GL_ELEMENT_ARRAY_BUFFER`, `GL_PIXEL_PACK_BUFFER`, `GL_PIXEL_UNPACK_BUFFER`, `GL_QUERY_BUFFER`, `GL_SHADER_STORAGE_BUFFER`, `GL_TEXTURE_BUFFER`, `GL_TRANSFORM_FEEDBACK_BUFFER`, `GL_UNIFORM_BUFFER` </listitem>",
         "offset": "<listitem> <para> Specifies the starting offset within the buffer of the range to be mapped. </para> </listitem>",
         "length": "<listitem> <para> Specifies the length of the range to be mapped. </para> </listitem>",
         "access": "<listitem> <para> Specifies a combination of access flags indicating the desired access to the range. </para> </listitem>"
@@ -4785,7 +4777,6 @@
       "signature": "GLboolean glUnmapBuffer(GLenum target)",
       "purpose": "map a section of a buffer object's data store",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glMapBufferRange</function>, which must be one of the buffer binding targets in the following table: </para> <include href=\"bufferbindings.xml\" /> </listitem>",
         "offset": "<listitem> <para> Specifies the starting offset within the buffer of the range to be mapped. </para> </listitem>",
         "length": "<listitem> <para> Specifies the length of the range to be mapped. </para> </listitem>",
         "access": "<listitem> <para> Specifies a combination of access flags indicating the desired access to the range. </para> </listitem>"
@@ -5314,7 +5305,6 @@
         "width": "<listitem> <para> Specify the dimensions of the pixel rectangle. <parameter>width</parameter> and <parameter>height</parameter> of one correspond to a single pixel. </para> </listitem>",
         "format": "<listitem> <para> Specifies the format of the pixel data. The following symbolic values are accepted: `GL_RGBA`, and `GL_RGBA_INTEGER`. An implementation-chosen format will also be accepted. This can be queried with <citerefentry><refentrytitle>glGet</refentrytitle></citerefentry> and `GL_IMPLEMENTATION_COLOR_READ_FORMAT`. </para> </listitem>",
         "type": "<listitem> <para> Specifies the data type of the pixel data. Must be one of `GL_UNSIGNED_BYTE`, `GL_UNSIGNED_INT`, `GL_UNSIGNED_INT_2_10_10_10_REV`, `GL_INT`, or `GL_FLOAT`. An implementation-chosen type will also be accepted. This can be queried with <citerefentry><refentrytitle>glGet</refentrytitle></citerefentry> and `GL_IMPLEMENTATION_COLOR_READ_TYPE`. </para> </listitem>",
-        "bufSize": "<listitem> <para> Specifies the size of the buffer <parameter>data</parameter> for <function>glReadnPixels</function> function. </para> </listitem>",
         "data": "<listitem> <para> Returns the pixel data. </para> </listitem>"
       }
     },
@@ -20215,7 +20205,7 @@
       "signature": "void glBindBuffer(GLenum target, GLuint buffer)",
       "purpose": "bind a named buffer object",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the buffer object is bound, which must be one of the buffer binding targets in the following table: </para> <include href=\"bufferbindings.xml\" /> </listitem>",
+        "target": "<listitem> <para> Specifies the target to which the buffer object is bound, which must be one of the following buffer bindings: `GL_ARRAY_BUFFER`, `GL_ATOMIC_COUNTER_BUFFER`, `GL_COPY_READ_BUFFER`, `GL_COPY_WRITE_BUFFER`, `GL_DISPATCH_INDIRECT_BUFFER`, `GL_DRAW_INDIRECT_BUFFER`, `GL_ELEMENT_ARRAY_BUFFER`, `GL_PIXEL_PACK_BUFFER`, `GL_PIXEL_UNPACK_BUFFER`, `GL_QUERY_BUFFER`, `GL_SHADER_STORAGE_BUFFER`, `GL_TEXTURE_BUFFER`, `GL_TRANSFORM_FEEDBACK_BUFFER`, `GL_UNIFORM_BUFFER` </listitem>",
         "buffer": "<listitem> <para> Specifies the name of a buffer object. </para> </listitem>"
       }
     },
@@ -20408,7 +20398,6 @@
       "signature": "void glBindVertexBuffers(GLuint first, GLsizei count, const GLuint *buffers, const GLintptr *offsets, const GLsizei *strides)",
       "purpose": "attach multiple buffer objects to a vertex array object",
       "parameters": {
-        "vaobj": "<listitem> <para> Specifies the name of the vertex array object for <function>glVertexArrayVertexBuffers</function>. </para> </listitem>",
         "first": "<listitem> <para> Specifies the first vertex buffer binding point to which a buffer object is to be bound. </para> </listitem>",
         "count": "<listitem> <para> Specifies the number of buffers to bind. </para> </listitem>",
         "buffers": "<listitem> <para> Specifies the address of an array of names of existing buffer objects. </para> </listitem>",
@@ -20439,7 +20428,6 @@
       "signature": "void glBlendEquation(GLenum mode)",
       "purpose": "specify the equation used for both the RGB blend equation and the Alpha blend equation",
       "parameters": {
-        "buf": "<listitem> <para> for <function>glBlendEquationi</function>, specifies the index of the draw buffer for which to set the blend equation. </para> </listitem>",
         "mode": "<listitem> <para> specifies how source and destination colors are combined. It must be `GL_FUNC_ADD`, `GL_FUNC_SUBTRACT`, `GL_FUNC_REVERSE_SUBTRACT`, `GL_MIN`, `GL_MAX`. </para> </listitem>"
       }
     },
@@ -20455,7 +20443,6 @@
       "signature": "void glBlendEquationSeparate(GLenum modeRGB, GLenum modeAlpha)",
       "purpose": "set the RGB blend equation and the alpha blend equation separately",
       "parameters": {
-        "buf": "<listitem> <para> for <function>glBlendEquationSeparatei</function>, specifies the index of the draw buffer for which to set the blend equations. </para> </listitem>",
         "modeRGB": "<listitem> <para> specifies the RGB blend equation, how the red, green, and blue components of the source and destination colors are combined. It must be `GL_FUNC_ADD`, `GL_FUNC_SUBTRACT`, `GL_FUNC_REVERSE_SUBTRACT`, `GL_MIN`, `GL_MAX`. </para> </listitem>",
         "modeAlpha": "<listitem> <para> specifies the alpha blend equation, how the alpha component of the source and destination colors are combined. It must be `GL_FUNC_ADD`, `GL_FUNC_SUBTRACT`, `GL_FUNC_REVERSE_SUBTRACT`, `GL_MIN`, `GL_MAX`. </para> </listitem>"
       }
@@ -20513,8 +20500,6 @@
       "signature": "void glBlitFramebuffer(GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter)",
       "purpose": "copy a block of pixels from one framebuffer object to another",
       "parameters": {
-        "readFramebuffer": "<listitem> <para> Specifies the name of the source framebuffer object for <function>glBlitNamedFramebuffer</function>. </para> </listitem>",
-        "drawFramebuffer": "<listitem> <para> Specifies the name of the destination framebuffer object for <function>glBlitNamedFramebuffer</function>. </para> </listitem>",
         "srcX0": "<listitem> <para> Specify the bounds of the source rectangle within the read buffer of the read framebuffer. </para> </listitem>",
         "dstX0": "<listitem> <para> Specify the bounds of the destination rectangle within the write buffer of the write framebuffer. </para> </listitem>",
         "mask": "<listitem> <para> The bitwise OR of the flags indicating which buffers are to be copied. The allowed flags are `GL_COLOR_BUFFER_BIT`, `GL_DEPTH_BUFFER_BIT` and `GL_STENCIL_BUFFER_BIT`. </para> </listitem>",
@@ -20537,8 +20522,7 @@
       "signature": "void glBufferData(GLenum target, GLsizeiptr size, const void * data, GLenum usage)",
       "purpose": "creates and initializes a buffer object's data    store",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glBufferData</function>, which must be one of the buffer binding targets in the following table: </para> <include href=\"bufferbindings.xml\" /> </listitem>",
-        "buffer": "<listitem> <para>Specifies the name of the buffer object for <function>glNamedBufferData</function> function.</para> </listitem>",
+        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glBufferData</function>, which must be one of the following buffer bindings: `GL_ARRAY_BUFFER`, `GL_ATOMIC_COUNTER_BUFFER`, `GL_COPY_READ_BUFFER`, `GL_COPY_WRITE_BUFFER`, `GL_DISPATCH_INDIRECT_BUFFER`, `GL_DRAW_INDIRECT_BUFFER`, `GL_ELEMENT_ARRAY_BUFFER`, `GL_PIXEL_PACK_BUFFER`, `GL_PIXEL_UNPACK_BUFFER`, `GL_QUERY_BUFFER`, `GL_SHADER_STORAGE_BUFFER`, `GL_TEXTURE_BUFFER`, `GL_TRANSFORM_FEEDBACK_BUFFER`, `GL_UNIFORM_BUFFER` </listitem>",
         "size": "<listitem> <para>Specifies the size in bytes of the buffer object's new data store.</para> </listitem>",
         "data": "<listitem> <para>Specifies a pointer to data that will be copied into the data store for initialization, or `NULL` if no data is to be copied.</para> </listitem>",
         "usage": "<listitem> <para>Specifies the expected usage pattern of the data store. The symbolic constant must be `GL_STREAM_DRAW`, `GL_STREAM_READ`, `GL_STREAM_COPY`, `GL_STATIC_DRAW`, `GL_STATIC_READ`, `GL_STATIC_COPY`, `GL_DYNAMIC_DRAW`, `GL_DYNAMIC_READ`, or `GL_DYNAMIC_COPY`.</para> </listitem>"
@@ -20548,7 +20532,6 @@
       "signature": "void glNamedBufferData(GLuint buffer, GLsizeiptr size, const void *data, GLenum usage)",
       "purpose": "creates and initializes a buffer object's data    store",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glBufferData</function>, which must be one of the buffer binding targets in the following table: </para> <include href=\"bufferbindings.xml\" /> </listitem>",
         "buffer": "<listitem> <para>Specifies the name of the buffer object for <function>glNamedBufferData</function> function.</para> </listitem>",
         "size": "<listitem> <para>Specifies the size in bytes of the buffer object's new data store.</para> </listitem>",
         "data": "<listitem> <para>Specifies a pointer to data that will be copied into the data store for initialization, or `NULL` if no data is to be copied.</para> </listitem>",
@@ -20559,8 +20542,7 @@
       "signature": "void glBufferStorage(GLenum target, GLsizeiptr size, const void * data, GLbitfield flags)",
       "purpose": "creates and initializes a buffer object's immutable data    store",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glBufferStorage</function>, which must be one of the buffer binding targets in the following table: </para> <include href=\"bufferbindings.xml\" /> </listitem>",
-        "buffer": "<listitem> <para>Specifies the name of the buffer object for <function>glNamedBufferStorage</function> function.</para> </listitem>",
+        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glBufferStorage</function>, which must be one of the following buffer bindings: `GL_ARRAY_BUFFER`, `GL_ATOMIC_COUNTER_BUFFER`, `GL_COPY_READ_BUFFER`, `GL_COPY_WRITE_BUFFER`, `GL_DISPATCH_INDIRECT_BUFFER`, `GL_DRAW_INDIRECT_BUFFER`, `GL_ELEMENT_ARRAY_BUFFER`, `GL_PIXEL_PACK_BUFFER`, `GL_PIXEL_UNPACK_BUFFER`, `GL_QUERY_BUFFER`, `GL_SHADER_STORAGE_BUFFER`, `GL_TEXTURE_BUFFER`, `GL_TRANSFORM_FEEDBACK_BUFFER`, `GL_UNIFORM_BUFFER` </listitem>",
         "size": "<listitem> <para>Specifies the size in bytes of the buffer object's new data store.</para> </listitem>",
         "data": "<listitem> <para>Specifies a pointer to data that will be copied into the data store for initialization, or `NULL` if no data is to be copied.</para> </listitem>",
         "flags": "<listitem> <para>Specifies the intended usage of the buffer's data store. Must be a bitwise combination of the following flags. `GL_DYNAMIC_STORAGE_BIT`, `GL_MAP_READ_BIT` `GL_MAP_WRITE_BIT`, `GL_MAP_PERSISTENT_BIT`, `GL_MAP_COHERENT_BIT`, and `GL_CLIENT_STORAGE_BIT`.</para> </listitem>"
@@ -20570,7 +20552,6 @@
       "signature": "void glNamedBufferStorage(GLuint buffer, GLsizeiptr size, const void *data, GLbitfield flags)",
       "purpose": "creates and initializes a buffer object's immutable data    store",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glBufferStorage</function>, which must be one of the buffer binding targets in the following table: </para> <include href=\"bufferbindings.xml\" /> </listitem>",
         "buffer": "<listitem> <para>Specifies the name of the buffer object for <function>glNamedBufferStorage</function> function.</para> </listitem>",
         "size": "<listitem> <para>Specifies the size in bytes of the buffer object's new data store.</para> </listitem>",
         "data": "<listitem> <para>Specifies a pointer to data that will be copied into the data store for initialization, or `NULL` if no data is to be copied.</para> </listitem>",
@@ -20581,8 +20562,7 @@
       "signature": "void glBufferSubData(GLenum target, GLintptr offset, GLsizeiptr size, const void * data)",
       "purpose": "updates a subset of a buffer object's data store",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glBufferSubData</function>, which must be one of the buffer binding targets in the following table: </para> <include href=\"bufferbindings.xml\" /> </listitem>",
-        "buffer": "<listitem> <para> Specifies the name of the buffer object for <function>glNamedBufferSubData</function>. </para> </listitem>",
+        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glBufferSubData</function>, which must be one of the following buffer bindings: `GL_ARRAY_BUFFER`, `GL_ATOMIC_COUNTER_BUFFER`, `GL_COPY_READ_BUFFER`, `GL_COPY_WRITE_BUFFER`, `GL_DISPATCH_INDIRECT_BUFFER`, `GL_DRAW_INDIRECT_BUFFER`, `GL_ELEMENT_ARRAY_BUFFER`, `GL_PIXEL_PACK_BUFFER`, `GL_PIXEL_UNPACK_BUFFER`, `GL_QUERY_BUFFER`, `GL_SHADER_STORAGE_BUFFER`, `GL_TEXTURE_BUFFER`, `GL_TRANSFORM_FEEDBACK_BUFFER`, `GL_UNIFORM_BUFFER` </listitem>",
         "offset": "<listitem> <para> Specifies the offset into the buffer object's data store where data replacement will begin, measured in bytes. </para> </listitem>",
         "size": "<listitem> <para> Specifies the size in bytes of the data store region being replaced. </para> </listitem>",
         "data": "<listitem> <para> Specifies a pointer to the new data that will be copied into the data store. </para> </listitem>"
@@ -20592,7 +20572,6 @@
       "signature": "void glNamedBufferSubData(GLuint buffer, GLintptr offset, GLsizeiptr size, const void *data)",
       "purpose": "updates a subset of a buffer object's data store",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glBufferSubData</function>, which must be one of the buffer binding targets in the following table: </para> <include href=\"bufferbindings.xml\" /> </listitem>",
         "buffer": "<listitem> <para> Specifies the name of the buffer object for <function>glNamedBufferSubData</function>. </para> </listitem>",
         "offset": "<listitem> <para> Specifies the offset into the buffer object's data store where data replacement will begin, measured in bytes. </para> </listitem>",
         "size": "<listitem> <para> Specifies the size in bytes of the data store region being replaced. </para> </listitem>",
@@ -20602,16 +20581,12 @@
     "glCheckFramebufferStatus": {
       "signature": "GLenum glCheckFramebufferStatus(GLenum target)",
       "purpose": "check the completeness status of a framebuffer",
-      "parameters": {
-        "target": "<listitem> <para> Specify the target to which the framebuffer is bound for <function>glCheckFramebufferStatus</function>, and the target against which framebuffer completeness of <parameter>framebuffer</parameter> is checked for <function>glCheckNamedFramebufferStatus</function>. </para> </listitem>",
-        "framebuffer": "<listitem> <para> Specifies the name of the framebuffer object for <function>glCheckNamedFramebufferStatus</function> </para> </listitem>"
-      }
+      "parameters": {}
     },
     "glCheckNamedFramebufferStatus": {
       "signature": "GLenum glCheckNamedFramebufferStatus(GLuint framebuffer, GLenum target)",
       "purpose": "check the completeness status of a framebuffer",
       "parameters": {
-        "target": "<listitem> <para> Specify the target to which the framebuffer is bound for <function>glCheckFramebufferStatus</function>, and the target against which framebuffer completeness of <parameter>framebuffer</parameter> is checked for <function>glCheckNamedFramebufferStatus</function>. </para> </listitem>",
         "framebuffer": "<listitem> <para> Specifies the name of the framebuffer object for <function>glCheckNamedFramebufferStatus</function> </para> </listitem>"
       }
     },
@@ -20634,7 +20609,6 @@
       "signature": "void glClearBufferiv(GLenum buffer, GLint drawbuffer, const GLint * value)",
       "purpose": "clear individual buffers of a framebuffer",
       "parameters": {
-        "framebuffer": "<listitem> <para> Specifies the name of the framebuffer object for <function>glClearNamedFramebuffer*</function>. </para> </listitem>",
         "buffer": "<listitem> <para> Specify the buffer to clear. </para> </listitem>",
         "drawbuffer": "<listitem> <para> Specify a particular draw buffer to clear. </para> </listitem>",
         "value": "<listitem> <para> A pointer to the value or values to clear the buffer to. </para> </listitem>",
@@ -20646,7 +20620,6 @@
       "signature": "void glClearBufferuiv(GLenum buffer, GLint drawbuffer, const GLuint * value)",
       "purpose": "clear individual buffers of a framebuffer",
       "parameters": {
-        "framebuffer": "<listitem> <para> Specifies the name of the framebuffer object for <function>glClearNamedFramebuffer*</function>. </para> </listitem>",
         "buffer": "<listitem> <para> Specify the buffer to clear. </para> </listitem>",
         "drawbuffer": "<listitem> <para> Specify a particular draw buffer to clear. </para> </listitem>",
         "value": "<listitem> <para> A pointer to the value or values to clear the buffer to. </para> </listitem>",
@@ -20658,7 +20631,6 @@
       "signature": "void glClearBufferfv(GLenum buffer, GLint drawbuffer, const GLfloat * value)",
       "purpose": "clear individual buffers of a framebuffer",
       "parameters": {
-        "framebuffer": "<listitem> <para> Specifies the name of the framebuffer object for <function>glClearNamedFramebuffer*</function>. </para> </listitem>",
         "buffer": "<listitem> <para> Specify the buffer to clear. </para> </listitem>",
         "drawbuffer": "<listitem> <para> Specify a particular draw buffer to clear. </para> </listitem>",
         "value": "<listitem> <para> A pointer to the value or values to clear the buffer to. </para> </listitem>",
@@ -20670,7 +20642,6 @@
       "signature": "void glClearBufferfi(GLenum buffer, GLint drawbuffer, GLfloat depth, GLint stencil)",
       "purpose": "clear individual buffers of a framebuffer",
       "parameters": {
-        "framebuffer": "<listitem> <para> Specifies the name of the framebuffer object for <function>glClearNamedFramebuffer*</function>. </para> </listitem>",
         "buffer": "<listitem> <para> Specify the buffer to clear. </para> </listitem>",
         "drawbuffer": "<listitem> <para> Specify a particular draw buffer to clear. </para> </listitem>",
         "value": "<listitem> <para> A pointer to the value or values to clear the buffer to. </para> </listitem>",
@@ -20682,7 +20653,6 @@
       "signature": "void glClearNamedFramebufferiv(GLuint framebuffer, GLenum buffer, GLint drawbuffer, const GLint *value)",
       "purpose": "clear individual buffers of a framebuffer",
       "parameters": {
-        "framebuffer": "<listitem> <para> Specifies the name of the framebuffer object for <function>glClearNamedFramebuffer*</function>. </para> </listitem>",
         "buffer": "<listitem> <para> Specify the buffer to clear. </para> </listitem>",
         "drawbuffer": "<listitem> <para> Specify a particular draw buffer to clear. </para> </listitem>",
         "value": "<listitem> <para> A pointer to the value or values to clear the buffer to. </para> </listitem>",
@@ -20694,7 +20664,6 @@
       "signature": "void glClearNamedFramebufferuiv(GLuint framebuffer, GLenum buffer, GLint drawbuffer, const GLuint *value)",
       "purpose": "clear individual buffers of a framebuffer",
       "parameters": {
-        "framebuffer": "<listitem> <para> Specifies the name of the framebuffer object for <function>glClearNamedFramebuffer*</function>. </para> </listitem>",
         "buffer": "<listitem> <para> Specify the buffer to clear. </para> </listitem>",
         "drawbuffer": "<listitem> <para> Specify a particular draw buffer to clear. </para> </listitem>",
         "value": "<listitem> <para> A pointer to the value or values to clear the buffer to. </para> </listitem>",
@@ -20706,7 +20675,6 @@
       "signature": "void glClearNamedFramebufferfv(GLuint framebuffer, GLenum buffer, GLint drawbuffer, const GLfloat *value)",
       "purpose": "clear individual buffers of a framebuffer",
       "parameters": {
-        "framebuffer": "<listitem> <para> Specifies the name of the framebuffer object for <function>glClearNamedFramebuffer*</function>. </para> </listitem>",
         "buffer": "<listitem> <para> Specify the buffer to clear. </para> </listitem>",
         "drawbuffer": "<listitem> <para> Specify a particular draw buffer to clear. </para> </listitem>",
         "value": "<listitem> <para> A pointer to the value or values to clear the buffer to. </para> </listitem>",
@@ -20718,7 +20686,6 @@
       "signature": "void glClearNamedFramebufferfi(GLuint framebuffer, GLenum buffer, GLint drawbuffer, GLfloat depth, GLint stencil)",
       "purpose": "clear individual buffers of a framebuffer",
       "parameters": {
-        "framebuffer": "<listitem> <para> Specifies the name of the framebuffer object for <function>glClearNamedFramebuffer*</function>. </para> </listitem>",
         "buffer": "<listitem> <para> Specify the buffer to clear. </para> </listitem>",
         "drawbuffer": "<listitem> <para> Specify a particular draw buffer to clear. </para> </listitem>",
         "value": "<listitem> <para> A pointer to the value or values to clear the buffer to. </para> </listitem>",
@@ -20730,8 +20697,7 @@
       "signature": "void glClearBufferData(GLenum target, GLenum internalformat, GLenum format, GLenum type, const void * data)",
       "purpose": "fill a buffer object's data store with a fixed value",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glClearBufferData</function>, which must be one of the buffer binding targets in the following table: </para> <include href=\"bufferbindings.xml\" /> </listitem>",
-        "buffer": "<listitem> <para> Specifies the name of the buffer object for <function>glClearNamedBufferData</function>. </para> </listitem>",
+        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glClearBufferData</function>, which must be one of the following buffer bindings: `GL_ARRAY_BUFFER`, `GL_ATOMIC_COUNTER_BUFFER`, `GL_COPY_READ_BUFFER`, `GL_COPY_WRITE_BUFFER`, `GL_DISPATCH_INDIRECT_BUFFER`, `GL_DRAW_INDIRECT_BUFFER`, `GL_ELEMENT_ARRAY_BUFFER`, `GL_PIXEL_PACK_BUFFER`, `GL_PIXEL_UNPACK_BUFFER`, `GL_QUERY_BUFFER`, `GL_SHADER_STORAGE_BUFFER`, `GL_TEXTURE_BUFFER`, `GL_TRANSFORM_FEEDBACK_BUFFER`, `GL_UNIFORM_BUFFER` </listitem>",
         "internalformat": "<listitem> <para> The internal format with which the data will be stored in the buffer object. </para> </listitem>",
         "format": "<listitem> <para> The format of the data in memory addressed by <parameter>data</parameter>. </para> </listitem>",
         "type": "<listitem> <para> The type of the data in memory addressed by <parameter>data</parameter>. </para> </listitem>",
@@ -20742,7 +20708,6 @@
       "signature": "void glClearNamedBufferData(GLuint buffer, GLenum internalformat, GLenum format, GLenum type, const void *data)",
       "purpose": "fill a buffer object's data store with a fixed value",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glClearBufferData</function>, which must be one of the buffer binding targets in the following table: </para> <include href=\"bufferbindings.xml\" /> </listitem>",
         "buffer": "<listitem> <para> Specifies the name of the buffer object for <function>glClearNamedBufferData</function>. </para> </listitem>",
         "internalformat": "<listitem> <para> The internal format with which the data will be stored in the buffer object. </para> </listitem>",
         "format": "<listitem> <para> The format of the data in memory addressed by <parameter>data</parameter>. </para> </listitem>",
@@ -20754,8 +20719,7 @@
       "signature": "void glClearBufferSubData(GLenum target, GLenum internalformat, GLintptr offset, GLsizeiptr size, GLenum format, GLenum type, const void * data)",
       "purpose": "fill all or part of buffer object's data store with a fixed value",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glClearBufferSubData</function>, which must be one of the buffer binding targets in the following table: </para> <include href=\"bufferbindings.xml\" /> </listitem>",
-        "buffer": "<listitem> <para> Specifies the name of the buffer object for <function>glClearNamedBufferSubData</function>. </para> </listitem>",
+        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glClearBufferSubData</function>, which must be one of the following buffer bindings: `GL_ARRAY_BUFFER`, `GL_ATOMIC_COUNTER_BUFFER`, `GL_COPY_READ_BUFFER`, `GL_COPY_WRITE_BUFFER`, `GL_DISPATCH_INDIRECT_BUFFER`, `GL_DRAW_INDIRECT_BUFFER`, `GL_ELEMENT_ARRAY_BUFFER`, `GL_PIXEL_PACK_BUFFER`, `GL_PIXEL_UNPACK_BUFFER`, `GL_QUERY_BUFFER`, `GL_SHADER_STORAGE_BUFFER`, `GL_TEXTURE_BUFFER`, `GL_TRANSFORM_FEEDBACK_BUFFER`, `GL_UNIFORM_BUFFER` </listitem>",
         "internalformat": "<listitem> <para> The internal format with which the data will be stored in the buffer object. </para> </listitem>",
         "offset": "<listitem> <para> The offset in basic machine units into the buffer object's data store at which to start filling. </para> </listitem>",
         "size": "<listitem> <para> The size in basic machine units of the range of the data store to fill. </para> </listitem>",
@@ -20768,7 +20732,6 @@
       "signature": "void glClearNamedBufferSubData(GLuint buffer, GLenum internalformat, GLintptr offset, GLsizeiptr size, GLenum format, GLenum type, const void *data)",
       "purpose": "fill all or part of buffer object's data store with a fixed value",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glClearBufferSubData</function>, which must be one of the buffer binding targets in the following table: </para> <include href=\"bufferbindings.xml\" /> </listitem>",
         "buffer": "<listitem> <para> Specifies the name of the buffer object for <function>glClearNamedBufferSubData</function>. </para> </listitem>",
         "internalformat": "<listitem> <para> The internal format with which the data will be stored in the buffer object. </para> </listitem>",
         "offset": "<listitem> <para> The offset in basic machine units into the buffer object's data store at which to start filling. </para> </listitem>",
@@ -20921,7 +20884,6 @@
       "purpose": "specify a one-dimensional texture subimage in a compressed    format",
       "parameters": {
         "target": "<listitem> <para>Specifies the target, to which the texture is bound, for <function>glCompressedTexSubImage1D</function> function. Must be `GL_TEXTURE_1D`.</para> </listitem>",
-        "texture": "<listitem> <para>Specifies the texture object name for <function>glCompressedTextureSubImage1D</function> function.</para> </listitem>",
         "level": "<listitem> <para>Specifies the level-of-detail number. Level 0 is the base image level. Level <emphasis>n</emphasis> is the <emphasis>n</emphasis>th mipmap reduction image.</para> </listitem>",
         "xoffset": "<listitem> <para>Specifies a texel offset in the x direction within the texture array.</para> </listitem>",
         "width": "<listitem> <para>Specifies the width of the texture subimage.</para> </listitem>",
@@ -20934,7 +20896,6 @@
       "signature": "void glCompressedTextureSubImage1D(GLuint texture, GLint level, GLint xoffset, GLsizei width, GLenum format, GLsizei imageSize, const void *data)",
       "purpose": "specify a one-dimensional texture subimage in a compressed    format",
       "parameters": {
-        "target": "<listitem> <para>Specifies the target, to which the texture is bound, for <function>glCompressedTexSubImage1D</function> function. Must be `GL_TEXTURE_1D`.</para> </listitem>",
         "texture": "<listitem> <para>Specifies the texture object name for <function>glCompressedTextureSubImage1D</function> function.</para> </listitem>",
         "level": "<listitem> <para>Specifies the level-of-detail number. Level 0 is the base image level. Level <emphasis>n</emphasis> is the <emphasis>n</emphasis>th mipmap reduction image.</para> </listitem>",
         "xoffset": "<listitem> <para>Specifies a texel offset in the x direction within the texture array.</para> </listitem>",
@@ -20949,7 +20910,6 @@
       "purpose": "specify a two-dimensional texture subimage in a compressed format",
       "parameters": {
         "target": "<listitem> <para>Specifies the target to which the texture is bound for <function>glCompressedTexSubImage2D</function> function. Must be `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_2D`, `GL_TEXTURE_CUBE_MAP_POSITIVE_X`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_X`, `GL_TEXTURE_CUBE_MAP_POSITIVE_Y`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_Y`, `GL_TEXTURE_CUBE_MAP_POSITIVE_Z`, or `GL_TEXTURE_CUBE_MAP_NEGATIVE_Z`.</para> </listitem>",
-        "texture": "<listitem> <para>Specifies the texture object name for <function>glCompressedTextureSubImage2D</function> function.</para> </listitem>",
         "level": "<listitem> <para>Specifies the level-of-detail number. Level 0 is the base image level. Level <emphasis>n</emphasis> is the <emphasis>n</emphasis>th mipmap reduction image.</para> </listitem>",
         "xoffset": "<listitem> <para>Specifies a texel offset in the x direction within the texture array.</para> </listitem>",
         "yoffset": "<listitem> <para>Specifies a texel offset in the y direction within the texture array.</para> </listitem>",
@@ -20964,7 +20924,6 @@
       "signature": "void glCompressedTextureSubImage2D(GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLsizei imageSize, const void *data)",
       "purpose": "specify a two-dimensional texture subimage in a compressed format",
       "parameters": {
-        "target": "<listitem> <para>Specifies the target to which the texture is bound for <function>glCompressedTexSubImage2D</function> function. Must be `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_2D`, `GL_TEXTURE_CUBE_MAP_POSITIVE_X`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_X`, `GL_TEXTURE_CUBE_MAP_POSITIVE_Y`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_Y`, `GL_TEXTURE_CUBE_MAP_POSITIVE_Z`, or `GL_TEXTURE_CUBE_MAP_NEGATIVE_Z`.</para> </listitem>",
         "texture": "<listitem> <para>Specifies the texture object name for <function>glCompressedTextureSubImage2D</function> function.</para> </listitem>",
         "level": "<listitem> <para>Specifies the level-of-detail number. Level 0 is the base image level. Level <emphasis>n</emphasis> is the <emphasis>n</emphasis>th mipmap reduction image.</para> </listitem>",
         "xoffset": "<listitem> <para>Specifies a texel offset in the x direction within the texture array.</para> </listitem>",
@@ -20981,7 +20940,6 @@
       "purpose": "specify a three-dimensional texture subimage in a compressed format",
       "parameters": {
         "target": "<listitem> <para>Specifies the target to which the texture is bound for <function>glCompressedTexSubImage3D</function> function. Must be `GL_TEXTURE_2D_ARRAY`, `GL_TEXTURE_3D`, or `GL_TEXTURE_CUBE_MAP_ARRAY`.</para> </listitem>",
-        "texture": "<listitem> <para>Specifies the texture object name for <function>glCompressedTextureSubImage3D</function> function.</para> </listitem>",
         "level": "<listitem> <para>Specifies the level-of-detail number. Level 0 is the base image level. Level <emphasis>n</emphasis> is the <emphasis>n</emphasis>th mipmap reduction image.</para> </listitem>",
         "xoffset": "<listitem> <para>Specifies a texel offset in the x direction within the texture array.</para> </listitem>",
         "yoffset": "<listitem> <para>Specifies a texel offset in the y direction within the texture array.</para> </listitem>",
@@ -20998,7 +20956,6 @@
       "signature": "void glCompressedTextureSubImage3D(GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLsizei imageSize, const void *data)",
       "purpose": "specify a three-dimensional texture subimage in a compressed format",
       "parameters": {
-        "target": "<listitem> <para>Specifies the target to which the texture is bound for <function>glCompressedTexSubImage3D</function> function. Must be `GL_TEXTURE_2D_ARRAY`, `GL_TEXTURE_3D`, or `GL_TEXTURE_CUBE_MAP_ARRAY`.</para> </listitem>",
         "texture": "<listitem> <para>Specifies the texture object name for <function>glCompressedTextureSubImage3D</function> function.</para> </listitem>",
         "level": "<listitem> <para>Specifies the level-of-detail number. Level 0 is the base image level. Level <emphasis>n</emphasis> is the <emphasis>n</emphasis>th mipmap reduction image.</para> </listitem>",
         "xoffset": "<listitem> <para>Specifies a texel offset in the x direction within the texture array.</para> </listitem>",
@@ -21018,8 +20975,6 @@
       "parameters": {
         "readTarget": "<listitem> <para> Specifies the target to which the source buffer object is bound for <function>glCopyBufferSubData</function> </para> </listitem>",
         "writeTarget": "<listitem> <para> Specifies the target to which the destination buffer object is bound for <function>glCopyBufferSubData</function>. </para> </listitem>",
-        "readBuffer": "<listitem> <para> Specifies the name of the source buffer object for <function>glCopyNamedBufferSubData</function>. </para> </listitem>",
-        "writeBuffer": "<listitem> <para> Specifies the name of the destination buffer object for <function>glCopyNamedBufferSubData</function>. </para> </listitem>",
         "readOffset": "<listitem> <para> Specifies the offset, in basic machine units, within the data store of the source buffer object at which data will be read. </para> </listitem>",
         "writeOffset": "<listitem> <para> Specifies the offset, in basic machine units, within the data store of the destination buffer object at which data will be written. </para> </listitem>",
         "size": "<listitem> <para> Specifies the size, in basic machine units, of the data to be copied from the source buffer object to the destination buffer object. </para> </listitem>"
@@ -21029,8 +20984,6 @@
       "signature": "void glCopyNamedBufferSubData(GLuint readBuffer, GLuint writeBuffer, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size)",
       "purpose": "copy all or part of the data store of a buffer object to the data store of another buffer object",
       "parameters": {
-        "readTarget": "<listitem> <para> Specifies the target to which the source buffer object is bound for <function>glCopyBufferSubData</function> </para> </listitem>",
-        "writeTarget": "<listitem> <para> Specifies the target to which the destination buffer object is bound for <function>glCopyBufferSubData</function>. </para> </listitem>",
         "readBuffer": "<listitem> <para> Specifies the name of the source buffer object for <function>glCopyNamedBufferSubData</function>. </para> </listitem>",
         "writeBuffer": "<listitem> <para> Specifies the name of the destination buffer object for <function>glCopyNamedBufferSubData</function>. </para> </listitem>",
         "readOffset": "<listitem> <para> Specifies the offset, in basic machine units, within the data store of the source buffer object at which data will be read. </para> </listitem>",
@@ -21088,7 +21041,6 @@
       "purpose": "copy a one-dimensional texture subimage",
       "parameters": {
         "target": "<listitem> <para>Specifies the target to which the texture object is bound for <function>glCopyTexSubImage1D</function> function. Must be `GL_TEXTURE_1D`.</para> </listitem>",
-        "texture": "<listitem> <para>Specifies the texture object name for <function>glCopyTextureSubImage1D</function> function.</para> </listitem>",
         "level": "<listitem> <para>Specifies the level-of-detail number. Level 0 is the base image level. Level <emphasis>n</emphasis> is the <emphasis>n</emphasis>th mipmap reduction image.</para> </listitem>",
         "xoffset": "<listitem> <para>Specifies the texel offset within the texture array.</para> </listitem>",
         "x": "<listitem> <para>Specify the window coordinates of the left corner of the row of pixels to be copied.</para> </listitem>",
@@ -21099,7 +21051,6 @@
       "signature": "void glCopyTextureSubImage1D(GLuint texture, GLint level, GLint xoffset, GLint x, GLint y, GLsizei width)",
       "purpose": "copy a one-dimensional texture subimage",
       "parameters": {
-        "target": "<listitem> <para>Specifies the target to which the texture object is bound for <function>glCopyTexSubImage1D</function> function. Must be `GL_TEXTURE_1D`.</para> </listitem>",
         "texture": "<listitem> <para>Specifies the texture object name for <function>glCopyTextureSubImage1D</function> function.</para> </listitem>",
         "level": "<listitem> <para>Specifies the level-of-detail number. Level 0 is the base image level. Level <emphasis>n</emphasis> is the <emphasis>n</emphasis>th mipmap reduction image.</para> </listitem>",
         "xoffset": "<listitem> <para>Specifies the texel offset within the texture array.</para> </listitem>",
@@ -21112,7 +21063,6 @@
       "purpose": "copy a two-dimensional texture subimage",
       "parameters": {
         "target": "<listitem> <para>Specifies the target to which the texture object is bound for <function>glCopyTexSubImage2D</function> function. Must be `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_2D`, `GL_TEXTURE_CUBE_MAP_POSITIVE_X`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_X`, `GL_TEXTURE_CUBE_MAP_POSITIVE_Y`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_Y`, `GL_TEXTURE_CUBE_MAP_POSITIVE_Z`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_Z`, or `GL_TEXTURE_RECTANGLE`.</para> </listitem>",
-        "texture": "<listitem> <para>Specifies the texture object name for <function>glCopyTextureSubImage2D</function> function.</para> </listitem>",
         "level": "<listitem> <para>Specifies the level-of-detail number. Level 0 is the base image level. Level <emphasis>n</emphasis> is the <emphasis>n</emphasis>th mipmap reduction image.</para> </listitem>",
         "xoffset": "<listitem> <para>Specifies a texel offset in the x direction within the texture array.</para> </listitem>",
         "yoffset": "<listitem> <para>Specifies a texel offset in the y direction within the texture array.</para> </listitem>",
@@ -21125,7 +21075,6 @@
       "signature": "void glCopyTextureSubImage2D(GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint x, GLint y, GLsizei width, GLsizei height)",
       "purpose": "copy a two-dimensional texture subimage",
       "parameters": {
-        "target": "<listitem> <para>Specifies the target to which the texture object is bound for <function>glCopyTexSubImage2D</function> function. Must be `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_2D`, `GL_TEXTURE_CUBE_MAP_POSITIVE_X`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_X`, `GL_TEXTURE_CUBE_MAP_POSITIVE_Y`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_Y`, `GL_TEXTURE_CUBE_MAP_POSITIVE_Z`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_Z`, or `GL_TEXTURE_RECTANGLE`.</para> </listitem>",
         "texture": "<listitem> <para>Specifies the texture object name for <function>glCopyTextureSubImage2D</function> function.</para> </listitem>",
         "level": "<listitem> <para>Specifies the level-of-detail number. Level 0 is the base image level. Level <emphasis>n</emphasis> is the <emphasis>n</emphasis>th mipmap reduction image.</para> </listitem>",
         "xoffset": "<listitem> <para>Specifies a texel offset in the x direction within the texture array.</para> </listitem>",
@@ -21140,7 +21089,6 @@
       "purpose": "copy a three-dimensional texture subimage",
       "parameters": {
         "target": "<listitem> <para>Specifies the target to which the texture object is bound for <function>glCopyTexSubImage3D</function> function. Must be `GL_TEXTURE_3D`, `GL_TEXTURE_2D_ARRAY` or `GL_TEXTURE_CUBE_MAP_ARRAY`.</para> </listitem>",
-        "texture": "<listitem> <para>Specifies the texture object name for <function>glCopyTextureSubImage3D</function> function.</para> </listitem>",
         "level": "<listitem> <para>Specifies the level-of-detail number. Level 0 is the base image level. Level <emphasis>n</emphasis> is the <emphasis>n</emphasis>th mipmap reduction image.</para> </listitem>",
         "xoffset": "<listitem> <para>Specifies a texel offset in the x direction within the texture array.</para> </listitem>",
         "yoffset": "<listitem> <para>Specifies a texel offset in the y direction within the texture array.</para> </listitem>",
@@ -21154,7 +21102,6 @@
       "signature": "void glCopyTextureSubImage3D(GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLint x, GLint y, GLsizei width, GLsizei height)",
       "purpose": "copy a three-dimensional texture subimage",
       "parameters": {
-        "target": "<listitem> <para>Specifies the target to which the texture object is bound for <function>glCopyTexSubImage3D</function> function. Must be `GL_TEXTURE_3D`, `GL_TEXTURE_2D_ARRAY` or `GL_TEXTURE_CUBE_MAP_ARRAY`.</para> </listitem>",
         "texture": "<listitem> <para>Specifies the texture object name for <function>glCopyTextureSubImage3D</function> function.</para> </listitem>",
         "level": "<listitem> <para>Specifies the level-of-detail number. Level 0 is the base image level. Level <emphasis>n</emphasis> is the <emphasis>n</emphasis>th mipmap reduction image.</para> </listitem>",
         "xoffset": "<listitem> <para>Specifies a texel offset in the x direction within the texture array.</para> </listitem>",
@@ -21506,7 +21453,6 @@
       "signature": "void glDrawBuffer(GLenum buf)",
       "purpose": "specify which color buffers are to be drawn into",
       "parameters": {
-        "framebuffer": "<listitem> <para>Specifies the name of the framebuffer object for <function>glNamedFramebufferDrawBuffer</function> function. Must be zero or the name of a framebuffer object.</para> </listitem>",
         "buf": "<listitem> <para>For default framebuffer, the argument specifies up to four color buffers to be drawn into. Symbolic constants `GL_NONE`, `GL_FRONT_LEFT`, `GL_FRONT_RIGHT`, `GL_BACK_LEFT`, `GL_BACK_RIGHT`, `GL_FRONT`, `GL_BACK`, `GL_LEFT`, `GL_RIGHT`, and `GL_FRONT_AND_BACK` are accepted. The initial value is `GL_FRONT` for single-buffered contexts, and `GL_BACK` for double-buffered contexts. For framebuffer objects, `GL_COLOR_ATTACHMENT$m$` and `GL_NONE` enums are accepted, where `$m$` is a value between 0 and `GL_MAX_COLOR_ATTACHMENTS`.</para> </listitem>"
       }
     },
@@ -21522,7 +21468,6 @@
       "signature": "void glDrawBuffers(GLsizei n, const GLenum *bufs)",
       "purpose": "Specifies a list of color buffers to be drawn    into",
       "parameters": {
-        "framebuffer": "<listitem> <para>Specifies the name of the framebuffer object for <function>glNamedFramebufferDrawBuffers</function>.</para> </listitem>",
         "n": "<listitem> <para>Specifies the number of buffers in <parameter>bufs</parameter>.</para> </listitem>",
         "bufs": "<listitem> <para>Points to an array of symbolic constants specifying the buffers into which fragment colors or data values will be written.</para> </listitem>"
       }
@@ -21679,39 +21624,34 @@
       "signature": "void glEnable(GLenum cap)",
       "purpose": "enable or disable server-side GL capabilities",
       "parameters": {
-        "cap": "<listitem> <para> Specifies a symbolic constant indicating a GL capability. </para> </listitem>",
-        "index": "<listitem> <para> Specifies the index of the switch to disable (for <function>glEnablei</function> and <function>glDisablei</function> only). </para> </listitem>"
+        "cap": "<listitem> <para> Specifies a symbolic constant indicating a GL capability. </para> </listitem>"
       }
     },
     "glDisable": {
       "signature": "void glDisable(GLenum cap)",
       "purpose": "enable or disable server-side GL capabilities",
       "parameters": {
-        "cap": "<listitem> <para> Specifies a symbolic constant indicating a GL capability. </para> </listitem>",
-        "index": "<listitem> <para> Specifies the index of the switch to disable (for <function>glEnablei</function> and <function>glDisablei</function> only). </para> </listitem>"
+        "cap": "<listitem> <para> Specifies a symbolic constant indicating a GL capability. </para> </listitem>"
       }
     },
     "glEnablei": {
       "signature": "void glEnablei(GLenum cap, GLuint index)",
       "purpose": "enable or disable server-side GL capabilities",
       "parameters": {
-        "cap": "<listitem> <para> Specifies a symbolic constant indicating a GL capability. </para> </listitem>",
-        "index": "<listitem> <para> Specifies the index of the switch to disable (for <function>glEnablei</function> and <function>glDisablei</function> only). </para> </listitem>"
+        "cap": "<listitem> <para> Specifies a symbolic constant indicating a GL capability. </para> </listitem>"
       }
     },
     "glDisablei": {
       "signature": "void glDisablei(GLenum cap, GLuint index)",
       "purpose": "enable or disable server-side GL capabilities",
       "parameters": {
-        "cap": "<listitem> <para> Specifies a symbolic constant indicating a GL capability. </para> </listitem>",
-        "index": "<listitem> <para> Specifies the index of the switch to disable (for <function>glEnablei</function> and <function>glDisablei</function> only). </para> </listitem>"
+        "cap": "<listitem> <para> Specifies a symbolic constant indicating a GL capability. </para> </listitem>"
       }
     },
     "glEnableVertexAttribArray": {
       "signature": "void glEnableVertexAttribArray(GLuint index)",
       "purpose": "Enable or disable a generic vertex attribute    array",
       "parameters": {
-        "vaobj": "<listitem> <para>Specifies the name of the vertex array object for <function>glDisableVertexArrayAttrib</function> and <function>glEnableVertexArrayAttrib</function> functions.</para> </listitem>",
         "index": "<listitem> <para>Specifies the index of the generic vertex attribute to be enabled or disabled.</para> </listitem>"
       }
     },
@@ -21719,7 +21659,6 @@
       "signature": "void glDisableVertexAttribArray(GLuint index)",
       "purpose": "Enable or disable a generic vertex attribute    array",
       "parameters": {
-        "vaobj": "<listitem> <para>Specifies the name of the vertex array object for <function>glDisableVertexArrayAttrib</function> and <function>glEnableVertexArrayAttrib</function> functions.</para> </listitem>",
         "index": "<listitem> <para>Specifies the index of the generic vertex attribute to be enabled or disabled.</para> </listitem>"
       }
     },
@@ -21727,7 +21666,6 @@
       "signature": "void glEnableVertexArrayAttrib(GLuint vaobj, GLuint index)",
       "purpose": "Enable or disable a generic vertex attribute    array",
       "parameters": {
-        "vaobj": "<listitem> <para>Specifies the name of the vertex array object for <function>glDisableVertexArrayAttrib</function> and <function>glEnableVertexArrayAttrib</function> functions.</para> </listitem>",
         "index": "<listitem> <para>Specifies the index of the generic vertex attribute to be enabled or disabled.</para> </listitem>"
       }
     },
@@ -21735,7 +21673,6 @@
       "signature": "void glDisableVertexArrayAttrib(GLuint vaobj, GLuint index)",
       "purpose": "Enable or disable a generic vertex attribute    array",
       "parameters": {
-        "vaobj": "<listitem> <para>Specifies the name of the vertex array object for <function>glDisableVertexArrayAttrib</function> and <function>glEnableVertexArrayAttrib</function> functions.</para> </listitem>",
         "index": "<listitem> <para>Specifies the index of the generic vertex attribute to be enabled or disabled.</para> </listitem>"
       }
     },
@@ -21761,8 +21698,7 @@
       "signature": "void glFlushMappedBufferRange(GLenum target, GLintptr offset, GLsizeiptr length)",
       "purpose": "indicate modifications to a range of a mapped buffer",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glFlushMappedBufferRange</function>, which must be one of the buffer binding targets in the following table: </para> <include href=\"bufferbindings.xml\" /> </listitem>",
-        "buffer": "<listitem> <para> Specifies the name of the buffer object for <function>glFlushMappedNamedBufferRange</function>. </para> </listitem>",
+        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glFlushMappedBufferRange</function>, which must be one of the following buffer bindings: `GL_ARRAY_BUFFER`, `GL_ATOMIC_COUNTER_BUFFER`, `GL_COPY_READ_BUFFER`, `GL_COPY_WRITE_BUFFER`, `GL_DISPATCH_INDIRECT_BUFFER`, `GL_DRAW_INDIRECT_BUFFER`, `GL_ELEMENT_ARRAY_BUFFER`, `GL_PIXEL_PACK_BUFFER`, `GL_PIXEL_UNPACK_BUFFER`, `GL_QUERY_BUFFER`, `GL_SHADER_STORAGE_BUFFER`, `GL_TEXTURE_BUFFER`, `GL_TRANSFORM_FEEDBACK_BUFFER`, `GL_UNIFORM_BUFFER` </listitem>",
         "offset": "<listitem> <para> Specifies the start of the buffer subrange, in basic machine units. </para> </listitem>",
         "length": "<listitem> <para> Specifies the length of the buffer subrange, in basic machine units. </para> </listitem>"
       }
@@ -21771,7 +21707,6 @@
       "signature": "void glFlushMappedNamedBufferRange(GLuint buffer, GLintptr offset, GLsizeiptr length)",
       "purpose": "indicate modifications to a range of a mapped buffer",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glFlushMappedBufferRange</function>, which must be one of the buffer binding targets in the following table: </para> <include href=\"bufferbindings.xml\" /> </listitem>",
         "buffer": "<listitem> <para> Specifies the name of the buffer object for <function>glFlushMappedNamedBufferRange</function>. </para> </listitem>",
         "offset": "<listitem> <para> Specifies the start of the buffer subrange, in basic machine units. </para> </listitem>",
         "length": "<listitem> <para> Specifies the length of the buffer subrange, in basic machine units. </para> </listitem>"
@@ -21782,7 +21717,6 @@
       "purpose": "set a named parameter of a framebuffer object",
       "parameters": {
         "target": "<listitem> <para> Specifies the target to which the framebuffer is bound for <function>glFramebufferParameteri</function>. </para> </listitem>",
-        "framebuffer": "<listitem> <para> Specifies the name of the framebuffer object for <function>glNamedFramebufferParameteri</function>. </para> </listitem>",
         "pname": "<listitem> <para> Specifies the framebuffer parameter to be modified. </para> </listitem>",
         "param": "<listitem> <para> The new value for the parameter named <parameter>pname</parameter>. </para> </listitem>"
       }
@@ -21791,7 +21725,6 @@
       "signature": "void glNamedFramebufferParameteri(GLuint framebuffer, GLenum pname, GLint param)",
       "purpose": "set a named parameter of a framebuffer object",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the framebuffer is bound for <function>glFramebufferParameteri</function>. </para> </listitem>",
         "framebuffer": "<listitem> <para> Specifies the name of the framebuffer object for <function>glNamedFramebufferParameteri</function>. </para> </listitem>",
         "pname": "<listitem> <para> Specifies the framebuffer parameter to be modified. </para> </listitem>",
         "param": "<listitem> <para> The new value for the parameter named <parameter>pname</parameter>. </para> </listitem>"
@@ -21802,7 +21735,6 @@
       "purpose": "attach a renderbuffer as a logical buffer of a framebuffer object",
       "parameters": {
         "target": "<listitem> <para> Specifies the target to which the framebuffer is bound for <function>glFramebufferRenderbuffer</function>. </para> </listitem>",
-        "framebuffer": "<listitem> <para> Specifies the name of the framebuffer object for <function>glNamedFramebufferRenderbuffer</function>. </para> </listitem>",
         "attachment": "<listitem> <para> Specifies the attachment point of the framebuffer. </para> </listitem>",
         "renderbuffertarget": "<listitem> <para> Specifies the renderbuffer target. Must be `GL_RENDERBUFFER`. </para> </listitem>",
         "renderbuffer": "<listitem> <para> Specifies the name of an existing renderbuffer object of type <parameter>renderbuffertarget</parameter> to attach. </para> </listitem>"
@@ -21812,7 +21744,6 @@
       "signature": "void glNamedFramebufferRenderbuffer(GLuint framebuffer, GLenum attachment, GLenum renderbuffertarget, GLuint renderbuffer)",
       "purpose": "attach a renderbuffer as a logical buffer of a framebuffer object",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the framebuffer is bound for <function>glFramebufferRenderbuffer</function>. </para> </listitem>",
         "framebuffer": "<listitem> <para> Specifies the name of the framebuffer object for <function>glNamedFramebufferRenderbuffer</function>. </para> </listitem>",
         "attachment": "<listitem> <para> Specifies the attachment point of the framebuffer. </para> </listitem>",
         "renderbuffertarget": "<listitem> <para> Specifies the renderbuffer target. Must be `GL_RENDERBUFFER`. </para> </listitem>",
@@ -21824,7 +21755,6 @@
       "purpose": "attach a level of a texture object as a logical buffer of a framebuffer object",
       "parameters": {
         "target": "<listitem> <para> Specifies the target to which the framebuffer is bound for all commands <emphasis>except</emphasis> <function>glNamedFramebufferTexture</function>. </para> </listitem>",
-        "framebuffer": "<listitem> <para> Specifies the name of the framebuffer object for <function>glNamedFramebufferTexture</function>. </para> </listitem>",
         "attachment": "<listitem> <para> Specifies the attachment point of the framebuffer. </para> </listitem>",
         "textarget": "<listitem> <para> For <function>glFramebufferTexture1D</function>, <function>glFramebufferTexture2D</function> and <function>glFramebufferTexture3D</function>, specifies what type of texture is expected in the <parameter>texture</parameter> parameter, or for cube map textures, which face is to be attached. </para> </listitem>",
         "texture": "<listitem> <para> Specifies the name of an existing texture object to attach. </para> </listitem>",
@@ -21836,7 +21766,6 @@
       "purpose": "attach a level of a texture object as a logical buffer of a framebuffer object",
       "parameters": {
         "target": "<listitem> <para> Specifies the target to which the framebuffer is bound for all commands <emphasis>except</emphasis> <function>glNamedFramebufferTexture</function>. </para> </listitem>",
-        "framebuffer": "<listitem> <para> Specifies the name of the framebuffer object for <function>glNamedFramebufferTexture</function>. </para> </listitem>",
         "attachment": "<listitem> <para> Specifies the attachment point of the framebuffer. </para> </listitem>",
         "textarget": "<listitem> <para> For <function>glFramebufferTexture1D</function>, <function>glFramebufferTexture2D</function> and <function>glFramebufferTexture3D</function>, specifies what type of texture is expected in the <parameter>texture</parameter> parameter, or for cube map textures, which face is to be attached. </para> </listitem>",
         "texture": "<listitem> <para> Specifies the name of an existing texture object to attach. </para> </listitem>",
@@ -21848,7 +21777,6 @@
       "purpose": "attach a level of a texture object as a logical buffer of a framebuffer object",
       "parameters": {
         "target": "<listitem> <para> Specifies the target to which the framebuffer is bound for all commands <emphasis>except</emphasis> <function>glNamedFramebufferTexture</function>. </para> </listitem>",
-        "framebuffer": "<listitem> <para> Specifies the name of the framebuffer object for <function>glNamedFramebufferTexture</function>. </para> </listitem>",
         "attachment": "<listitem> <para> Specifies the attachment point of the framebuffer. </para> </listitem>",
         "textarget": "<listitem> <para> For <function>glFramebufferTexture1D</function>, <function>glFramebufferTexture2D</function> and <function>glFramebufferTexture3D</function>, specifies what type of texture is expected in the <parameter>texture</parameter> parameter, or for cube map textures, which face is to be attached. </para> </listitem>",
         "texture": "<listitem> <para> Specifies the name of an existing texture object to attach. </para> </listitem>",
@@ -21860,7 +21788,6 @@
       "purpose": "attach a level of a texture object as a logical buffer of a framebuffer object",
       "parameters": {
         "target": "<listitem> <para> Specifies the target to which the framebuffer is bound for all commands <emphasis>except</emphasis> <function>glNamedFramebufferTexture</function>. </para> </listitem>",
-        "framebuffer": "<listitem> <para> Specifies the name of the framebuffer object for <function>glNamedFramebufferTexture</function>. </para> </listitem>",
         "attachment": "<listitem> <para> Specifies the attachment point of the framebuffer. </para> </listitem>",
         "textarget": "<listitem> <para> For <function>glFramebufferTexture1D</function>, <function>glFramebufferTexture2D</function> and <function>glFramebufferTexture3D</function>, specifies what type of texture is expected in the <parameter>texture</parameter> parameter, or for cube map textures, which face is to be attached. </para> </listitem>",
         "texture": "<listitem> <para> Specifies the name of an existing texture object to attach. </para> </listitem>",
@@ -21884,7 +21811,6 @@
       "purpose": "attach a single layer of a texture object as a logical buffer of a framebuffer object",
       "parameters": {
         "target": "<listitem> <para> Specifies the target to which the framebuffer is bound for <function>glFramebufferTextureLayer</function>. </para> </listitem>",
-        "framebuffer": "<listitem> <para> Specifies the name of the framebuffer object for <function>glNamedFramebufferTextureLayer</function>. </para> </listitem>",
         "attachment": "<listitem> <para> Specifies the attachment point of the framebuffer. </para> </listitem>",
         "texture": "<listitem> <para> Specifies the name of an existing texture object to attach. </para> </listitem>",
         "level": "<listitem> <para> Specifies the mipmap level of the texture object to attach. </para> </listitem>",
@@ -21895,7 +21821,6 @@
       "signature": "void glNamedFramebufferTextureLayer(GLuint framebuffer, GLenum attachment, GLuint texture, GLint level, GLint layer)",
       "purpose": "attach a single layer of a texture object as a logical buffer of a framebuffer object",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the framebuffer is bound for <function>glFramebufferTextureLayer</function>. </para> </listitem>",
         "framebuffer": "<listitem> <para> Specifies the name of the framebuffer object for <function>glNamedFramebufferTextureLayer</function>. </para> </listitem>",
         "attachment": "<listitem> <para> Specifies the attachment point of the framebuffer. </para> </listitem>",
         "texture": "<listitem> <para> Specifies the name of an existing texture object to attach. </para> </listitem>",
@@ -21922,15 +21847,13 @@
       "signature": "void glGenerateMipmap(GLenum target)",
       "purpose": "generate mipmaps for a specified texture object",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the texture object is bound for <function>glGenerateMipmap</function>. Must be one of `GL_TEXTURE_1D`, `GL_TEXTURE_2D`, `GL_TEXTURE_3D`, `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_2D_ARRAY`, `GL_TEXTURE_CUBE_MAP`, or `GL_TEXTURE_CUBE_MAP_ARRAY`. </para> </listitem>",
-        "texture": "<listitem> <para> Specifies the texture object name for <function>glGenerateTextureMipmap</function>. </para> </listitem>"
+        "target": "<listitem> <para> Specifies the target to which the texture object is bound for <function>glGenerateMipmap</function>. Must be one of `GL_TEXTURE_1D`, `GL_TEXTURE_2D`, `GL_TEXTURE_3D`, `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_2D_ARRAY`, `GL_TEXTURE_CUBE_MAP`, or `GL_TEXTURE_CUBE_MAP_ARRAY`. </para> </listitem>"
       }
     },
     "glGenerateTextureMipmap": {
       "signature": "void glGenerateTextureMipmap(GLuint texture)",
       "purpose": "generate mipmaps for a specified texture object",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the texture object is bound for <function>glGenerateMipmap</function>. Must be one of `GL_TEXTURE_1D`, `GL_TEXTURE_2D`, `GL_TEXTURE_3D`, `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_2D_ARRAY`, `GL_TEXTURE_CUBE_MAP`, or `GL_TEXTURE_CUBE_MAP_ARRAY`. </para> </listitem>",
         "texture": "<listitem> <para> Specifies the texture object name for <function>glGenerateTextureMipmap</function>. </para> </listitem>"
       }
     },
@@ -22234,8 +22157,6 @@
       "signature": "void glGetBufferParameteriv(GLenum target, GLenum value, GLint * data)",
       "purpose": "return parameters of a buffer object",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glGetBufferParameteriv</function> and <function>glGetBufferParameteri64v</function>. Must be one of the buffer binding targets in the following table: </para> <include href=\"bufferbindings.xml\" /> </listitem>",
-        "buffer": "<listitem> <para> Specifies the name of the buffer object for <function>glGetNamedBufferParameteriv</function> and <function>glGetNamedBufferParameteri64v</function>. </para> </listitem>",
         "value": "<listitem> <para> Specifies the name of the buffer object parameter to query. </para> </listitem>",
         "data": "<listitem> <para> Returns the requested parameter. </para> </listitem>"
       }
@@ -22244,8 +22165,6 @@
       "signature": "void glGetBufferParameteri64v(GLenum target, GLenum value, GLint64 * data)",
       "purpose": "return parameters of a buffer object",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glGetBufferParameteriv</function> and <function>glGetBufferParameteri64v</function>. Must be one of the buffer binding targets in the following table: </para> <include href=\"bufferbindings.xml\" /> </listitem>",
-        "buffer": "<listitem> <para> Specifies the name of the buffer object for <function>glGetNamedBufferParameteriv</function> and <function>glGetNamedBufferParameteri64v</function>. </para> </listitem>",
         "value": "<listitem> <para> Specifies the name of the buffer object parameter to query. </para> </listitem>",
         "data": "<listitem> <para> Returns the requested parameter. </para> </listitem>"
       }
@@ -22254,8 +22173,6 @@
       "signature": "void glGetNamedBufferParameteriv(GLuint buffer, GLenum pname, GLint *params)",
       "purpose": "return parameters of a buffer object",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glGetBufferParameteriv</function> and <function>glGetBufferParameteri64v</function>. Must be one of the buffer binding targets in the following table: </para> <include href=\"bufferbindings.xml\" /> </listitem>",
-        "buffer": "<listitem> <para> Specifies the name of the buffer object for <function>glGetNamedBufferParameteriv</function> and <function>glGetNamedBufferParameteri64v</function>. </para> </listitem>",
         "value": "<listitem> <para> Specifies the name of the buffer object parameter to query. </para> </listitem>",
         "data": "<listitem> <para> Returns the requested parameter. </para> </listitem>"
       }
@@ -22264,8 +22181,6 @@
       "signature": "void glGetNamedBufferParameteri64v(GLuint buffer, GLenum pname, GLint64 *params)",
       "purpose": "return parameters of a buffer object",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glGetBufferParameteriv</function> and <function>glGetBufferParameteri64v</function>. Must be one of the buffer binding targets in the following table: </para> <include href=\"bufferbindings.xml\" /> </listitem>",
-        "buffer": "<listitem> <para> Specifies the name of the buffer object for <function>glGetNamedBufferParameteriv</function> and <function>glGetNamedBufferParameteri64v</function>. </para> </listitem>",
         "value": "<listitem> <para> Specifies the name of the buffer object parameter to query. </para> </listitem>",
         "data": "<listitem> <para> Returns the requested parameter. </para> </listitem>"
       }
@@ -22274,8 +22189,7 @@
       "signature": "void glGetBufferPointerv(GLenum target, GLenum pname, void ** params)",
       "purpose": "return the pointer to a mapped buffer object's data store",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glGetBufferPointerv</function>, which must be one of the buffer binding targets in the following table: </para> <include href=\"bufferbindings.xml\" /> </listitem>",
-        "buffer": "<listitem> <para> Specifies the name of the buffer object for <function>glGetNamedBufferPointerv</function>. </para> </listitem>",
+        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glGetBufferPointerv</function>, which must be one of the following buffer bindings: `GL_ARRAY_BUFFER`, `GL_ATOMIC_COUNTER_BUFFER`, `GL_COPY_READ_BUFFER`, `GL_COPY_WRITE_BUFFER`, `GL_DISPATCH_INDIRECT_BUFFER`, `GL_DRAW_INDIRECT_BUFFER`, `GL_ELEMENT_ARRAY_BUFFER`, `GL_PIXEL_PACK_BUFFER`, `GL_PIXEL_UNPACK_BUFFER`, `GL_QUERY_BUFFER`, `GL_SHADER_STORAGE_BUFFER`, `GL_TEXTURE_BUFFER`, `GL_TRANSFORM_FEEDBACK_BUFFER`, `GL_UNIFORM_BUFFER` </listitem>",
         "pname": "<listitem> <para> Specifies the name of the pointer to be returned. Must be `GL_BUFFER_MAP_POINTER`. </para> </listitem>",
         "params": "<listitem> <para> Returns the pointer value specified by <parameter>pname</parameter>. </para> </listitem>"
       }
@@ -22284,7 +22198,6 @@
       "signature": "void glGetNamedBufferPointerv(GLuint buffer, GLenum pname, void **params)",
       "purpose": "return the pointer to a mapped buffer object's data store",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glGetBufferPointerv</function>, which must be one of the buffer binding targets in the following table: </para> <include href=\"bufferbindings.xml\" /> </listitem>",
         "buffer": "<listitem> <para> Specifies the name of the buffer object for <function>glGetNamedBufferPointerv</function>. </para> </listitem>",
         "pname": "<listitem> <para> Specifies the name of the pointer to be returned. Must be `GL_BUFFER_MAP_POINTER`. </para> </listitem>",
         "params": "<listitem> <para> Returns the pointer value specified by <parameter>pname</parameter>. </para> </listitem>"
@@ -22294,8 +22207,7 @@
       "signature": "void glGetBufferSubData(GLenum target, GLintptr offset, GLsizeiptr size, void * data)",
       "purpose": "returns a subset of a buffer object's data store",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glGetBufferSubData</function>, which must be one of the buffer binding targets in the following table: </para> <include href=\"bufferbindings.xml\" /> </listitem>",
-        "buffer": "<listitem> <para> Specifies the name of the buffer object for <function>glGetNamedBufferSubData</function>. </para> </listitem>",
+        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glGetBufferSubData</function>, which must be one of the following buffer bindings: `GL_ARRAY_BUFFER`, `GL_ATOMIC_COUNTER_BUFFER`, `GL_COPY_READ_BUFFER`, `GL_COPY_WRITE_BUFFER`, `GL_DISPATCH_INDIRECT_BUFFER`, `GL_DRAW_INDIRECT_BUFFER`, `GL_ELEMENT_ARRAY_BUFFER`, `GL_PIXEL_PACK_BUFFER`, `GL_PIXEL_UNPACK_BUFFER`, `GL_QUERY_BUFFER`, `GL_SHADER_STORAGE_BUFFER`, `GL_TEXTURE_BUFFER`, `GL_TRANSFORM_FEEDBACK_BUFFER`, `GL_UNIFORM_BUFFER` </listitem>",
         "offset": "<listitem> <para> Specifies the offset into the buffer object's data store from which data will be returned, measured in bytes. </para> </listitem>",
         "size": "<listitem> <para> Specifies the size in bytes of the data store region being returned. </para> </listitem>",
         "data": "<listitem> <para> Specifies a pointer to the location where buffer object data is returned. </para> </listitem>"
@@ -22305,7 +22217,6 @@
       "signature": "void glGetNamedBufferSubData(GLuint buffer, GLintptr offset, GLsizeiptr size, void *data)",
       "purpose": "returns a subset of a buffer object's data store",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glGetBufferSubData</function>, which must be one of the buffer binding targets in the following table: </para> <include href=\"bufferbindings.xml\" /> </listitem>",
         "buffer": "<listitem> <para> Specifies the name of the buffer object for <function>glGetNamedBufferSubData</function>. </para> </listitem>",
         "offset": "<listitem> <para> Specifies the offset into the buffer object's data store from which data will be returned, measured in bytes. </para> </listitem>",
         "size": "<listitem> <para> Specifies the size in bytes of the data store region being returned. </para> </listitem>",
@@ -22316,10 +22227,7 @@
       "signature": "void glGetCompressedTexImage(GLenum target, GLint level, void * pixels)",
       "purpose": "return a compressed texture image",
       "parameters": {
-        "target": "<listitem> <para>Specifies the target to which the texture is bound for <function>glGetCompressedTexImage</function> and <function>glGetnCompressedTexImage</function> functions. `GL_TEXTURE_1D`, `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_2D`, `GL_TEXTURE_2D_ARRAY`, `GL_TEXTURE_3D`, `GL_TEXTURE_CUBE_MAP_ARRAY`, `GL_TEXTURE_CUBE_MAP_POSITIVE_X`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_X`, `GL_TEXTURE_CUBE_MAP_POSITIVE_Y`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_Y`, `GL_TEXTURE_CUBE_MAP_POSITIVE_Z`, and `GL_TEXTURE_CUBE_MAP_NEGATIVE_Z`, `GL_TEXTURE_RECTANGLE` are accepted.</para> </listitem>",
-        "texture": "<listitem> <para>Specifies the texture object name for <function>glGetCompressedTextureImage</function> function.</para> </listitem>",
         "level": "<listitem> <para>Specifies the level-of-detail number of the desired image. Level 0 is the base image level. Level $n$ is the $n$-th mipmap reduction image.</para> </listitem>",
-        "bufSize": "<listitem> <para>Specifies the size of the buffer <parameter>pixels</parameter> for <function>glGetCompressedTextureImage</function> and <function>glGetnCompressedTexImage</function> functions.</para> </listitem>",
         "pixels": "<listitem> <para>Returns the compressed texture image.</para> </listitem>"
       }
     },
@@ -22327,10 +22235,7 @@
       "signature": "void glGetnCompressedTexImage(GLenum target, GLint level, GLsizei bufSize, void *pixels)",
       "purpose": "return a compressed texture image",
       "parameters": {
-        "target": "<listitem> <para>Specifies the target to which the texture is bound for <function>glGetCompressedTexImage</function> and <function>glGetnCompressedTexImage</function> functions. `GL_TEXTURE_1D`, `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_2D`, `GL_TEXTURE_2D_ARRAY`, `GL_TEXTURE_3D`, `GL_TEXTURE_CUBE_MAP_ARRAY`, `GL_TEXTURE_CUBE_MAP_POSITIVE_X`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_X`, `GL_TEXTURE_CUBE_MAP_POSITIVE_Y`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_Y`, `GL_TEXTURE_CUBE_MAP_POSITIVE_Z`, and `GL_TEXTURE_CUBE_MAP_NEGATIVE_Z`, `GL_TEXTURE_RECTANGLE` are accepted.</para> </listitem>",
-        "texture": "<listitem> <para>Specifies the texture object name for <function>glGetCompressedTextureImage</function> function.</para> </listitem>",
         "level": "<listitem> <para>Specifies the level-of-detail number of the desired image. Level 0 is the base image level. Level $n$ is the $n$-th mipmap reduction image.</para> </listitem>",
-        "bufSize": "<listitem> <para>Specifies the size of the buffer <parameter>pixels</parameter> for <function>glGetCompressedTextureImage</function> and <function>glGetnCompressedTexImage</function> functions.</para> </listitem>",
         "pixels": "<listitem> <para>Returns the compressed texture image.</para> </listitem>"
       }
     },
@@ -22338,10 +22243,8 @@
       "signature": "void glGetCompressedTextureImage(GLuint texture, GLint level, GLsizei bufSize, void *pixels)",
       "purpose": "return a compressed texture image",
       "parameters": {
-        "target": "<listitem> <para>Specifies the target to which the texture is bound for <function>glGetCompressedTexImage</function> and <function>glGetnCompressedTexImage</function> functions. `GL_TEXTURE_1D`, `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_2D`, `GL_TEXTURE_2D_ARRAY`, `GL_TEXTURE_3D`, `GL_TEXTURE_CUBE_MAP_ARRAY`, `GL_TEXTURE_CUBE_MAP_POSITIVE_X`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_X`, `GL_TEXTURE_CUBE_MAP_POSITIVE_Y`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_Y`, `GL_TEXTURE_CUBE_MAP_POSITIVE_Z`, and `GL_TEXTURE_CUBE_MAP_NEGATIVE_Z`, `GL_TEXTURE_RECTANGLE` are accepted.</para> </listitem>",
         "texture": "<listitem> <para>Specifies the texture object name for <function>glGetCompressedTextureImage</function> function.</para> </listitem>",
         "level": "<listitem> <para>Specifies the level-of-detail number of the desired image. Level 0 is the base image level. Level $n$ is the $n$-th mipmap reduction image.</para> </listitem>",
-        "bufSize": "<listitem> <para>Specifies the size of the buffer <parameter>pixels</parameter> for <function>glGetCompressedTextureImage</function> and <function>glGetnCompressedTexImage</function> functions.</para> </listitem>",
         "pixels": "<listitem> <para>Returns the compressed texture image.</para> </listitem>"
       }
     },
@@ -22401,7 +22304,6 @@
       "purpose": "retrieve information about attachments of a framebuffer object",
       "parameters": {
         "target": "<listitem> <para> Specifies the target to which the framebuffer object is bound for <function>glGetFramebufferAttachmentParameteriv</function>. </para> </listitem>",
-        "framebuffer": "<listitem> <para> Specifies the name of the framebuffer object for <function>glGetNamedFramebufferAttachmentParameteriv</function>. </para> </listitem>",
         "attachment": "<listitem> <para> Specifies the attachment of the framebuffer object to query. </para> </listitem>",
         "pname": "<listitem> <para> Specifies the parameter of <parameter>attachment</parameter> to query. </para> </listitem>",
         "params": "<listitem> <para> Returns the value of parameter <parameter>pname</parameter> for <parameter>attachment</parameter>. </para> </listitem>"
@@ -22411,7 +22313,6 @@
       "signature": "void glGetNamedFramebufferAttachmentParameteriv(GLuint framebuffer, GLenum attachment, GLenum pname, GLint *params)",
       "purpose": "retrieve information about attachments of a framebuffer object",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the framebuffer object is bound for <function>glGetFramebufferAttachmentParameteriv</function>. </para> </listitem>",
         "framebuffer": "<listitem> <para> Specifies the name of the framebuffer object for <function>glGetNamedFramebufferAttachmentParameteriv</function>. </para> </listitem>",
         "attachment": "<listitem> <para> Specifies the attachment of the framebuffer object to query. </para> </listitem>",
         "pname": "<listitem> <para> Specifies the parameter of <parameter>attachment</parameter> to query. </para> </listitem>",
@@ -22423,7 +22324,6 @@
       "purpose": "query a named parameter of a framebuffer object",
       "parameters": {
         "target": "<listitem> <para> Specifies the target to which the framebuffer object is bound for <function>glGetFramebufferParameteriv</function>. </para> </listitem>",
-        "framebuffer": "<listitem> <para> Specifies the name of the framebuffer object for <function>glGetNamedFramebufferParameteriv</function>. </para> </listitem>",
         "pname": "<listitem> <para> Specifies the parameter of the framebuffer object to query. </para> </listitem>",
         "params": "<listitem> <para> Returns the value of parameter <parameter>pname</parameter> for the framebuffer object. </para> </listitem>"
       }
@@ -22432,7 +22332,6 @@
       "signature": "void glGetNamedFramebufferParameteriv(GLuint framebuffer, GLenum pname, GLint *param)",
       "purpose": "query a named parameter of a framebuffer object",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the framebuffer object is bound for <function>glGetFramebufferParameteriv</function>. </para> </listitem>",
         "framebuffer": "<listitem> <para> Specifies the name of the framebuffer object for <function>glGetNamedFramebufferParameteriv</function>. </para> </listitem>",
         "pname": "<listitem> <para> Specifies the parameter of the framebuffer object to query. </para> </listitem>",
         "params": "<listitem> <para> Returns the value of parameter <parameter>pname</parameter> for the framebuffer object. </para> </listitem>"
@@ -22731,7 +22630,6 @@
       "purpose": "query a named parameter of a renderbuffer object",
       "parameters": {
         "target": "<listitem> <para> Specifies the target to which the renderbuffer object is bound for <function>glGetRenderbufferParameteriv</function>. <parameter>target</parameter> must be `GL_RENDERBUFFER`. </para> </listitem>",
-        "renderbuffer": "<listitem> <para> Specifies the name of the renderbuffer object for <function>glGetNamedRenderbufferParameteriv</function>. </para> </listitem>",
         "pname": "<listitem> <para> Specifies the parameter of the renderbuffer object to query. </para> </listitem>",
         "params": "<listitem> <para> Returns the value of parameter <parameter>pname</parameter> for the renderbuffer object. </para> </listitem>"
       }
@@ -22740,7 +22638,6 @@
       "signature": "void glGetNamedRenderbufferParameteriv(GLuint renderbuffer, GLenum pname, GLint *params)",
       "purpose": "query a named parameter of a renderbuffer object",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the renderbuffer object is bound for <function>glGetRenderbufferParameteriv</function>. <parameter>target</parameter> must be `GL_RENDERBUFFER`. </para> </listitem>",
         "renderbuffer": "<listitem> <para> Specifies the name of the renderbuffer object for <function>glGetNamedRenderbufferParameteriv</function>. </para> </listitem>",
         "pname": "<listitem> <para> Specifies the parameter of the renderbuffer object to query. </para> </listitem>",
         "params": "<listitem> <para> Returns the value of parameter <parameter>pname</parameter> for the renderbuffer object. </para> </listitem>"
@@ -22870,12 +22767,10 @@
       "signature": "void glGetTexImage(GLenum target, GLint level, GLenum format, GLenum type, void * pixels)",
       "purpose": "return a texture image",
       "parameters": {
-        "target": "<listitem> <para>Specifies the target to which the texture is bound for <function>glGetTexImage</function> and <function>glGetnTexImage</function> functions. `GL_TEXTURE_1D`, `GL_TEXTURE_2D`, `GL_TEXTURE_3D`, `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_2D_ARRAY`, `GL_TEXTURE_RECTANGLE`, `GL_TEXTURE_CUBE_MAP_POSITIVE_X`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_X`, `GL_TEXTURE_CUBE_MAP_POSITIVE_Y`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_Y`, `GL_TEXTURE_CUBE_MAP_POSITIVE_Z`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_Z`, and `GL_TEXTURE_CUBE_MAP_ARRAY` are acceptable.</para> </listitem>",
         "texture": "<listitem> <para> Specifies the texture object name. </para> </listitem>",
         "level": "<listitem> <para> Specifies the level-of-detail number of the desired image. Level 0 is the base image level. Level <inlineequation><math overflow=\"scroll\"><mi mathvariant=\"italic\">n</mi></math></inlineequation> is the <inlineequation><math overflow=\"scroll\"><mi mathvariant=\"italic\">n</mi></math></inlineequation>th mipmap reduction image. </para> </listitem>",
         "format": "<listitem> <para>Specifies a pixel format for the returned data. The supported formats are `GL_STENCIL_INDEX`, `GL_DEPTH_COMPONENT`, `GL_DEPTH_STENCIL`, `GL_RED`, `GL_GREEN`, `GL_BLUE`, `GL_RG`, `GL_RGB`, `GL_RGBA`, `GL_BGR`, `GL_BGRA`, `GL_RED_INTEGER`, `GL_GREEN_INTEGER`, `GL_BLUE_INTEGER`, `GL_RG_INTEGER`, `GL_RGB_INTEGER`, `GL_RGBA_INTEGER`, `GL_BGR_INTEGER`, `GL_BGRA_INTEGER`.</para> </listitem>",
         "type": "<listitem> <para>Specifies a pixel type for the returned data. The supported types are `GL_UNSIGNED_BYTE`, `GL_BYTE`, `GL_UNSIGNED_SHORT`, `GL_SHORT`, `GL_UNSIGNED_INT`, `GL_INT`, `GL_HALF_FLOAT`, `GL_FLOAT`, `GL_UNSIGNED_BYTE_3_3_2`, `GL_UNSIGNED_BYTE_2_3_3_REV`, `GL_UNSIGNED_SHORT_5_6_5`, `GL_UNSIGNED_SHORT_5_6_5_REV`, `GL_UNSIGNED_SHORT_4_4_4_4`, `GL_UNSIGNED_SHORT_4_4_4_4_REV`, `GL_UNSIGNED_SHORT_5_5_5_1`, `GL_UNSIGNED_SHORT_1_5_5_5_REV`, `GL_UNSIGNED_INT_8_8_8_8`, `GL_UNSIGNED_INT_8_8_8_8_REV`, `GL_UNSIGNED_INT_10_10_10_2`, `GL_UNSIGNED_INT_2_10_10_10_REV`, `GL_UNSIGNED_INT_24_8`, `GL_UNSIGNED_INT_10F_11F_11F_REV`, `GL_UNSIGNED_INT_5_9_9_9_REV`, and `GL_FLOAT_32_UNSIGNED_INT_24_8_REV`.</para> </listitem>",
-        "bufSize": "<listitem> <para>Specifies the size of the buffer <parameter>pixels</parameter> for <function>glGetnTexImage</function> and <function>glGetTextureImage</function> functions.</para> </listitem>",
         "pixels": "<listitem> <para>Returns the texture image. Should be a pointer to an array of the type specified by <parameter>type</parameter>.</para> </listitem>"
       }
     },
@@ -22883,12 +22778,10 @@
       "signature": "void glGetnTexImage(GLenum target, GLint level, GLenum format, GLenum type, GLsizei bufSize, void *pixels)",
       "purpose": "return a texture image",
       "parameters": {
-        "target": "<listitem> <para>Specifies the target to which the texture is bound for <function>glGetTexImage</function> and <function>glGetnTexImage</function> functions. `GL_TEXTURE_1D`, `GL_TEXTURE_2D`, `GL_TEXTURE_3D`, `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_2D_ARRAY`, `GL_TEXTURE_RECTANGLE`, `GL_TEXTURE_CUBE_MAP_POSITIVE_X`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_X`, `GL_TEXTURE_CUBE_MAP_POSITIVE_Y`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_Y`, `GL_TEXTURE_CUBE_MAP_POSITIVE_Z`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_Z`, and `GL_TEXTURE_CUBE_MAP_ARRAY` are acceptable.</para> </listitem>",
         "texture": "<listitem> <para> Specifies the texture object name. </para> </listitem>",
         "level": "<listitem> <para> Specifies the level-of-detail number of the desired image. Level 0 is the base image level. Level <inlineequation><math overflow=\"scroll\"><mi mathvariant=\"italic\">n</mi></math></inlineequation> is the <inlineequation><math overflow=\"scroll\"><mi mathvariant=\"italic\">n</mi></math></inlineequation>th mipmap reduction image. </para> </listitem>",
         "format": "<listitem> <para>Specifies a pixel format for the returned data. The supported formats are `GL_STENCIL_INDEX`, `GL_DEPTH_COMPONENT`, `GL_DEPTH_STENCIL`, `GL_RED`, `GL_GREEN`, `GL_BLUE`, `GL_RG`, `GL_RGB`, `GL_RGBA`, `GL_BGR`, `GL_BGRA`, `GL_RED_INTEGER`, `GL_GREEN_INTEGER`, `GL_BLUE_INTEGER`, `GL_RG_INTEGER`, `GL_RGB_INTEGER`, `GL_RGBA_INTEGER`, `GL_BGR_INTEGER`, `GL_BGRA_INTEGER`.</para> </listitem>",
         "type": "<listitem> <para>Specifies a pixel type for the returned data. The supported types are `GL_UNSIGNED_BYTE`, `GL_BYTE`, `GL_UNSIGNED_SHORT`, `GL_SHORT`, `GL_UNSIGNED_INT`, `GL_INT`, `GL_HALF_FLOAT`, `GL_FLOAT`, `GL_UNSIGNED_BYTE_3_3_2`, `GL_UNSIGNED_BYTE_2_3_3_REV`, `GL_UNSIGNED_SHORT_5_6_5`, `GL_UNSIGNED_SHORT_5_6_5_REV`, `GL_UNSIGNED_SHORT_4_4_4_4`, `GL_UNSIGNED_SHORT_4_4_4_4_REV`, `GL_UNSIGNED_SHORT_5_5_5_1`, `GL_UNSIGNED_SHORT_1_5_5_5_REV`, `GL_UNSIGNED_INT_8_8_8_8`, `GL_UNSIGNED_INT_8_8_8_8_REV`, `GL_UNSIGNED_INT_10_10_10_2`, `GL_UNSIGNED_INT_2_10_10_10_REV`, `GL_UNSIGNED_INT_24_8`, `GL_UNSIGNED_INT_10F_11F_11F_REV`, `GL_UNSIGNED_INT_5_9_9_9_REV`, and `GL_FLOAT_32_UNSIGNED_INT_24_8_REV`.</para> </listitem>",
-        "bufSize": "<listitem> <para>Specifies the size of the buffer <parameter>pixels</parameter> for <function>glGetnTexImage</function> and <function>glGetTextureImage</function> functions.</para> </listitem>",
         "pixels": "<listitem> <para>Returns the texture image. Should be a pointer to an array of the type specified by <parameter>type</parameter>.</para> </listitem>"
       }
     },
@@ -22896,12 +22789,10 @@
       "signature": "void glGetTextureImage(GLuint texture, GLint level, GLenum format, GLenum type, GLsizei bufSize, void *pixels)",
       "purpose": "return a texture image",
       "parameters": {
-        "target": "<listitem> <para>Specifies the target to which the texture is bound for <function>glGetTexImage</function> and <function>glGetnTexImage</function> functions. `GL_TEXTURE_1D`, `GL_TEXTURE_2D`, `GL_TEXTURE_3D`, `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_2D_ARRAY`, `GL_TEXTURE_RECTANGLE`, `GL_TEXTURE_CUBE_MAP_POSITIVE_X`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_X`, `GL_TEXTURE_CUBE_MAP_POSITIVE_Y`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_Y`, `GL_TEXTURE_CUBE_MAP_POSITIVE_Z`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_Z`, and `GL_TEXTURE_CUBE_MAP_ARRAY` are acceptable.</para> </listitem>",
         "texture": "<listitem> <para> Specifies the texture object name. </para> </listitem>",
         "level": "<listitem> <para> Specifies the level-of-detail number of the desired image. Level 0 is the base image level. Level <inlineequation><math overflow=\"scroll\"><mi mathvariant=\"italic\">n</mi></math></inlineequation> is the <inlineequation><math overflow=\"scroll\"><mi mathvariant=\"italic\">n</mi></math></inlineequation>th mipmap reduction image. </para> </listitem>",
         "format": "<listitem> <para>Specifies a pixel format for the returned data. The supported formats are `GL_STENCIL_INDEX`, `GL_DEPTH_COMPONENT`, `GL_DEPTH_STENCIL`, `GL_RED`, `GL_GREEN`, `GL_BLUE`, `GL_RG`, `GL_RGB`, `GL_RGBA`, `GL_BGR`, `GL_BGRA`, `GL_RED_INTEGER`, `GL_GREEN_INTEGER`, `GL_BLUE_INTEGER`, `GL_RG_INTEGER`, `GL_RGB_INTEGER`, `GL_RGBA_INTEGER`, `GL_BGR_INTEGER`, `GL_BGRA_INTEGER`.</para> </listitem>",
         "type": "<listitem> <para>Specifies a pixel type for the returned data. The supported types are `GL_UNSIGNED_BYTE`, `GL_BYTE`, `GL_UNSIGNED_SHORT`, `GL_SHORT`, `GL_UNSIGNED_INT`, `GL_INT`, `GL_HALF_FLOAT`, `GL_FLOAT`, `GL_UNSIGNED_BYTE_3_3_2`, `GL_UNSIGNED_BYTE_2_3_3_REV`, `GL_UNSIGNED_SHORT_5_6_5`, `GL_UNSIGNED_SHORT_5_6_5_REV`, `GL_UNSIGNED_SHORT_4_4_4_4`, `GL_UNSIGNED_SHORT_4_4_4_4_REV`, `GL_UNSIGNED_SHORT_5_5_5_1`, `GL_UNSIGNED_SHORT_1_5_5_5_REV`, `GL_UNSIGNED_INT_8_8_8_8`, `GL_UNSIGNED_INT_8_8_8_8_REV`, `GL_UNSIGNED_INT_10_10_10_2`, `GL_UNSIGNED_INT_2_10_10_10_REV`, `GL_UNSIGNED_INT_24_8`, `GL_UNSIGNED_INT_10F_11F_11F_REV`, `GL_UNSIGNED_INT_5_9_9_9_REV`, and `GL_FLOAT_32_UNSIGNED_INT_24_8_REV`.</para> </listitem>",
-        "bufSize": "<listitem> <para>Specifies the size of the buffer <parameter>pixels</parameter> for <function>glGetnTexImage</function> and <function>glGetTextureImage</function> functions.</para> </listitem>",
         "pixels": "<listitem> <para>Returns the texture image. Should be a pointer to an array of the type specified by <parameter>type</parameter>.</para> </listitem>"
       }
     },
@@ -22909,8 +22800,6 @@
       "signature": "void glGetTexLevelParameterfv(GLenum target, GLint level, GLenum pname, GLfloat * params)",
       "purpose": "return texture parameter values for a specific level of    detail",
       "parameters": {
-        "target": "<listitem> <para>Specifies the target to which the texture is bound for <function>glGetTexLevelParameterfv</function> and <function>glGetTexLevelParameteriv</function> functions. Must be one of the following values: `GL_TEXTURE_1D`, `GL_TEXTURE_2D`, `GL_TEXTURE_3D`, `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_2D_ARRAY`, `GL_TEXTURE_RECTANGLE`, `GL_TEXTURE_2D_MULTISAMPLE`, `GL_TEXTURE_2D_MULTISAMPLE_ARRAY`, `GL_TEXTURE_CUBE_MAP_POSITIVE_X`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_X`, `GL_TEXTURE_CUBE_MAP_POSITIVE_Y`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_Y`, `GL_TEXTURE_CUBE_MAP_POSITIVE_Z`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_Z`, `GL_PROXY_TEXTURE_1D`, `GL_PROXY_TEXTURE_2D`, `GL_PROXY_TEXTURE_3D`, `GL_PROXY_TEXTURE_1D_ARRAY`, `GL_PROXY_TEXTURE_2D_ARRAY`, `GL_PROXY_TEXTURE_RECTANGLE`, `GL_PROXY_TEXTURE_2D_MULTISAMPLE`, `GL_PROXY_TEXTURE_2D_MULTISAMPLE_ARRAY`, `GL_PROXY_TEXTURE_CUBE_MAP`, or `GL_TEXTURE_BUFFER`.</para> </listitem>",
-        "texture": "<listitem> <para>Specifies the texture object name for <function>glGetTextureLevelParameterfv</function> and <function>glGetTextureLevelParameteriv</function> functions.</para> </listitem>",
         "level": "<listitem> <para> Specifies the level-of-detail number of the desired image. Level 0 is the base image level. Level <inlineequation><math overflow=\"scroll\"><mi mathvariant=\"italic\">n</mi></math></inlineequation> is the <inlineequation><math overflow=\"scroll\"><mi mathvariant=\"italic\">n</mi></math></inlineequation>th mipmap reduction image. </para> </listitem>",
         "pname": "<listitem> <para>Specifies the symbolic name of a texture parameter. `GL_TEXTURE_WIDTH`, `GL_TEXTURE_HEIGHT`, `GL_TEXTURE_DEPTH`, `GL_TEXTURE_INTERNAL_FORMAT`, `GL_TEXTURE_RED_SIZE`, `GL_TEXTURE_GREEN_SIZE`, `GL_TEXTURE_BLUE_SIZE`, `GL_TEXTURE_ALPHA_SIZE`, `GL_TEXTURE_DEPTH_SIZE`, `GL_TEXTURE_COMPRESSED`, `GL_TEXTURE_COMPRESSED_IMAGE_SIZE`, and `GL_TEXTURE_BUFFER_OFFSET` are accepted.</para> </listitem>",
         "params": "<listitem> <para>Returns the requested data.</para> </listitem>"
@@ -22920,8 +22809,6 @@
       "signature": "void glGetTexLevelParameteriv(GLenum target, GLint level, GLenum pname, GLint * params)",
       "purpose": "return texture parameter values for a specific level of    detail",
       "parameters": {
-        "target": "<listitem> <para>Specifies the target to which the texture is bound for <function>glGetTexLevelParameterfv</function> and <function>glGetTexLevelParameteriv</function> functions. Must be one of the following values: `GL_TEXTURE_1D`, `GL_TEXTURE_2D`, `GL_TEXTURE_3D`, `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_2D_ARRAY`, `GL_TEXTURE_RECTANGLE`, `GL_TEXTURE_2D_MULTISAMPLE`, `GL_TEXTURE_2D_MULTISAMPLE_ARRAY`, `GL_TEXTURE_CUBE_MAP_POSITIVE_X`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_X`, `GL_TEXTURE_CUBE_MAP_POSITIVE_Y`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_Y`, `GL_TEXTURE_CUBE_MAP_POSITIVE_Z`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_Z`, `GL_PROXY_TEXTURE_1D`, `GL_PROXY_TEXTURE_2D`, `GL_PROXY_TEXTURE_3D`, `GL_PROXY_TEXTURE_1D_ARRAY`, `GL_PROXY_TEXTURE_2D_ARRAY`, `GL_PROXY_TEXTURE_RECTANGLE`, `GL_PROXY_TEXTURE_2D_MULTISAMPLE`, `GL_PROXY_TEXTURE_2D_MULTISAMPLE_ARRAY`, `GL_PROXY_TEXTURE_CUBE_MAP`, or `GL_TEXTURE_BUFFER`.</para> </listitem>",
-        "texture": "<listitem> <para>Specifies the texture object name for <function>glGetTextureLevelParameterfv</function> and <function>glGetTextureLevelParameteriv</function> functions.</para> </listitem>",
         "level": "<listitem> <para> Specifies the level-of-detail number of the desired image. Level 0 is the base image level. Level <inlineequation><math overflow=\"scroll\"><mi mathvariant=\"italic\">n</mi></math></inlineequation> is the <inlineequation><math overflow=\"scroll\"><mi mathvariant=\"italic\">n</mi></math></inlineequation>th mipmap reduction image. </para> </listitem>",
         "pname": "<listitem> <para>Specifies the symbolic name of a texture parameter. `GL_TEXTURE_WIDTH`, `GL_TEXTURE_HEIGHT`, `GL_TEXTURE_DEPTH`, `GL_TEXTURE_INTERNAL_FORMAT`, `GL_TEXTURE_RED_SIZE`, `GL_TEXTURE_GREEN_SIZE`, `GL_TEXTURE_BLUE_SIZE`, `GL_TEXTURE_ALPHA_SIZE`, `GL_TEXTURE_DEPTH_SIZE`, `GL_TEXTURE_COMPRESSED`, `GL_TEXTURE_COMPRESSED_IMAGE_SIZE`, and `GL_TEXTURE_BUFFER_OFFSET` are accepted.</para> </listitem>",
         "params": "<listitem> <para>Returns the requested data.</para> </listitem>"
@@ -22931,8 +22818,6 @@
       "signature": "void glGetTextureLevelParameterfv(GLuint texture, GLint level, GLenum pname, GLfloat *params)",
       "purpose": "return texture parameter values for a specific level of    detail",
       "parameters": {
-        "target": "<listitem> <para>Specifies the target to which the texture is bound for <function>glGetTexLevelParameterfv</function> and <function>glGetTexLevelParameteriv</function> functions. Must be one of the following values: `GL_TEXTURE_1D`, `GL_TEXTURE_2D`, `GL_TEXTURE_3D`, `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_2D_ARRAY`, `GL_TEXTURE_RECTANGLE`, `GL_TEXTURE_2D_MULTISAMPLE`, `GL_TEXTURE_2D_MULTISAMPLE_ARRAY`, `GL_TEXTURE_CUBE_MAP_POSITIVE_X`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_X`, `GL_TEXTURE_CUBE_MAP_POSITIVE_Y`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_Y`, `GL_TEXTURE_CUBE_MAP_POSITIVE_Z`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_Z`, `GL_PROXY_TEXTURE_1D`, `GL_PROXY_TEXTURE_2D`, `GL_PROXY_TEXTURE_3D`, `GL_PROXY_TEXTURE_1D_ARRAY`, `GL_PROXY_TEXTURE_2D_ARRAY`, `GL_PROXY_TEXTURE_RECTANGLE`, `GL_PROXY_TEXTURE_2D_MULTISAMPLE`, `GL_PROXY_TEXTURE_2D_MULTISAMPLE_ARRAY`, `GL_PROXY_TEXTURE_CUBE_MAP`, or `GL_TEXTURE_BUFFER`.</para> </listitem>",
-        "texture": "<listitem> <para>Specifies the texture object name for <function>glGetTextureLevelParameterfv</function> and <function>glGetTextureLevelParameteriv</function> functions.</para> </listitem>",
         "level": "<listitem> <para> Specifies the level-of-detail number of the desired image. Level 0 is the base image level. Level <inlineequation><math overflow=\"scroll\"><mi mathvariant=\"italic\">n</mi></math></inlineequation> is the <inlineequation><math overflow=\"scroll\"><mi mathvariant=\"italic\">n</mi></math></inlineequation>th mipmap reduction image. </para> </listitem>",
         "pname": "<listitem> <para>Specifies the symbolic name of a texture parameter. `GL_TEXTURE_WIDTH`, `GL_TEXTURE_HEIGHT`, `GL_TEXTURE_DEPTH`, `GL_TEXTURE_INTERNAL_FORMAT`, `GL_TEXTURE_RED_SIZE`, `GL_TEXTURE_GREEN_SIZE`, `GL_TEXTURE_BLUE_SIZE`, `GL_TEXTURE_ALPHA_SIZE`, `GL_TEXTURE_DEPTH_SIZE`, `GL_TEXTURE_COMPRESSED`, `GL_TEXTURE_COMPRESSED_IMAGE_SIZE`, and `GL_TEXTURE_BUFFER_OFFSET` are accepted.</para> </listitem>",
         "params": "<listitem> <para>Returns the requested data.</para> </listitem>"
@@ -22942,8 +22827,6 @@
       "signature": "void glGetTextureLevelParameteriv(GLuint texture, GLint level, GLenum pname, GLint *params)",
       "purpose": "return texture parameter values for a specific level of    detail",
       "parameters": {
-        "target": "<listitem> <para>Specifies the target to which the texture is bound for <function>glGetTexLevelParameterfv</function> and <function>glGetTexLevelParameteriv</function> functions. Must be one of the following values: `GL_TEXTURE_1D`, `GL_TEXTURE_2D`, `GL_TEXTURE_3D`, `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_2D_ARRAY`, `GL_TEXTURE_RECTANGLE`, `GL_TEXTURE_2D_MULTISAMPLE`, `GL_TEXTURE_2D_MULTISAMPLE_ARRAY`, `GL_TEXTURE_CUBE_MAP_POSITIVE_X`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_X`, `GL_TEXTURE_CUBE_MAP_POSITIVE_Y`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_Y`, `GL_TEXTURE_CUBE_MAP_POSITIVE_Z`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_Z`, `GL_PROXY_TEXTURE_1D`, `GL_PROXY_TEXTURE_2D`, `GL_PROXY_TEXTURE_3D`, `GL_PROXY_TEXTURE_1D_ARRAY`, `GL_PROXY_TEXTURE_2D_ARRAY`, `GL_PROXY_TEXTURE_RECTANGLE`, `GL_PROXY_TEXTURE_2D_MULTISAMPLE`, `GL_PROXY_TEXTURE_2D_MULTISAMPLE_ARRAY`, `GL_PROXY_TEXTURE_CUBE_MAP`, or `GL_TEXTURE_BUFFER`.</para> </listitem>",
-        "texture": "<listitem> <para>Specifies the texture object name for <function>glGetTextureLevelParameterfv</function> and <function>glGetTextureLevelParameteriv</function> functions.</para> </listitem>",
         "level": "<listitem> <para> Specifies the level-of-detail number of the desired image. Level 0 is the base image level. Level <inlineequation><math overflow=\"scroll\"><mi mathvariant=\"italic\">n</mi></math></inlineequation> is the <inlineequation><math overflow=\"scroll\"><mi mathvariant=\"italic\">n</mi></math></inlineequation>th mipmap reduction image. </para> </listitem>",
         "pname": "<listitem> <para>Specifies the symbolic name of a texture parameter. `GL_TEXTURE_WIDTH`, `GL_TEXTURE_HEIGHT`, `GL_TEXTURE_DEPTH`, `GL_TEXTURE_INTERNAL_FORMAT`, `GL_TEXTURE_RED_SIZE`, `GL_TEXTURE_GREEN_SIZE`, `GL_TEXTURE_BLUE_SIZE`, `GL_TEXTURE_ALPHA_SIZE`, `GL_TEXTURE_DEPTH_SIZE`, `GL_TEXTURE_COMPRESSED`, `GL_TEXTURE_COMPRESSED_IMAGE_SIZE`, and `GL_TEXTURE_BUFFER_OFFSET` are accepted.</para> </listitem>",
         "params": "<listitem> <para>Returns the requested data.</para> </listitem>"
@@ -22953,8 +22836,6 @@
       "signature": "void glGetTexParameterfv(GLenum target, GLenum pname, GLfloat * params)",
       "purpose": "return texture parameter values",
       "parameters": {
-        "target": "<listitem> <para>Specifies the target to which the texture is bound for <function>glGetTexParameterfv</function>, <function>glGetTexParameteriv</function>, <function>glGetTexParameterIiv</function>, and <function>glGetTexParameterIuiv</function> functions. `GL_TEXTURE_1D`, `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_2D`, `GL_TEXTURE_2D_ARRAY`, `GL_TEXTURE_2D_MULTISAMPLE`, `GL_TEXTURE_2D_MULTISAMPLE_ARRAY`, `GL_TEXTURE_3D`, `GL_TEXTURE_CUBE_MAP`, `GL_TEXTURE_RECTANGLE`, and `GL_TEXTURE_CUBE_MAP_ARRAY` are accepted.</para> </listitem>",
-        "texture": "<listitem> <para>Specifies the texture object name for <function>glGetTextureParameterfv</function>, <function>glGetTextureParameteriv</function>, <function>glGetTextureParameterIiv</function>, and <function>glGetTextureParameterIuiv</function> functions.</para> </listitem>",
         "pname": "<listitem> <para>Specifies the symbolic name of a texture parameter. `GL_DEPTH_STENCIL_TEXTURE_MODE`, `GL_IMAGE_FORMAT_COMPATIBILITY_TYPE`, `GL_TEXTURE_BASE_LEVEL`, `GL_TEXTURE_BORDER_COLOR`, `GL_TEXTURE_COMPARE_MODE`, `GL_TEXTURE_COMPARE_FUNC`, `GL_TEXTURE_IMMUTABLE_FORMAT`, `GL_TEXTURE_IMMUTABLE_LEVELS`, `GL_TEXTURE_LOD_BIAS`, `GL_TEXTURE_MAG_FILTER`, `GL_TEXTURE_MAX_LEVEL`, `GL_TEXTURE_MAX_LOD`, `GL_TEXTURE_MIN_FILTER`, `GL_TEXTURE_MIN_LOD`, `GL_TEXTURE_SWIZZLE_R`, `GL_TEXTURE_SWIZZLE_G`, `GL_TEXTURE_SWIZZLE_B`, `GL_TEXTURE_SWIZZLE_A`, `GL_TEXTURE_SWIZZLE_RGBA`, `GL_TEXTURE_TARGET`, `GL_TEXTURE_VIEW_MIN_LAYER`, `GL_TEXTURE_VIEW_MIN_LEVEL`, `GL_TEXTURE_VIEW_NUM_LAYERS`, `GL_TEXTURE_VIEW_NUM_LEVELS`, `GL_TEXTURE_WRAP_S`, `GL_TEXTURE_WRAP_T`, and `GL_TEXTURE_WRAP_R` are accepted.</para> </listitem>",
         "params": "<listitem> <para>Returns the texture parameters.</para> </listitem>"
       }
@@ -22963,8 +22844,6 @@
       "signature": "void glGetTexParameteriv(GLenum target, GLenum pname, GLint * params)",
       "purpose": "return texture parameter values",
       "parameters": {
-        "target": "<listitem> <para>Specifies the target to which the texture is bound for <function>glGetTexParameterfv</function>, <function>glGetTexParameteriv</function>, <function>glGetTexParameterIiv</function>, and <function>glGetTexParameterIuiv</function> functions. `GL_TEXTURE_1D`, `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_2D`, `GL_TEXTURE_2D_ARRAY`, `GL_TEXTURE_2D_MULTISAMPLE`, `GL_TEXTURE_2D_MULTISAMPLE_ARRAY`, `GL_TEXTURE_3D`, `GL_TEXTURE_CUBE_MAP`, `GL_TEXTURE_RECTANGLE`, and `GL_TEXTURE_CUBE_MAP_ARRAY` are accepted.</para> </listitem>",
-        "texture": "<listitem> <para>Specifies the texture object name for <function>glGetTextureParameterfv</function>, <function>glGetTextureParameteriv</function>, <function>glGetTextureParameterIiv</function>, and <function>glGetTextureParameterIuiv</function> functions.</para> </listitem>",
         "pname": "<listitem> <para>Specifies the symbolic name of a texture parameter. `GL_DEPTH_STENCIL_TEXTURE_MODE`, `GL_IMAGE_FORMAT_COMPATIBILITY_TYPE`, `GL_TEXTURE_BASE_LEVEL`, `GL_TEXTURE_BORDER_COLOR`, `GL_TEXTURE_COMPARE_MODE`, `GL_TEXTURE_COMPARE_FUNC`, `GL_TEXTURE_IMMUTABLE_FORMAT`, `GL_TEXTURE_IMMUTABLE_LEVELS`, `GL_TEXTURE_LOD_BIAS`, `GL_TEXTURE_MAG_FILTER`, `GL_TEXTURE_MAX_LEVEL`, `GL_TEXTURE_MAX_LOD`, `GL_TEXTURE_MIN_FILTER`, `GL_TEXTURE_MIN_LOD`, `GL_TEXTURE_SWIZZLE_R`, `GL_TEXTURE_SWIZZLE_G`, `GL_TEXTURE_SWIZZLE_B`, `GL_TEXTURE_SWIZZLE_A`, `GL_TEXTURE_SWIZZLE_RGBA`, `GL_TEXTURE_TARGET`, `GL_TEXTURE_VIEW_MIN_LAYER`, `GL_TEXTURE_VIEW_MIN_LEVEL`, `GL_TEXTURE_VIEW_NUM_LAYERS`, `GL_TEXTURE_VIEW_NUM_LEVELS`, `GL_TEXTURE_WRAP_S`, `GL_TEXTURE_WRAP_T`, and `GL_TEXTURE_WRAP_R` are accepted.</para> </listitem>",
         "params": "<listitem> <para>Returns the texture parameters.</para> </listitem>"
       }
@@ -22973,8 +22852,6 @@
       "signature": "void glGetTexParameterIiv(GLenum target, GLenum pname, GLint * params)",
       "purpose": "return texture parameter values",
       "parameters": {
-        "target": "<listitem> <para>Specifies the target to which the texture is bound for <function>glGetTexParameterfv</function>, <function>glGetTexParameteriv</function>, <function>glGetTexParameterIiv</function>, and <function>glGetTexParameterIuiv</function> functions. `GL_TEXTURE_1D`, `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_2D`, `GL_TEXTURE_2D_ARRAY`, `GL_TEXTURE_2D_MULTISAMPLE`, `GL_TEXTURE_2D_MULTISAMPLE_ARRAY`, `GL_TEXTURE_3D`, `GL_TEXTURE_CUBE_MAP`, `GL_TEXTURE_RECTANGLE`, and `GL_TEXTURE_CUBE_MAP_ARRAY` are accepted.</para> </listitem>",
-        "texture": "<listitem> <para>Specifies the texture object name for <function>glGetTextureParameterfv</function>, <function>glGetTextureParameteriv</function>, <function>glGetTextureParameterIiv</function>, and <function>glGetTextureParameterIuiv</function> functions.</para> </listitem>",
         "pname": "<listitem> <para>Specifies the symbolic name of a texture parameter. `GL_DEPTH_STENCIL_TEXTURE_MODE`, `GL_IMAGE_FORMAT_COMPATIBILITY_TYPE`, `GL_TEXTURE_BASE_LEVEL`, `GL_TEXTURE_BORDER_COLOR`, `GL_TEXTURE_COMPARE_MODE`, `GL_TEXTURE_COMPARE_FUNC`, `GL_TEXTURE_IMMUTABLE_FORMAT`, `GL_TEXTURE_IMMUTABLE_LEVELS`, `GL_TEXTURE_LOD_BIAS`, `GL_TEXTURE_MAG_FILTER`, `GL_TEXTURE_MAX_LEVEL`, `GL_TEXTURE_MAX_LOD`, `GL_TEXTURE_MIN_FILTER`, `GL_TEXTURE_MIN_LOD`, `GL_TEXTURE_SWIZZLE_R`, `GL_TEXTURE_SWIZZLE_G`, `GL_TEXTURE_SWIZZLE_B`, `GL_TEXTURE_SWIZZLE_A`, `GL_TEXTURE_SWIZZLE_RGBA`, `GL_TEXTURE_TARGET`, `GL_TEXTURE_VIEW_MIN_LAYER`, `GL_TEXTURE_VIEW_MIN_LEVEL`, `GL_TEXTURE_VIEW_NUM_LAYERS`, `GL_TEXTURE_VIEW_NUM_LEVELS`, `GL_TEXTURE_WRAP_S`, `GL_TEXTURE_WRAP_T`, and `GL_TEXTURE_WRAP_R` are accepted.</para> </listitem>",
         "params": "<listitem> <para>Returns the texture parameters.</para> </listitem>"
       }
@@ -22983,8 +22860,6 @@
       "signature": "void glGetTexParameterIuiv(GLenum target, GLenum pname, GLuint * params)",
       "purpose": "return texture parameter values",
       "parameters": {
-        "target": "<listitem> <para>Specifies the target to which the texture is bound for <function>glGetTexParameterfv</function>, <function>glGetTexParameteriv</function>, <function>glGetTexParameterIiv</function>, and <function>glGetTexParameterIuiv</function> functions. `GL_TEXTURE_1D`, `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_2D`, `GL_TEXTURE_2D_ARRAY`, `GL_TEXTURE_2D_MULTISAMPLE`, `GL_TEXTURE_2D_MULTISAMPLE_ARRAY`, `GL_TEXTURE_3D`, `GL_TEXTURE_CUBE_MAP`, `GL_TEXTURE_RECTANGLE`, and `GL_TEXTURE_CUBE_MAP_ARRAY` are accepted.</para> </listitem>",
-        "texture": "<listitem> <para>Specifies the texture object name for <function>glGetTextureParameterfv</function>, <function>glGetTextureParameteriv</function>, <function>glGetTextureParameterIiv</function>, and <function>glGetTextureParameterIuiv</function> functions.</para> </listitem>",
         "pname": "<listitem> <para>Specifies the symbolic name of a texture parameter. `GL_DEPTH_STENCIL_TEXTURE_MODE`, `GL_IMAGE_FORMAT_COMPATIBILITY_TYPE`, `GL_TEXTURE_BASE_LEVEL`, `GL_TEXTURE_BORDER_COLOR`, `GL_TEXTURE_COMPARE_MODE`, `GL_TEXTURE_COMPARE_FUNC`, `GL_TEXTURE_IMMUTABLE_FORMAT`, `GL_TEXTURE_IMMUTABLE_LEVELS`, `GL_TEXTURE_LOD_BIAS`, `GL_TEXTURE_MAG_FILTER`, `GL_TEXTURE_MAX_LEVEL`, `GL_TEXTURE_MAX_LOD`, `GL_TEXTURE_MIN_FILTER`, `GL_TEXTURE_MIN_LOD`, `GL_TEXTURE_SWIZZLE_R`, `GL_TEXTURE_SWIZZLE_G`, `GL_TEXTURE_SWIZZLE_B`, `GL_TEXTURE_SWIZZLE_A`, `GL_TEXTURE_SWIZZLE_RGBA`, `GL_TEXTURE_TARGET`, `GL_TEXTURE_VIEW_MIN_LAYER`, `GL_TEXTURE_VIEW_MIN_LEVEL`, `GL_TEXTURE_VIEW_NUM_LAYERS`, `GL_TEXTURE_VIEW_NUM_LEVELS`, `GL_TEXTURE_WRAP_S`, `GL_TEXTURE_WRAP_T`, and `GL_TEXTURE_WRAP_R` are accepted.</para> </listitem>",
         "params": "<listitem> <para>Returns the texture parameters.</para> </listitem>"
       }
@@ -22993,8 +22868,6 @@
       "signature": "void glGetTextureParameterfv(GLuint texture, GLenum pname, GLfloat *params)",
       "purpose": "return texture parameter values",
       "parameters": {
-        "target": "<listitem> <para>Specifies the target to which the texture is bound for <function>glGetTexParameterfv</function>, <function>glGetTexParameteriv</function>, <function>glGetTexParameterIiv</function>, and <function>glGetTexParameterIuiv</function> functions. `GL_TEXTURE_1D`, `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_2D`, `GL_TEXTURE_2D_ARRAY`, `GL_TEXTURE_2D_MULTISAMPLE`, `GL_TEXTURE_2D_MULTISAMPLE_ARRAY`, `GL_TEXTURE_3D`, `GL_TEXTURE_CUBE_MAP`, `GL_TEXTURE_RECTANGLE`, and `GL_TEXTURE_CUBE_MAP_ARRAY` are accepted.</para> </listitem>",
-        "texture": "<listitem> <para>Specifies the texture object name for <function>glGetTextureParameterfv</function>, <function>glGetTextureParameteriv</function>, <function>glGetTextureParameterIiv</function>, and <function>glGetTextureParameterIuiv</function> functions.</para> </listitem>",
         "pname": "<listitem> <para>Specifies the symbolic name of a texture parameter. `GL_DEPTH_STENCIL_TEXTURE_MODE`, `GL_IMAGE_FORMAT_COMPATIBILITY_TYPE`, `GL_TEXTURE_BASE_LEVEL`, `GL_TEXTURE_BORDER_COLOR`, `GL_TEXTURE_COMPARE_MODE`, `GL_TEXTURE_COMPARE_FUNC`, `GL_TEXTURE_IMMUTABLE_FORMAT`, `GL_TEXTURE_IMMUTABLE_LEVELS`, `GL_TEXTURE_LOD_BIAS`, `GL_TEXTURE_MAG_FILTER`, `GL_TEXTURE_MAX_LEVEL`, `GL_TEXTURE_MAX_LOD`, `GL_TEXTURE_MIN_FILTER`, `GL_TEXTURE_MIN_LOD`, `GL_TEXTURE_SWIZZLE_R`, `GL_TEXTURE_SWIZZLE_G`, `GL_TEXTURE_SWIZZLE_B`, `GL_TEXTURE_SWIZZLE_A`, `GL_TEXTURE_SWIZZLE_RGBA`, `GL_TEXTURE_TARGET`, `GL_TEXTURE_VIEW_MIN_LAYER`, `GL_TEXTURE_VIEW_MIN_LEVEL`, `GL_TEXTURE_VIEW_NUM_LAYERS`, `GL_TEXTURE_VIEW_NUM_LEVELS`, `GL_TEXTURE_WRAP_S`, `GL_TEXTURE_WRAP_T`, and `GL_TEXTURE_WRAP_R` are accepted.</para> </listitem>",
         "params": "<listitem> <para>Returns the texture parameters.</para> </listitem>"
       }
@@ -23003,8 +22876,6 @@
       "signature": "void glGetTextureParameteriv(GLuint texture, GLenum pname, GLint *params)",
       "purpose": "return texture parameter values",
       "parameters": {
-        "target": "<listitem> <para>Specifies the target to which the texture is bound for <function>glGetTexParameterfv</function>, <function>glGetTexParameteriv</function>, <function>glGetTexParameterIiv</function>, and <function>glGetTexParameterIuiv</function> functions. `GL_TEXTURE_1D`, `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_2D`, `GL_TEXTURE_2D_ARRAY`, `GL_TEXTURE_2D_MULTISAMPLE`, `GL_TEXTURE_2D_MULTISAMPLE_ARRAY`, `GL_TEXTURE_3D`, `GL_TEXTURE_CUBE_MAP`, `GL_TEXTURE_RECTANGLE`, and `GL_TEXTURE_CUBE_MAP_ARRAY` are accepted.</para> </listitem>",
-        "texture": "<listitem> <para>Specifies the texture object name for <function>glGetTextureParameterfv</function>, <function>glGetTextureParameteriv</function>, <function>glGetTextureParameterIiv</function>, and <function>glGetTextureParameterIuiv</function> functions.</para> </listitem>",
         "pname": "<listitem> <para>Specifies the symbolic name of a texture parameter. `GL_DEPTH_STENCIL_TEXTURE_MODE`, `GL_IMAGE_FORMAT_COMPATIBILITY_TYPE`, `GL_TEXTURE_BASE_LEVEL`, `GL_TEXTURE_BORDER_COLOR`, `GL_TEXTURE_COMPARE_MODE`, `GL_TEXTURE_COMPARE_FUNC`, `GL_TEXTURE_IMMUTABLE_FORMAT`, `GL_TEXTURE_IMMUTABLE_LEVELS`, `GL_TEXTURE_LOD_BIAS`, `GL_TEXTURE_MAG_FILTER`, `GL_TEXTURE_MAX_LEVEL`, `GL_TEXTURE_MAX_LOD`, `GL_TEXTURE_MIN_FILTER`, `GL_TEXTURE_MIN_LOD`, `GL_TEXTURE_SWIZZLE_R`, `GL_TEXTURE_SWIZZLE_G`, `GL_TEXTURE_SWIZZLE_B`, `GL_TEXTURE_SWIZZLE_A`, `GL_TEXTURE_SWIZZLE_RGBA`, `GL_TEXTURE_TARGET`, `GL_TEXTURE_VIEW_MIN_LAYER`, `GL_TEXTURE_VIEW_MIN_LEVEL`, `GL_TEXTURE_VIEW_NUM_LAYERS`, `GL_TEXTURE_VIEW_NUM_LEVELS`, `GL_TEXTURE_WRAP_S`, `GL_TEXTURE_WRAP_T`, and `GL_TEXTURE_WRAP_R` are accepted.</para> </listitem>",
         "params": "<listitem> <para>Returns the texture parameters.</para> </listitem>"
       }
@@ -23013,8 +22884,6 @@
       "signature": "void glGetTextureParameterIiv(GLuint texture, GLenum pname, GLint *params)",
       "purpose": "return texture parameter values",
       "parameters": {
-        "target": "<listitem> <para>Specifies the target to which the texture is bound for <function>glGetTexParameterfv</function>, <function>glGetTexParameteriv</function>, <function>glGetTexParameterIiv</function>, and <function>glGetTexParameterIuiv</function> functions. `GL_TEXTURE_1D`, `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_2D`, `GL_TEXTURE_2D_ARRAY`, `GL_TEXTURE_2D_MULTISAMPLE`, `GL_TEXTURE_2D_MULTISAMPLE_ARRAY`, `GL_TEXTURE_3D`, `GL_TEXTURE_CUBE_MAP`, `GL_TEXTURE_RECTANGLE`, and `GL_TEXTURE_CUBE_MAP_ARRAY` are accepted.</para> </listitem>",
-        "texture": "<listitem> <para>Specifies the texture object name for <function>glGetTextureParameterfv</function>, <function>glGetTextureParameteriv</function>, <function>glGetTextureParameterIiv</function>, and <function>glGetTextureParameterIuiv</function> functions.</para> </listitem>",
         "pname": "<listitem> <para>Specifies the symbolic name of a texture parameter. `GL_DEPTH_STENCIL_TEXTURE_MODE`, `GL_IMAGE_FORMAT_COMPATIBILITY_TYPE`, `GL_TEXTURE_BASE_LEVEL`, `GL_TEXTURE_BORDER_COLOR`, `GL_TEXTURE_COMPARE_MODE`, `GL_TEXTURE_COMPARE_FUNC`, `GL_TEXTURE_IMMUTABLE_FORMAT`, `GL_TEXTURE_IMMUTABLE_LEVELS`, `GL_TEXTURE_LOD_BIAS`, `GL_TEXTURE_MAG_FILTER`, `GL_TEXTURE_MAX_LEVEL`, `GL_TEXTURE_MAX_LOD`, `GL_TEXTURE_MIN_FILTER`, `GL_TEXTURE_MIN_LOD`, `GL_TEXTURE_SWIZZLE_R`, `GL_TEXTURE_SWIZZLE_G`, `GL_TEXTURE_SWIZZLE_B`, `GL_TEXTURE_SWIZZLE_A`, `GL_TEXTURE_SWIZZLE_RGBA`, `GL_TEXTURE_TARGET`, `GL_TEXTURE_VIEW_MIN_LAYER`, `GL_TEXTURE_VIEW_MIN_LEVEL`, `GL_TEXTURE_VIEW_NUM_LAYERS`, `GL_TEXTURE_VIEW_NUM_LEVELS`, `GL_TEXTURE_WRAP_S`, `GL_TEXTURE_WRAP_T`, and `GL_TEXTURE_WRAP_R` are accepted.</para> </listitem>",
         "params": "<listitem> <para>Returns the texture parameters.</para> </listitem>"
       }
@@ -23023,8 +22892,6 @@
       "signature": "void glGetTextureParameterIuiv(GLuint texture, GLenum pname, GLuint *params)",
       "purpose": "return texture parameter values",
       "parameters": {
-        "target": "<listitem> <para>Specifies the target to which the texture is bound for <function>glGetTexParameterfv</function>, <function>glGetTexParameteriv</function>, <function>glGetTexParameterIiv</function>, and <function>glGetTexParameterIuiv</function> functions. `GL_TEXTURE_1D`, `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_2D`, `GL_TEXTURE_2D_ARRAY`, `GL_TEXTURE_2D_MULTISAMPLE`, `GL_TEXTURE_2D_MULTISAMPLE_ARRAY`, `GL_TEXTURE_3D`, `GL_TEXTURE_CUBE_MAP`, `GL_TEXTURE_RECTANGLE`, and `GL_TEXTURE_CUBE_MAP_ARRAY` are accepted.</para> </listitem>",
-        "texture": "<listitem> <para>Specifies the texture object name for <function>glGetTextureParameterfv</function>, <function>glGetTextureParameteriv</function>, <function>glGetTextureParameterIiv</function>, and <function>glGetTextureParameterIuiv</function> functions.</para> </listitem>",
         "pname": "<listitem> <para>Specifies the symbolic name of a texture parameter. `GL_DEPTH_STENCIL_TEXTURE_MODE`, `GL_IMAGE_FORMAT_COMPATIBILITY_TYPE`, `GL_TEXTURE_BASE_LEVEL`, `GL_TEXTURE_BORDER_COLOR`, `GL_TEXTURE_COMPARE_MODE`, `GL_TEXTURE_COMPARE_FUNC`, `GL_TEXTURE_IMMUTABLE_FORMAT`, `GL_TEXTURE_IMMUTABLE_LEVELS`, `GL_TEXTURE_LOD_BIAS`, `GL_TEXTURE_MAG_FILTER`, `GL_TEXTURE_MAX_LEVEL`, `GL_TEXTURE_MAX_LOD`, `GL_TEXTURE_MIN_FILTER`, `GL_TEXTURE_MIN_LOD`, `GL_TEXTURE_SWIZZLE_R`, `GL_TEXTURE_SWIZZLE_G`, `GL_TEXTURE_SWIZZLE_B`, `GL_TEXTURE_SWIZZLE_A`, `GL_TEXTURE_SWIZZLE_RGBA`, `GL_TEXTURE_TARGET`, `GL_TEXTURE_VIEW_MIN_LAYER`, `GL_TEXTURE_VIEW_MIN_LEVEL`, `GL_TEXTURE_VIEW_NUM_LAYERS`, `GL_TEXTURE_VIEW_NUM_LEVELS`, `GL_TEXTURE_WRAP_S`, `GL_TEXTURE_WRAP_T`, and `GL_TEXTURE_WRAP_R` are accepted.</para> </listitem>",
         "params": "<listitem> <para>Returns the texture parameters.</para> </listitem>"
       }
@@ -23326,7 +23193,6 @@
       "purpose": "invalidate the content of some or all of a framebuffer's attachments",
       "parameters": {
         "target": "<listitem> <para> Specifies the target to which the framebuffer object is attached for <function>glInvalidateFramebuffer</function>. </para> </listitem>",
-        "framebuffer": "<listitem> <para> Specifies the name of the framebuffer object for <function>glInvalidateNamedFramebufferData</function>. </para> </listitem>",
         "numAttachments": "<listitem> <para> Specifies the number of entries in the <parameter>attachments</parameter> array. </para> </listitem>",
         "attachments": "<listitem> <para> Specifies a pointer to an array identifying the attachments to be invalidated. </para> </listitem>"
       }
@@ -23335,7 +23201,6 @@
       "signature": "void glInvalidateNamedFramebufferData(GLuint framebuffer, GLsizei numAttachments, const GLenum *attachments)",
       "purpose": "invalidate the content of some or all of a framebuffer's attachments",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the framebuffer object is attached for <function>glInvalidateFramebuffer</function>. </para> </listitem>",
         "framebuffer": "<listitem> <para> Specifies the name of the framebuffer object for <function>glInvalidateNamedFramebufferData</function>. </para> </listitem>",
         "numAttachments": "<listitem> <para> Specifies the number of entries in the <parameter>attachments</parameter> array. </para> </listitem>",
         "attachments": "<listitem> <para> Specifies a pointer to an array identifying the attachments to be invalidated. </para> </listitem>"
@@ -23346,7 +23211,6 @@
       "purpose": "invalidate the content of a region of some or all of a framebuffer's attachments",
       "parameters": {
         "target": "<listitem> <para> Specifies the target to which the framebuffer object is attached for <function>glInvalidateSubFramebuffer</function>. </para> </listitem>",
-        "framebuffer": "<listitem> <para> Specifies the name of the framebuffer object for <function>glInvalidateNamedFramebufferSubData</function>. </para> </listitem>",
         "numAttachments": "<listitem> <para> Specifies the number of entries in the <parameter>attachments</parameter> array. </para> </listitem>",
         "attachments": "<listitem> <para> Specifies a pointer to an array identifying the attachments to be invalidated. </para> </listitem>",
         "x": "<listitem> <para> Specifies the X offset of the region to be invalidated. </para> </listitem>",
@@ -23359,7 +23223,6 @@
       "signature": "void glInvalidateNamedFramebufferSubData(GLuint framebuffer, GLsizei numAttachments, const GLenum *attachments, GLint x, GLint y, GLsizei width, GLsizei height)",
       "purpose": "invalidate the content of a region of some or all of a framebuffer's attachments",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the framebuffer object is attached for <function>glInvalidateSubFramebuffer</function>. </para> </listitem>",
         "framebuffer": "<listitem> <para> Specifies the name of the framebuffer object for <function>glInvalidateNamedFramebufferSubData</function>. </para> </listitem>",
         "numAttachments": "<listitem> <para> Specifies the number of entries in the <parameter>attachments</parameter> array. </para> </listitem>",
         "attachments": "<listitem> <para> Specifies a pointer to an array identifying the attachments to be invalidated. </para> </listitem>",
@@ -23516,26 +23379,21 @@
       "signature": "void *glMapBuffer(GLenum target, GLenum access)",
       "purpose": "map all of a buffer object's data store into the client's address space",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glMapBuffer</function>, which must be one of the buffer binding targets in the following table: </para> <include href=\"bufferbindings.xml\" /> </listitem>",
-        "buffer": "<listitem> <para> Specifies the name of the buffer object for <function>glMapNamedBuffer</function>. </para> </listitem>",
-        "access": "<listitem> <para> Specifies the access policy for <function>glMapBuffer</function> and <function>glMapNamedBuffer</function>, indicating whether it will be possible to read from, write to, or both read from and write to the buffer object's mapped data store. The symbolic constant must be `GL_READ_ONLY`, `GL_WRITE_ONLY`, or `GL_READ_WRITE`. </para> </listitem>"
+        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glMapBuffer</function>, which must be one of the following buffer bindings: `GL_ARRAY_BUFFER`, `GL_ATOMIC_COUNTER_BUFFER`, `GL_COPY_READ_BUFFER`, `GL_COPY_WRITE_BUFFER`, `GL_DISPATCH_INDIRECT_BUFFER`, `GL_DRAW_INDIRECT_BUFFER`, `GL_ELEMENT_ARRAY_BUFFER`, `GL_PIXEL_PACK_BUFFER`, `GL_PIXEL_UNPACK_BUFFER`, `GL_QUERY_BUFFER`, `GL_SHADER_STORAGE_BUFFER`, `GL_TEXTURE_BUFFER`, `GL_TRANSFORM_FEEDBACK_BUFFER`, `GL_UNIFORM_BUFFER` </listitem>"
       }
     },
     "glMapNamedBuffer": {
       "signature": "void *glMapNamedBuffer(GLuint buffer, GLenum access)",
       "purpose": "map all of a buffer object's data store into the client's address space",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glMapBuffer</function>, which must be one of the buffer binding targets in the following table: </para> <include href=\"bufferbindings.xml\" /> </listitem>",
-        "buffer": "<listitem> <para> Specifies the name of the buffer object for <function>glMapNamedBuffer</function>. </para> </listitem>",
-        "access": "<listitem> <para> Specifies the access policy for <function>glMapBuffer</function> and <function>glMapNamedBuffer</function>, indicating whether it will be possible to read from, write to, or both read from and write to the buffer object's mapped data store. The symbolic constant must be `GL_READ_ONLY`, `GL_WRITE_ONLY`, or `GL_READ_WRITE`. </para> </listitem>"
+        "buffer": "<listitem> <para> Specifies the name of the buffer object for <function>glMapNamedBuffer</function>. </para> </listitem>"
       }
     },
     "glMapBufferRange": {
       "signature": "void *glMapBufferRange(GLenum target, GLintptr offset, GLsizeiptr length, GLbitfield access)",
       "purpose": "map all or part of a buffer object's data store into the client's address space",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glMapBufferRange</function>, which must be one of the buffer binding targets in the following table: </para> <include href=\"bufferbindings.xml\" /> </listitem>",
-        "buffer": "<listitem> <para> Specifies the name of the buffer object for <function>glMapNamedBufferRange</function>. </para> </listitem>",
+        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glMapBufferRange</function>, which must be one of the following buffer bindings: `GL_ARRAY_BUFFER`, `GL_ATOMIC_COUNTER_BUFFER`, `GL_COPY_READ_BUFFER`, `GL_COPY_WRITE_BUFFER`, `GL_DISPATCH_INDIRECT_BUFFER`, `GL_DRAW_INDIRECT_BUFFER`, `GL_ELEMENT_ARRAY_BUFFER`, `GL_PIXEL_PACK_BUFFER`, `GL_PIXEL_UNPACK_BUFFER`, `GL_QUERY_BUFFER`, `GL_SHADER_STORAGE_BUFFER`, `GL_TEXTURE_BUFFER`, `GL_TRANSFORM_FEEDBACK_BUFFER`, `GL_UNIFORM_BUFFER` </listitem>",
         "offset": "<listitem> <para> Specifies the starting offset within the buffer of the range to be mapped. </para> </listitem>",
         "length": "<listitem> <para> Specifies the length of the range to be mapped. </para> </listitem>",
         "access": "<listitem> <para> Specifies a combination of access flags indicating the desired access to the mapped range. </para> </listitem>"
@@ -23545,7 +23403,6 @@
       "signature": "void *glMapNamedBufferRange(GLuint buffer, GLintptr offset, GLsizeiptr length, GLbitfield access)",
       "purpose": "map all or part of a buffer object's data store into the client's address space",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glMapBufferRange</function>, which must be one of the buffer binding targets in the following table: </para> <include href=\"bufferbindings.xml\" /> </listitem>",
         "buffer": "<listitem> <para> Specifies the name of the buffer object for <function>glMapNamedBufferRange</function>. </para> </listitem>",
         "offset": "<listitem> <para> Specifies the starting offset within the buffer of the range to be mapped. </para> </listitem>",
         "length": "<listitem> <para> Specifies the length of the range to be mapped. </para> </listitem>",
@@ -24200,7 +24057,6 @@
       "signature": "void glReadBuffer(GLenum mode)",
       "purpose": "select a color buffer source for pixels",
       "parameters": {
-        "framebuffer": "<listitem> <para>Specifies the name of the framebuffer object for <function>glNamedFramebufferReadBuffer</function> function.</para> </listitem>",
         "mode": "<listitem> <para>Specifies a color buffer. Accepted values are `GL_FRONT_LEFT`, `GL_FRONT_RIGHT`, `GL_BACK_LEFT`, `GL_BACK_RIGHT`, `GL_FRONT`, `GL_BACK`, `GL_LEFT`, `GL_RIGHT`, and the constants `GL_COLOR_ATTACHMENT`<emphasis>i</emphasis>.</para> </listitem>"
       }
     },
@@ -24220,7 +24076,6 @@
         "width": "<listitem> <para>Specify the dimensions of the pixel rectangle. <parameter>width</parameter> and <parameter>height</parameter> of one correspond to a single pixel.</para> </listitem>",
         "format": "<listitem> <para>Specifies the format of the pixel data. The following symbolic values are accepted: `GL_STENCIL_INDEX`, `GL_DEPTH_COMPONENT`, `GL_DEPTH_STENCIL`, `GL_RED`, `GL_GREEN`, `GL_BLUE`, `GL_RGB`, `GL_BGR`, `GL_RGBA`, and `GL_BGRA`.</para> </listitem>",
         "type": "<listitem> <para>Specifies the data type of the pixel data. Must be one of `GL_UNSIGNED_BYTE`, `GL_BYTE`, `GL_UNSIGNED_SHORT`, `GL_SHORT`, `GL_UNSIGNED_INT`, `GL_INT`, `GL_HALF_FLOAT`, `GL_FLOAT`, `GL_UNSIGNED_BYTE_3_3_2`, `GL_UNSIGNED_BYTE_2_3_3_REV`, `GL_UNSIGNED_SHORT_5_6_5`, `GL_UNSIGNED_SHORT_5_6_5_REV`, `GL_UNSIGNED_SHORT_4_4_4_4`, `GL_UNSIGNED_SHORT_4_4_4_4_REV`, `GL_UNSIGNED_SHORT_5_5_5_1`, `GL_UNSIGNED_SHORT_1_5_5_5_REV`, `GL_UNSIGNED_INT_8_8_8_8`, `GL_UNSIGNED_INT_8_8_8_8_REV`, `GL_UNSIGNED_INT_10_10_10_2`, `GL_UNSIGNED_INT_2_10_10_10_REV`, `GL_UNSIGNED_INT_24_8`, `GL_UNSIGNED_INT_10F_11F_11F_REV`, `GL_UNSIGNED_INT_5_9_9_9_REV`, or `GL_FLOAT_32_UNSIGNED_INT_24_8_REV`.</para> </listitem>",
-        "bufSize": "<listitem> <para>Specifies the size of the buffer <parameter>data</parameter> for <function>glReadnPixels</function> function.</para> </listitem>",
         "data": "<listitem> <para>Returns the pixel data.</para> </listitem>"
       }
     },
@@ -24246,7 +24101,6 @@
       "purpose": "establish data storage, format and dimensions of a    renderbuffer object's image",
       "parameters": {
         "target": "<listitem> <para>Specifies a binding target of the allocation for <function>glRenderbufferStorage</function> function. Must be `GL_RENDERBUFFER`.</para> </listitem>",
-        "renderbuffer": "<listitem> <para>Specifies the name of the renderbuffer object for <function>glNamedRenderbufferStorage</function> function.</para> </listitem>",
         "internalformat": "<listitem> <para>Specifies the internal format to use for the renderbuffer object's image.</para> </listitem>",
         "width": "<listitem> <para>Specifies the width of the renderbuffer, in pixels.</para> </listitem>",
         "height": "<listitem> <para>Specifies the height of the renderbuffer, in pixels.</para> </listitem>"
@@ -24256,7 +24110,6 @@
       "signature": "void glNamedRenderbufferStorage(GLuint renderbuffer, GLenum internalformat, GLsizei width, GLsizei height)",
       "purpose": "establish data storage, format and dimensions of a    renderbuffer object's image",
       "parameters": {
-        "target": "<listitem> <para>Specifies a binding target of the allocation for <function>glRenderbufferStorage</function> function. Must be `GL_RENDERBUFFER`.</para> </listitem>",
         "renderbuffer": "<listitem> <para>Specifies the name of the renderbuffer object for <function>glNamedRenderbufferStorage</function> function.</para> </listitem>",
         "internalformat": "<listitem> <para>Specifies the internal format to use for the renderbuffer object's image.</para> </listitem>",
         "width": "<listitem> <para>Specifies the width of the renderbuffer, in pixels.</para> </listitem>",
@@ -24268,7 +24121,6 @@
       "purpose": "establish data storage, format, dimensions and sample count of    a renderbuffer object's image",
       "parameters": {
         "target": "<listitem> <para>Specifies a binding target of the allocation for <function>glRenderbufferStorageMultisample</function> function. Must be `GL_RENDERBUFFER`.</para> </listitem>",
-        "renderbuffer": "<listitem> <para>Specifies the name of the renderbuffer object for <function>glNamedRenderbufferStorageMultisample</function> function.</para> </listitem>",
         "samples": "<listitem> <para>Specifies the number of samples to be used for the renderbuffer object's storage.</para> </listitem>",
         "internalformat": "<listitem> <para>Specifies the internal format to use for the renderbuffer object's image.</para> </listitem>",
         "width": "<listitem> <para>Specifies the width of the renderbuffer, in pixels.</para> </listitem>",
@@ -24279,7 +24131,6 @@
       "signature": "void glNamedRenderbufferStorageMultisample(GLuint renderbuffer, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height)",
       "purpose": "establish data storage, format, dimensions and sample count of    a renderbuffer object's image",
       "parameters": {
-        "target": "<listitem> <para>Specifies a binding target of the allocation for <function>glRenderbufferStorageMultisample</function> function. Must be `GL_RENDERBUFFER`.</para> </listitem>",
         "renderbuffer": "<listitem> <para>Specifies the name of the renderbuffer object for <function>glNamedRenderbufferStorageMultisample</function> function.</para> </listitem>",
         "samples": "<listitem> <para>Specifies the number of samples to be used for the renderbuffer object's storage.</para> </listitem>",
         "internalformat": "<listitem> <para>Specifies the internal format to use for the renderbuffer object's image.</para> </listitem>",
@@ -24493,7 +24344,6 @@
       "purpose": "attach a buffer object's data store to a buffer texture object",
       "parameters": {
         "target": "<listitem> <para> Specifies the target to which the texture is bound for <function>glTexBuffer</function>. Must be `GL_TEXTURE_BUFFER`. </para> </listitem>",
-        "texture": "<listitem> <para> Specifies the texture object name for <function>glTextureBuffer</function>. </para> </listitem>",
         "internalformat": "<listitem> <para> Specifies the internal format of the data in the store belonging to <parameter>buffer</parameter>. </para> </listitem>",
         "buffer": "<listitem> <para> Specifies the name of the buffer object whose storage to attach to the active buffer texture. </para> </listitem>"
       }
@@ -24502,7 +24352,6 @@
       "signature": "void glTextureBuffer(GLuint texture, GLenum internalformat, GLuint buffer)",
       "purpose": "attach a buffer object's data store to a buffer texture object",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the texture is bound for <function>glTexBuffer</function>. Must be `GL_TEXTURE_BUFFER`. </para> </listitem>",
         "texture": "<listitem> <para> Specifies the texture object name for <function>glTextureBuffer</function>. </para> </listitem>",
         "internalformat": "<listitem> <para> Specifies the internal format of the data in the store belonging to <parameter>buffer</parameter>. </para> </listitem>",
         "buffer": "<listitem> <para> Specifies the name of the buffer object whose storage to attach to the active buffer texture. </para> </listitem>"
@@ -24513,7 +24362,6 @@
       "purpose": "attach a range of a buffer object's data store to a buffer texture object",
       "parameters": {
         "target": "<listitem> <para> Specifies the target to which the texture object is bound for <function>glTexBufferRange</function>. Must be `GL_TEXTURE_BUFFER`. </para> </listitem>",
-        "texture": "<listitem> <para> Specifies the texture object name for <function>glTextureBufferRange</function>. </para> </listitem>",
         "internalformat": "<listitem> <para> Specifies the internal format of the data in the store belonging to <parameter>buffer</parameter>. </para> </listitem>",
         "buffer": "<listitem> <para> Specifies the name of the buffer object whose storage to attach to the active buffer texture. </para> </listitem>",
         "offset": "<listitem> <para> Specifies the offset of the start of the range of the buffer's data store to attach. </para> </listitem>",
@@ -24524,7 +24372,6 @@
       "signature": "void glTextureBufferRange(GLuint texture, GLenum internalformat, GLuint buffer, GLintptr offset, GLsizei size)",
       "purpose": "attach a range of a buffer object's data store to a buffer texture object",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the texture object is bound for <function>glTexBufferRange</function>. Must be `GL_TEXTURE_BUFFER`. </para> </listitem>",
         "texture": "<listitem> <para> Specifies the texture object name for <function>glTextureBufferRange</function>. </para> </listitem>",
         "internalformat": "<listitem> <para> Specifies the internal format of the data in the store belonging to <parameter>buffer</parameter>. </para> </listitem>",
         "buffer": "<listitem> <para> Specifies the name of the buffer object whose storage to attach to the active buffer texture. </para> </listitem>",
@@ -24605,8 +24452,6 @@
       "signature": "void glTexParameterf(GLenum target, GLenum pname, GLfloat param)",
       "purpose": "set texture parameters",
       "parameters": {
-        "target": "<listitem> <para>Specifies the target to which the texture is bound for <function>glTexParameter</function> functions. Must be one of `GL_TEXTURE_1D`, `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_2D`, `GL_TEXTURE_2D_ARRAY`, `GL_TEXTURE_2D_MULTISAMPLE`, `GL_TEXTURE_2D_MULTISAMPLE_ARRAY`, `GL_TEXTURE_3D`, `GL_TEXTURE_CUBE_MAP`, `GL_TEXTURE_CUBE_MAP_ARRAY`, or `GL_TEXTURE_RECTANGLE`.</para> </listitem>",
-        "texture": "<listitem> <para>Specifies the texture object name for <function>glTextureParameter</function> functions.</para> </listitem>",
         "pname": "<listitem> <para>Specifies the symbolic name of a single-valued texture parameter. <parameter>pname</parameter> can be one of the following: `GL_DEPTH_STENCIL_TEXTURE_MODE`, `GL_TEXTURE_BASE_LEVEL`, `GL_TEXTURE_COMPARE_FUNC`, `GL_TEXTURE_COMPARE_MODE`, `GL_TEXTURE_LOD_BIAS`, `GL_TEXTURE_MIN_FILTER`, `GL_TEXTURE_MAG_FILTER`, `GL_TEXTURE_MIN_LOD`, `GL_TEXTURE_MAX_LOD`, `GL_TEXTURE_MAX_LEVEL`, `GL_TEXTURE_SWIZZLE_R`, `GL_TEXTURE_SWIZZLE_G`, `GL_TEXTURE_SWIZZLE_B`, `GL_TEXTURE_SWIZZLE_A`, `GL_TEXTURE_WRAP_S`, `GL_TEXTURE_WRAP_T`, or `GL_TEXTURE_WRAP_R`.</para> <para>For the vector commands (<function>glTexParameter*v</function>), <parameter>pname</parameter> can also be one of `GL_TEXTURE_BORDER_COLOR` or `GL_TEXTURE_SWIZZLE_RGBA`.</para> </listitem>",
         "param": "<listitem> <para>For the scalar commands, specifies the value of <parameter>pname</parameter>.</para> </listitem>",
         "params": "<listitem> <para>For the vector commands, specifies a pointer to an array where the value or values of <parameter>pname</parameter> are stored.</para> </listitem>"
@@ -24616,8 +24461,6 @@
       "signature": "void glTexParameteri(GLenum target, GLenum pname, GLint param)",
       "purpose": "set texture parameters",
       "parameters": {
-        "target": "<listitem> <para>Specifies the target to which the texture is bound for <function>glTexParameter</function> functions. Must be one of `GL_TEXTURE_1D`, `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_2D`, `GL_TEXTURE_2D_ARRAY`, `GL_TEXTURE_2D_MULTISAMPLE`, `GL_TEXTURE_2D_MULTISAMPLE_ARRAY`, `GL_TEXTURE_3D`, `GL_TEXTURE_CUBE_MAP`, `GL_TEXTURE_CUBE_MAP_ARRAY`, or `GL_TEXTURE_RECTANGLE`.</para> </listitem>",
-        "texture": "<listitem> <para>Specifies the texture object name for <function>glTextureParameter</function> functions.</para> </listitem>",
         "pname": "<listitem> <para>Specifies the symbolic name of a single-valued texture parameter. <parameter>pname</parameter> can be one of the following: `GL_DEPTH_STENCIL_TEXTURE_MODE`, `GL_TEXTURE_BASE_LEVEL`, `GL_TEXTURE_COMPARE_FUNC`, `GL_TEXTURE_COMPARE_MODE`, `GL_TEXTURE_LOD_BIAS`, `GL_TEXTURE_MIN_FILTER`, `GL_TEXTURE_MAG_FILTER`, `GL_TEXTURE_MIN_LOD`, `GL_TEXTURE_MAX_LOD`, `GL_TEXTURE_MAX_LEVEL`, `GL_TEXTURE_SWIZZLE_R`, `GL_TEXTURE_SWIZZLE_G`, `GL_TEXTURE_SWIZZLE_B`, `GL_TEXTURE_SWIZZLE_A`, `GL_TEXTURE_WRAP_S`, `GL_TEXTURE_WRAP_T`, or `GL_TEXTURE_WRAP_R`.</para> <para>For the vector commands (<function>glTexParameter*v</function>), <parameter>pname</parameter> can also be one of `GL_TEXTURE_BORDER_COLOR` or `GL_TEXTURE_SWIZZLE_RGBA`.</para> </listitem>",
         "param": "<listitem> <para>For the scalar commands, specifies the value of <parameter>pname</parameter>.</para> </listitem>",
         "params": "<listitem> <para>For the vector commands, specifies a pointer to an array where the value or values of <parameter>pname</parameter> are stored.</para> </listitem>"
@@ -24627,8 +24470,6 @@
       "signature": "void glTextureParameterf(GLuint texture, GLenum pname, GLfloat param)",
       "purpose": "set texture parameters",
       "parameters": {
-        "target": "<listitem> <para>Specifies the target to which the texture is bound for <function>glTexParameter</function> functions. Must be one of `GL_TEXTURE_1D`, `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_2D`, `GL_TEXTURE_2D_ARRAY`, `GL_TEXTURE_2D_MULTISAMPLE`, `GL_TEXTURE_2D_MULTISAMPLE_ARRAY`, `GL_TEXTURE_3D`, `GL_TEXTURE_CUBE_MAP`, `GL_TEXTURE_CUBE_MAP_ARRAY`, or `GL_TEXTURE_RECTANGLE`.</para> </listitem>",
-        "texture": "<listitem> <para>Specifies the texture object name for <function>glTextureParameter</function> functions.</para> </listitem>",
         "pname": "<listitem> <para>Specifies the symbolic name of a single-valued texture parameter. <parameter>pname</parameter> can be one of the following: `GL_DEPTH_STENCIL_TEXTURE_MODE`, `GL_TEXTURE_BASE_LEVEL`, `GL_TEXTURE_COMPARE_FUNC`, `GL_TEXTURE_COMPARE_MODE`, `GL_TEXTURE_LOD_BIAS`, `GL_TEXTURE_MIN_FILTER`, `GL_TEXTURE_MAG_FILTER`, `GL_TEXTURE_MIN_LOD`, `GL_TEXTURE_MAX_LOD`, `GL_TEXTURE_MAX_LEVEL`, `GL_TEXTURE_SWIZZLE_R`, `GL_TEXTURE_SWIZZLE_G`, `GL_TEXTURE_SWIZZLE_B`, `GL_TEXTURE_SWIZZLE_A`, `GL_TEXTURE_WRAP_S`, `GL_TEXTURE_WRAP_T`, or `GL_TEXTURE_WRAP_R`.</para> <para>For the vector commands (<function>glTexParameter*v</function>), <parameter>pname</parameter> can also be one of `GL_TEXTURE_BORDER_COLOR` or `GL_TEXTURE_SWIZZLE_RGBA`.</para> </listitem>",
         "param": "<listitem> <para>For the scalar commands, specifies the value of <parameter>pname</parameter>.</para> </listitem>",
         "params": "<listitem> <para>For the vector commands, specifies a pointer to an array where the value or values of <parameter>pname</parameter> are stored.</para> </listitem>"
@@ -24638,8 +24479,6 @@
       "signature": "void glTextureParameteri(GLuint texture, GLenum pname, GLint param)",
       "purpose": "set texture parameters",
       "parameters": {
-        "target": "<listitem> <para>Specifies the target to which the texture is bound for <function>glTexParameter</function> functions. Must be one of `GL_TEXTURE_1D`, `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_2D`, `GL_TEXTURE_2D_ARRAY`, `GL_TEXTURE_2D_MULTISAMPLE`, `GL_TEXTURE_2D_MULTISAMPLE_ARRAY`, `GL_TEXTURE_3D`, `GL_TEXTURE_CUBE_MAP`, `GL_TEXTURE_CUBE_MAP_ARRAY`, or `GL_TEXTURE_RECTANGLE`.</para> </listitem>",
-        "texture": "<listitem> <para>Specifies the texture object name for <function>glTextureParameter</function> functions.</para> </listitem>",
         "pname": "<listitem> <para>Specifies the symbolic name of a single-valued texture parameter. <parameter>pname</parameter> can be one of the following: `GL_DEPTH_STENCIL_TEXTURE_MODE`, `GL_TEXTURE_BASE_LEVEL`, `GL_TEXTURE_COMPARE_FUNC`, `GL_TEXTURE_COMPARE_MODE`, `GL_TEXTURE_LOD_BIAS`, `GL_TEXTURE_MIN_FILTER`, `GL_TEXTURE_MAG_FILTER`, `GL_TEXTURE_MIN_LOD`, `GL_TEXTURE_MAX_LOD`, `GL_TEXTURE_MAX_LEVEL`, `GL_TEXTURE_SWIZZLE_R`, `GL_TEXTURE_SWIZZLE_G`, `GL_TEXTURE_SWIZZLE_B`, `GL_TEXTURE_SWIZZLE_A`, `GL_TEXTURE_WRAP_S`, `GL_TEXTURE_WRAP_T`, or `GL_TEXTURE_WRAP_R`.</para> <para>For the vector commands (<function>glTexParameter*v</function>), <parameter>pname</parameter> can also be one of `GL_TEXTURE_BORDER_COLOR` or `GL_TEXTURE_SWIZZLE_RGBA`.</para> </listitem>",
         "param": "<listitem> <para>For the scalar commands, specifies the value of <parameter>pname</parameter>.</para> </listitem>",
         "params": "<listitem> <para>For the vector commands, specifies a pointer to an array where the value or values of <parameter>pname</parameter> are stored.</para> </listitem>"
@@ -24649,8 +24488,6 @@
       "signature": "void glTexParameterfv(GLenum target, GLenum pname, const GLfloat * params)",
       "purpose": "set texture parameters",
       "parameters": {
-        "target": "<listitem> <para>Specifies the target to which the texture is bound for <function>glTexParameter</function> functions. Must be one of `GL_TEXTURE_1D`, `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_2D`, `GL_TEXTURE_2D_ARRAY`, `GL_TEXTURE_2D_MULTISAMPLE`, `GL_TEXTURE_2D_MULTISAMPLE_ARRAY`, `GL_TEXTURE_3D`, `GL_TEXTURE_CUBE_MAP`, `GL_TEXTURE_CUBE_MAP_ARRAY`, or `GL_TEXTURE_RECTANGLE`.</para> </listitem>",
-        "texture": "<listitem> <para>Specifies the texture object name for <function>glTextureParameter</function> functions.</para> </listitem>",
         "pname": "<listitem> <para>Specifies the symbolic name of a single-valued texture parameter. <parameter>pname</parameter> can be one of the following: `GL_DEPTH_STENCIL_TEXTURE_MODE`, `GL_TEXTURE_BASE_LEVEL`, `GL_TEXTURE_COMPARE_FUNC`, `GL_TEXTURE_COMPARE_MODE`, `GL_TEXTURE_LOD_BIAS`, `GL_TEXTURE_MIN_FILTER`, `GL_TEXTURE_MAG_FILTER`, `GL_TEXTURE_MIN_LOD`, `GL_TEXTURE_MAX_LOD`, `GL_TEXTURE_MAX_LEVEL`, `GL_TEXTURE_SWIZZLE_R`, `GL_TEXTURE_SWIZZLE_G`, `GL_TEXTURE_SWIZZLE_B`, `GL_TEXTURE_SWIZZLE_A`, `GL_TEXTURE_WRAP_S`, `GL_TEXTURE_WRAP_T`, or `GL_TEXTURE_WRAP_R`.</para> <para>For the vector commands (<function>glTexParameter*v</function>), <parameter>pname</parameter> can also be one of `GL_TEXTURE_BORDER_COLOR` or `GL_TEXTURE_SWIZZLE_RGBA`.</para> </listitem>",
         "param": "<listitem> <para>For the scalar commands, specifies the value of <parameter>pname</parameter>.</para> </listitem>",
         "params": "<listitem> <para>For the vector commands, specifies a pointer to an array where the value or values of <parameter>pname</parameter> are stored.</para> </listitem>"
@@ -24660,8 +24497,6 @@
       "signature": "void glTexParameteriv(GLenum target, GLenum pname, const GLint * params)",
       "purpose": "set texture parameters",
       "parameters": {
-        "target": "<listitem> <para>Specifies the target to which the texture is bound for <function>glTexParameter</function> functions. Must be one of `GL_TEXTURE_1D`, `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_2D`, `GL_TEXTURE_2D_ARRAY`, `GL_TEXTURE_2D_MULTISAMPLE`, `GL_TEXTURE_2D_MULTISAMPLE_ARRAY`, `GL_TEXTURE_3D`, `GL_TEXTURE_CUBE_MAP`, `GL_TEXTURE_CUBE_MAP_ARRAY`, or `GL_TEXTURE_RECTANGLE`.</para> </listitem>",
-        "texture": "<listitem> <para>Specifies the texture object name for <function>glTextureParameter</function> functions.</para> </listitem>",
         "pname": "<listitem> <para>Specifies the symbolic name of a single-valued texture parameter. <parameter>pname</parameter> can be one of the following: `GL_DEPTH_STENCIL_TEXTURE_MODE`, `GL_TEXTURE_BASE_LEVEL`, `GL_TEXTURE_COMPARE_FUNC`, `GL_TEXTURE_COMPARE_MODE`, `GL_TEXTURE_LOD_BIAS`, `GL_TEXTURE_MIN_FILTER`, `GL_TEXTURE_MAG_FILTER`, `GL_TEXTURE_MIN_LOD`, `GL_TEXTURE_MAX_LOD`, `GL_TEXTURE_MAX_LEVEL`, `GL_TEXTURE_SWIZZLE_R`, `GL_TEXTURE_SWIZZLE_G`, `GL_TEXTURE_SWIZZLE_B`, `GL_TEXTURE_SWIZZLE_A`, `GL_TEXTURE_WRAP_S`, `GL_TEXTURE_WRAP_T`, or `GL_TEXTURE_WRAP_R`.</para> <para>For the vector commands (<function>glTexParameter*v</function>), <parameter>pname</parameter> can also be one of `GL_TEXTURE_BORDER_COLOR` or `GL_TEXTURE_SWIZZLE_RGBA`.</para> </listitem>",
         "param": "<listitem> <para>For the scalar commands, specifies the value of <parameter>pname</parameter>.</para> </listitem>",
         "params": "<listitem> <para>For the vector commands, specifies a pointer to an array where the value or values of <parameter>pname</parameter> are stored.</para> </listitem>"
@@ -24671,8 +24506,6 @@
       "signature": "void glTexParameterIiv(GLenum target, GLenum pname, const GLint * params)",
       "purpose": "set texture parameters",
       "parameters": {
-        "target": "<listitem> <para>Specifies the target to which the texture is bound for <function>glTexParameter</function> functions. Must be one of `GL_TEXTURE_1D`, `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_2D`, `GL_TEXTURE_2D_ARRAY`, `GL_TEXTURE_2D_MULTISAMPLE`, `GL_TEXTURE_2D_MULTISAMPLE_ARRAY`, `GL_TEXTURE_3D`, `GL_TEXTURE_CUBE_MAP`, `GL_TEXTURE_CUBE_MAP_ARRAY`, or `GL_TEXTURE_RECTANGLE`.</para> </listitem>",
-        "texture": "<listitem> <para>Specifies the texture object name for <function>glTextureParameter</function> functions.</para> </listitem>",
         "pname": "<listitem> <para>Specifies the symbolic name of a single-valued texture parameter. <parameter>pname</parameter> can be one of the following: `GL_DEPTH_STENCIL_TEXTURE_MODE`, `GL_TEXTURE_BASE_LEVEL`, `GL_TEXTURE_COMPARE_FUNC`, `GL_TEXTURE_COMPARE_MODE`, `GL_TEXTURE_LOD_BIAS`, `GL_TEXTURE_MIN_FILTER`, `GL_TEXTURE_MAG_FILTER`, `GL_TEXTURE_MIN_LOD`, `GL_TEXTURE_MAX_LOD`, `GL_TEXTURE_MAX_LEVEL`, `GL_TEXTURE_SWIZZLE_R`, `GL_TEXTURE_SWIZZLE_G`, `GL_TEXTURE_SWIZZLE_B`, `GL_TEXTURE_SWIZZLE_A`, `GL_TEXTURE_WRAP_S`, `GL_TEXTURE_WRAP_T`, or `GL_TEXTURE_WRAP_R`.</para> <para>For the vector commands (<function>glTexParameter*v</function>), <parameter>pname</parameter> can also be one of `GL_TEXTURE_BORDER_COLOR` or `GL_TEXTURE_SWIZZLE_RGBA`.</para> </listitem>",
         "param": "<listitem> <para>For the scalar commands, specifies the value of <parameter>pname</parameter>.</para> </listitem>",
         "params": "<listitem> <para>For the vector commands, specifies a pointer to an array where the value or values of <parameter>pname</parameter> are stored.</para> </listitem>"
@@ -24682,8 +24515,6 @@
       "signature": "void glTexParameterIuiv(GLenum target, GLenum pname, const GLuint * params)",
       "purpose": "set texture parameters",
       "parameters": {
-        "target": "<listitem> <para>Specifies the target to which the texture is bound for <function>glTexParameter</function> functions. Must be one of `GL_TEXTURE_1D`, `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_2D`, `GL_TEXTURE_2D_ARRAY`, `GL_TEXTURE_2D_MULTISAMPLE`, `GL_TEXTURE_2D_MULTISAMPLE_ARRAY`, `GL_TEXTURE_3D`, `GL_TEXTURE_CUBE_MAP`, `GL_TEXTURE_CUBE_MAP_ARRAY`, or `GL_TEXTURE_RECTANGLE`.</para> </listitem>",
-        "texture": "<listitem> <para>Specifies the texture object name for <function>glTextureParameter</function> functions.</para> </listitem>",
         "pname": "<listitem> <para>Specifies the symbolic name of a single-valued texture parameter. <parameter>pname</parameter> can be one of the following: `GL_DEPTH_STENCIL_TEXTURE_MODE`, `GL_TEXTURE_BASE_LEVEL`, `GL_TEXTURE_COMPARE_FUNC`, `GL_TEXTURE_COMPARE_MODE`, `GL_TEXTURE_LOD_BIAS`, `GL_TEXTURE_MIN_FILTER`, `GL_TEXTURE_MAG_FILTER`, `GL_TEXTURE_MIN_LOD`, `GL_TEXTURE_MAX_LOD`, `GL_TEXTURE_MAX_LEVEL`, `GL_TEXTURE_SWIZZLE_R`, `GL_TEXTURE_SWIZZLE_G`, `GL_TEXTURE_SWIZZLE_B`, `GL_TEXTURE_SWIZZLE_A`, `GL_TEXTURE_WRAP_S`, `GL_TEXTURE_WRAP_T`, or `GL_TEXTURE_WRAP_R`.</para> <para>For the vector commands (<function>glTexParameter*v</function>), <parameter>pname</parameter> can also be one of `GL_TEXTURE_BORDER_COLOR` or `GL_TEXTURE_SWIZZLE_RGBA`.</para> </listitem>",
         "param": "<listitem> <para>For the scalar commands, specifies the value of <parameter>pname</parameter>.</para> </listitem>",
         "params": "<listitem> <para>For the vector commands, specifies a pointer to an array where the value or values of <parameter>pname</parameter> are stored.</para> </listitem>"
@@ -24693,8 +24524,6 @@
       "signature": "void glTextureParameterfv(GLuint texture, GLenum pname, const GLfloat *params)",
       "purpose": "set texture parameters",
       "parameters": {
-        "target": "<listitem> <para>Specifies the target to which the texture is bound for <function>glTexParameter</function> functions. Must be one of `GL_TEXTURE_1D`, `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_2D`, `GL_TEXTURE_2D_ARRAY`, `GL_TEXTURE_2D_MULTISAMPLE`, `GL_TEXTURE_2D_MULTISAMPLE_ARRAY`, `GL_TEXTURE_3D`, `GL_TEXTURE_CUBE_MAP`, `GL_TEXTURE_CUBE_MAP_ARRAY`, or `GL_TEXTURE_RECTANGLE`.</para> </listitem>",
-        "texture": "<listitem> <para>Specifies the texture object name for <function>glTextureParameter</function> functions.</para> </listitem>",
         "pname": "<listitem> <para>Specifies the symbolic name of a single-valued texture parameter. <parameter>pname</parameter> can be one of the following: `GL_DEPTH_STENCIL_TEXTURE_MODE`, `GL_TEXTURE_BASE_LEVEL`, `GL_TEXTURE_COMPARE_FUNC`, `GL_TEXTURE_COMPARE_MODE`, `GL_TEXTURE_LOD_BIAS`, `GL_TEXTURE_MIN_FILTER`, `GL_TEXTURE_MAG_FILTER`, `GL_TEXTURE_MIN_LOD`, `GL_TEXTURE_MAX_LOD`, `GL_TEXTURE_MAX_LEVEL`, `GL_TEXTURE_SWIZZLE_R`, `GL_TEXTURE_SWIZZLE_G`, `GL_TEXTURE_SWIZZLE_B`, `GL_TEXTURE_SWIZZLE_A`, `GL_TEXTURE_WRAP_S`, `GL_TEXTURE_WRAP_T`, or `GL_TEXTURE_WRAP_R`.</para> <para>For the vector commands (<function>glTexParameter*v</function>), <parameter>pname</parameter> can also be one of `GL_TEXTURE_BORDER_COLOR` or `GL_TEXTURE_SWIZZLE_RGBA`.</para> </listitem>",
         "param": "<listitem> <para>For the scalar commands, specifies the value of <parameter>pname</parameter>.</para> </listitem>",
         "params": "<listitem> <para>For the vector commands, specifies a pointer to an array where the value or values of <parameter>pname</parameter> are stored.</para> </listitem>"
@@ -24704,8 +24533,6 @@
       "signature": "void glTextureParameteriv(GLuint texture, GLenum pname, const GLint *params)",
       "purpose": "set texture parameters",
       "parameters": {
-        "target": "<listitem> <para>Specifies the target to which the texture is bound for <function>glTexParameter</function> functions. Must be one of `GL_TEXTURE_1D`, `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_2D`, `GL_TEXTURE_2D_ARRAY`, `GL_TEXTURE_2D_MULTISAMPLE`, `GL_TEXTURE_2D_MULTISAMPLE_ARRAY`, `GL_TEXTURE_3D`, `GL_TEXTURE_CUBE_MAP`, `GL_TEXTURE_CUBE_MAP_ARRAY`, or `GL_TEXTURE_RECTANGLE`.</para> </listitem>",
-        "texture": "<listitem> <para>Specifies the texture object name for <function>glTextureParameter</function> functions.</para> </listitem>",
         "pname": "<listitem> <para>Specifies the symbolic name of a single-valued texture parameter. <parameter>pname</parameter> can be one of the following: `GL_DEPTH_STENCIL_TEXTURE_MODE`, `GL_TEXTURE_BASE_LEVEL`, `GL_TEXTURE_COMPARE_FUNC`, `GL_TEXTURE_COMPARE_MODE`, `GL_TEXTURE_LOD_BIAS`, `GL_TEXTURE_MIN_FILTER`, `GL_TEXTURE_MAG_FILTER`, `GL_TEXTURE_MIN_LOD`, `GL_TEXTURE_MAX_LOD`, `GL_TEXTURE_MAX_LEVEL`, `GL_TEXTURE_SWIZZLE_R`, `GL_TEXTURE_SWIZZLE_G`, `GL_TEXTURE_SWIZZLE_B`, `GL_TEXTURE_SWIZZLE_A`, `GL_TEXTURE_WRAP_S`, `GL_TEXTURE_WRAP_T`, or `GL_TEXTURE_WRAP_R`.</para> <para>For the vector commands (<function>glTexParameter*v</function>), <parameter>pname</parameter> can also be one of `GL_TEXTURE_BORDER_COLOR` or `GL_TEXTURE_SWIZZLE_RGBA`.</para> </listitem>",
         "param": "<listitem> <para>For the scalar commands, specifies the value of <parameter>pname</parameter>.</para> </listitem>",
         "params": "<listitem> <para>For the vector commands, specifies a pointer to an array where the value or values of <parameter>pname</parameter> are stored.</para> </listitem>"
@@ -24715,8 +24542,6 @@
       "signature": "void glTextureParameterIiv(GLuint texture, GLenum pname, const GLint *params)",
       "purpose": "set texture parameters",
       "parameters": {
-        "target": "<listitem> <para>Specifies the target to which the texture is bound for <function>glTexParameter</function> functions. Must be one of `GL_TEXTURE_1D`, `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_2D`, `GL_TEXTURE_2D_ARRAY`, `GL_TEXTURE_2D_MULTISAMPLE`, `GL_TEXTURE_2D_MULTISAMPLE_ARRAY`, `GL_TEXTURE_3D`, `GL_TEXTURE_CUBE_MAP`, `GL_TEXTURE_CUBE_MAP_ARRAY`, or `GL_TEXTURE_RECTANGLE`.</para> </listitem>",
-        "texture": "<listitem> <para>Specifies the texture object name for <function>glTextureParameter</function> functions.</para> </listitem>",
         "pname": "<listitem> <para>Specifies the symbolic name of a single-valued texture parameter. <parameter>pname</parameter> can be one of the following: `GL_DEPTH_STENCIL_TEXTURE_MODE`, `GL_TEXTURE_BASE_LEVEL`, `GL_TEXTURE_COMPARE_FUNC`, `GL_TEXTURE_COMPARE_MODE`, `GL_TEXTURE_LOD_BIAS`, `GL_TEXTURE_MIN_FILTER`, `GL_TEXTURE_MAG_FILTER`, `GL_TEXTURE_MIN_LOD`, `GL_TEXTURE_MAX_LOD`, `GL_TEXTURE_MAX_LEVEL`, `GL_TEXTURE_SWIZZLE_R`, `GL_TEXTURE_SWIZZLE_G`, `GL_TEXTURE_SWIZZLE_B`, `GL_TEXTURE_SWIZZLE_A`, `GL_TEXTURE_WRAP_S`, `GL_TEXTURE_WRAP_T`, or `GL_TEXTURE_WRAP_R`.</para> <para>For the vector commands (<function>glTexParameter*v</function>), <parameter>pname</parameter> can also be one of `GL_TEXTURE_BORDER_COLOR` or `GL_TEXTURE_SWIZZLE_RGBA`.</para> </listitem>",
         "param": "<listitem> <para>For the scalar commands, specifies the value of <parameter>pname</parameter>.</para> </listitem>",
         "params": "<listitem> <para>For the vector commands, specifies a pointer to an array where the value or values of <parameter>pname</parameter> are stored.</para> </listitem>"
@@ -24726,8 +24551,6 @@
       "signature": "void glTextureParameterIuiv(GLuint texture, GLenum pname, const GLuint *params)",
       "purpose": "set texture parameters",
       "parameters": {
-        "target": "<listitem> <para>Specifies the target to which the texture is bound for <function>glTexParameter</function> functions. Must be one of `GL_TEXTURE_1D`, `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_2D`, `GL_TEXTURE_2D_ARRAY`, `GL_TEXTURE_2D_MULTISAMPLE`, `GL_TEXTURE_2D_MULTISAMPLE_ARRAY`, `GL_TEXTURE_3D`, `GL_TEXTURE_CUBE_MAP`, `GL_TEXTURE_CUBE_MAP_ARRAY`, or `GL_TEXTURE_RECTANGLE`.</para> </listitem>",
-        "texture": "<listitem> <para>Specifies the texture object name for <function>glTextureParameter</function> functions.</para> </listitem>",
         "pname": "<listitem> <para>Specifies the symbolic name of a single-valued texture parameter. <parameter>pname</parameter> can be one of the following: `GL_DEPTH_STENCIL_TEXTURE_MODE`, `GL_TEXTURE_BASE_LEVEL`, `GL_TEXTURE_COMPARE_FUNC`, `GL_TEXTURE_COMPARE_MODE`, `GL_TEXTURE_LOD_BIAS`, `GL_TEXTURE_MIN_FILTER`, `GL_TEXTURE_MAG_FILTER`, `GL_TEXTURE_MIN_LOD`, `GL_TEXTURE_MAX_LOD`, `GL_TEXTURE_MAX_LEVEL`, `GL_TEXTURE_SWIZZLE_R`, `GL_TEXTURE_SWIZZLE_G`, `GL_TEXTURE_SWIZZLE_B`, `GL_TEXTURE_SWIZZLE_A`, `GL_TEXTURE_WRAP_S`, `GL_TEXTURE_WRAP_T`, or `GL_TEXTURE_WRAP_R`.</para> <para>For the vector commands (<function>glTexParameter*v</function>), <parameter>pname</parameter> can also be one of `GL_TEXTURE_BORDER_COLOR` or `GL_TEXTURE_SWIZZLE_RGBA`.</para> </listitem>",
         "param": "<listitem> <para>For the scalar commands, specifies the value of <parameter>pname</parameter>.</para> </listitem>",
         "params": "<listitem> <para>For the vector commands, specifies a pointer to an array where the value or values of <parameter>pname</parameter> are stored.</para> </listitem>"
@@ -24738,7 +24561,6 @@
       "purpose": "simultaneously specify storage for all levels of a one-dimensional texture",
       "parameters": {
         "target": "<listitem> <para> Specifies the target to which the texture object is bound for <function>glTexStorage1D</function>. Must be one of `GL_TEXTURE_1D` or `GL_PROXY_TEXTURE_1D`. </para> </listitem>",
-        "texture": "<listitem> <para> Specifies the texture object name for <function>glTextureStorage1D</function>. The effective target of <parameter>texture</parameter> must be one of the valid non-proxy <parameter>target</parameter> values above. </para> </listitem>",
         "levels": "<listitem> <para> Specify the number of texture levels. </para> </listitem>",
         "internalformat": "<listitem> <para> Specifies the sized internal format to be used to store texture image data. </para> </listitem>",
         "width": "<listitem> <para> Specifies the width of the texture, in texels. </para> </listitem>"
@@ -24748,7 +24570,6 @@
       "signature": "void glTextureStorage1D(GLuint texture, GLsizei levels, GLenum internalformat, GLsizei width)",
       "purpose": "simultaneously specify storage for all levels of a one-dimensional texture",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the texture object is bound for <function>glTexStorage1D</function>. Must be one of `GL_TEXTURE_1D` or `GL_PROXY_TEXTURE_1D`. </para> </listitem>",
         "texture": "<listitem> <para> Specifies the texture object name for <function>glTextureStorage1D</function>. The effective target of <parameter>texture</parameter> must be one of the valid non-proxy <parameter>target</parameter> values above. </para> </listitem>",
         "levels": "<listitem> <para> Specify the number of texture levels. </para> </listitem>",
         "internalformat": "<listitem> <para> Specifies the sized internal format to be used to store texture image data. </para> </listitem>",
@@ -24760,7 +24581,6 @@
       "purpose": "simultaneously specify storage for all levels of a two-dimensional or one-dimensional array texture",
       "parameters": {
         "target": "<listitem> <para> Specifies the target to which the texture object is bound for <function>glTexStorage2D</function>. Must be one of `GL_TEXTURE_2D`, `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_RECTANGLE`, `GL_TEXTURE_CUBE_MAP`, `GL_PROXY_TEXTURE_2D`, `GL_PROXY_TEXTURE_1D_ARRAY`, `GL_PROXY_TEXTURE_RECTANGLE`, or `GL_PROXY_TEXTURE_CUBE_MAP`. </para> </listitem>",
-        "texture": "<listitem> <para> Specifies the texture object name for <function>glTextureStorage2D</function>. The effective target of <parameter>texture</parameter> must be one of the valid non-proxy <parameter>target</parameter> values above. </para> </listitem>",
         "levels": "<listitem> <para> Specify the number of texture levels. </para> </listitem>",
         "internalformat": "<listitem> <para> Specifies the sized internal format to be used to store texture image data. </para> </listitem>",
         "width": "<listitem> <para> Specifies the width of the texture, in texels. </para> </listitem>",
@@ -24771,7 +24591,6 @@
       "signature": "void glTextureStorage2D(GLuint texture, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height)",
       "purpose": "simultaneously specify storage for all levels of a two-dimensional or one-dimensional array texture",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the texture object is bound for <function>glTexStorage2D</function>. Must be one of `GL_TEXTURE_2D`, `GL_TEXTURE_1D_ARRAY`, `GL_TEXTURE_RECTANGLE`, `GL_TEXTURE_CUBE_MAP`, `GL_PROXY_TEXTURE_2D`, `GL_PROXY_TEXTURE_1D_ARRAY`, `GL_PROXY_TEXTURE_RECTANGLE`, or `GL_PROXY_TEXTURE_CUBE_MAP`. </para> </listitem>",
         "texture": "<listitem> <para> Specifies the texture object name for <function>glTextureStorage2D</function>. The effective target of <parameter>texture</parameter> must be one of the valid non-proxy <parameter>target</parameter> values above. </para> </listitem>",
         "levels": "<listitem> <para> Specify the number of texture levels. </para> </listitem>",
         "internalformat": "<listitem> <para> Specifies the sized internal format to be used to store texture image data. </para> </listitem>",
@@ -24784,7 +24603,6 @@
       "purpose": "specify storage for a two-dimensional multisample texture",
       "parameters": {
         "target": "<listitem> <para> Specifies the target to which the texture object is bound for <function>glTexStorage2DMultisample</function>. Must be one of `GL_TEXTURE_2D_MULTISAMPLE` or `GL_PROXY_TEXTURE_2D_MULTISAMPLE`. </para> </listitem>",
-        "texture": "<listitem> <para> Specifies the texture object name for <function>glTextureStorage2DMultisample</function>. The effective target of <parameter>texture</parameter> must be one of the valid non-proxy <parameter>target</parameter> values above. </para> </listitem>",
         "samples": "<listitem> <para> Specify the number of samples in the texture. </para> </listitem>",
         "internalformat": "<listitem> <para> Specifies the sized internal format to be used to store texture image data. </para> </listitem>",
         "width": "<listitem> <para> Specifies the width of the texture, in texels. </para> </listitem>",
@@ -24796,7 +24614,6 @@
       "signature": "void glTextureStorage2DMultisample(GLuint texture, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations)",
       "purpose": "specify storage for a two-dimensional multisample texture",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the texture object is bound for <function>glTexStorage2DMultisample</function>. Must be one of `GL_TEXTURE_2D_MULTISAMPLE` or `GL_PROXY_TEXTURE_2D_MULTISAMPLE`. </para> </listitem>",
         "texture": "<listitem> <para> Specifies the texture object name for <function>glTextureStorage2DMultisample</function>. The effective target of <parameter>texture</parameter> must be one of the valid non-proxy <parameter>target</parameter> values above. </para> </listitem>",
         "samples": "<listitem> <para> Specify the number of samples in the texture. </para> </listitem>",
         "internalformat": "<listitem> <para> Specifies the sized internal format to be used to store texture image data. </para> </listitem>",
@@ -24810,7 +24627,6 @@
       "purpose": "simultaneously specify storage for all levels of a three-dimensional, two-dimensional array or cube-map array texture",
       "parameters": {
         "target": "<listitem> <para> Specifies the target to which the texture object is bound for <function>glTexStorage3D</function>. Must be one of `GL_TEXTURE_3D`, `GL_TEXTURE_2D_ARRAY`, `GL_TEXTURE_CUBE_MAP_ARRAY`, `GL_PROXY_TEXTURE_3D`, `GL_PROXY_TEXTURE_2D_ARRAY` or `GL_PROXY_TEXTURE_CUBE_MAP_ARRAY`. </para> </listitem>",
-        "texture": "<listitem> <para> Specifies the texture object name for <function>glTextureStorage3D</function>. The effective target of <parameter>texture</parameter> must be one of the valid non-proxy <parameter>target</parameter> values above. </para> </listitem>",
         "levels": "<listitem> <para> Specify the number of texture levels. </para> </listitem>",
         "internalformat": "<listitem> <para> Specifies the sized internal format to be used to store texture image data. </para> </listitem>",
         "width": "<listitem> <para> Specifies the width of the texture, in texels. </para> </listitem>",
@@ -24822,7 +24638,6 @@
       "signature": "void glTextureStorage3D(GLuint texture, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth)",
       "purpose": "simultaneously specify storage for all levels of a three-dimensional, two-dimensional array or cube-map array texture",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the texture object is bound for <function>glTexStorage3D</function>. Must be one of `GL_TEXTURE_3D`, `GL_TEXTURE_2D_ARRAY`, `GL_TEXTURE_CUBE_MAP_ARRAY`, `GL_PROXY_TEXTURE_3D`, `GL_PROXY_TEXTURE_2D_ARRAY` or `GL_PROXY_TEXTURE_CUBE_MAP_ARRAY`. </para> </listitem>",
         "texture": "<listitem> <para> Specifies the texture object name for <function>glTextureStorage3D</function>. The effective target of <parameter>texture</parameter> must be one of the valid non-proxy <parameter>target</parameter> values above. </para> </listitem>",
         "levels": "<listitem> <para> Specify the number of texture levels. </para> </listitem>",
         "internalformat": "<listitem> <para> Specifies the sized internal format to be used to store texture image data. </para> </listitem>",
@@ -24836,7 +24651,6 @@
       "purpose": "specify storage for a two-dimensional multisample array texture",
       "parameters": {
         "target": "<listitem> <para> Specifies the target to which the texture object is bound for <function>glTexStorage3DMultisample</function>. Must be one of `GL_TEXTURE_2D_MULTISAMPLE_ARRAY` or `GL_PROXY_TEXTURE_2D_MULTISAMPLE_ARRAY`. </para> </listitem>",
-        "texture": "<listitem> <para> Specifies the texture object name for <function>glTextureStorage3DMultisample</function>. The effective target of <parameter>texture</parameter> must be one of the valid non-proxy <parameter>target</parameter> values above. </para> </listitem>",
         "samples": "<listitem> <para> Specify the number of samples in the texture. </para> </listitem>",
         "internalformat": "<listitem> <para> Specifies the sized internal format to be used to store texture image data. </para> </listitem>",
         "width": "<listitem> <para> Specifies the width of the texture, in texels. </para> </listitem>",
@@ -24849,7 +24663,6 @@
       "signature": "void glTextureStorage3DMultisample(GLuint texture, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedsamplelocations)",
       "purpose": "specify storage for a two-dimensional multisample array texture",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the texture object is bound for <function>glTexStorage3DMultisample</function>. Must be one of `GL_TEXTURE_2D_MULTISAMPLE_ARRAY` or `GL_PROXY_TEXTURE_2D_MULTISAMPLE_ARRAY`. </para> </listitem>",
         "texture": "<listitem> <para> Specifies the texture object name for <function>glTextureStorage3DMultisample</function>. The effective target of <parameter>texture</parameter> must be one of the valid non-proxy <parameter>target</parameter> values above. </para> </listitem>",
         "samples": "<listitem> <para> Specify the number of samples in the texture. </para> </listitem>",
         "internalformat": "<listitem> <para> Specifies the sized internal format to be used to store texture image data. </para> </listitem>",
@@ -24864,7 +24677,6 @@
       "purpose": "specify a one-dimensional texture subimage",
       "parameters": {
         "target": "<listitem> <para> Specifies the target to which the texture is bound for <function>glTexSubImage1D</function>. Must be `GL_TEXTURE_1D`. </para> </listitem>",
-        "texture": "<listitem> <para> Specifies the texture object name for <function>glTextureSubImage1D</function>. The effective target of <parameter>texture</parameter> must be one of the valid <parameter>target</parameter> values above. </para> </listitem>",
         "level": "<listitem> <para> Specifies the level-of-detail number. Level 0 is the base image level. Level <emphasis>n</emphasis> is the <emphasis>n</emphasis>th mipmap reduction image. </para> </listitem>",
         "xoffset": "<listitem> <para> Specifies a texel offset in the x direction within the texture array. </para> </listitem>",
         "width": "<listitem> <para> Specifies the width of the texture subimage. </para> </listitem>",
@@ -24877,7 +24689,6 @@
       "signature": "void glTextureSubImage1D(GLuint texture, GLint level, GLint xoffset, GLsizei width, GLenum format, GLenum type, const void *pixels)",
       "purpose": "specify a one-dimensional texture subimage",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the texture is bound for <function>glTexSubImage1D</function>. Must be `GL_TEXTURE_1D`. </para> </listitem>",
         "texture": "<listitem> <para> Specifies the texture object name for <function>glTextureSubImage1D</function>. The effective target of <parameter>texture</parameter> must be one of the valid <parameter>target</parameter> values above. </para> </listitem>",
         "level": "<listitem> <para> Specifies the level-of-detail number. Level 0 is the base image level. Level <emphasis>n</emphasis> is the <emphasis>n</emphasis>th mipmap reduction image. </para> </listitem>",
         "xoffset": "<listitem> <para> Specifies a texel offset in the x direction within the texture array. </para> </listitem>",
@@ -24892,7 +24703,6 @@
       "purpose": "specify a two-dimensional texture subimage",
       "parameters": {
         "target": "<listitem> <para> Specifies the target to which the texture is bound for <function>glTexSubImage2D</function>. Must be `GL_TEXTURE_2D`, `GL_TEXTURE_CUBE_MAP_POSITIVE_X`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_X`, `GL_TEXTURE_CUBE_MAP_POSITIVE_Y`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_Y`, `GL_TEXTURE_CUBE_MAP_POSITIVE_Z`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_Z`, or `GL_TEXTURE_1D_ARRAY`. </para> </listitem>",
-        "texture": "<listitem> <para> Specifies the texture object name for <function>glTextureSubImage2D</function>. The effective target of <parameter>texture</parameter> must be one of the valid <parameter>target</parameter> values above. </para> </listitem>",
         "level": "<listitem> <para> Specifies the level-of-detail number. Level 0 is the base image level. Level <emphasis>n</emphasis> is the <emphasis>n</emphasis>th mipmap reduction image. </para> </listitem>",
         "xoffset": "<listitem> <para> Specifies a texel offset in the x direction within the texture array. </para> </listitem>",
         "yoffset": "<listitem> <para> Specifies a texel offset in the y direction within the texture array. </para> </listitem>",
@@ -24907,7 +24717,6 @@
       "signature": "void glTextureSubImage2D(GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLenum type, const void *pixels)",
       "purpose": "specify a two-dimensional texture subimage",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the texture is bound for <function>glTexSubImage2D</function>. Must be `GL_TEXTURE_2D`, `GL_TEXTURE_CUBE_MAP_POSITIVE_X`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_X`, `GL_TEXTURE_CUBE_MAP_POSITIVE_Y`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_Y`, `GL_TEXTURE_CUBE_MAP_POSITIVE_Z`, `GL_TEXTURE_CUBE_MAP_NEGATIVE_Z`, or `GL_TEXTURE_1D_ARRAY`. </para> </listitem>",
         "texture": "<listitem> <para> Specifies the texture object name for <function>glTextureSubImage2D</function>. The effective target of <parameter>texture</parameter> must be one of the valid <parameter>target</parameter> values above. </para> </listitem>",
         "level": "<listitem> <para> Specifies the level-of-detail number. Level 0 is the base image level. Level <emphasis>n</emphasis> is the <emphasis>n</emphasis>th mipmap reduction image. </para> </listitem>",
         "xoffset": "<listitem> <para> Specifies a texel offset in the x direction within the texture array. </para> </listitem>",
@@ -24924,7 +24733,6 @@
       "purpose": "specify a three-dimensional texture subimage",
       "parameters": {
         "target": "<listitem> <para> Specifies the target to which the texture is bound for <function>glTexSubImage3D</function>. Must be `GL_TEXTURE_3D` or `GL_TEXTURE_2D_ARRAY`. </para> </listitem>",
-        "texture": "<listitem> <para> Specifies the texture object name for <function>glTextureSubImage3D</function>. The effective target of <parameter>texture</parameter> must be one of the valid <parameter>target</parameter> values above. </para> </listitem>",
         "level": "<listitem> <para> Specifies the level-of-detail number. Level 0 is the base image level. Level <emphasis>n</emphasis> is the <emphasis>n</emphasis>th mipmap reduction image. </para> </listitem>",
         "xoffset": "<listitem> <para> Specifies a texel offset in the x direction within the texture array. </para> </listitem>",
         "yoffset": "<listitem> <para> Specifies a texel offset in the y direction within the texture array. </para> </listitem>",
@@ -24941,7 +24749,6 @@
       "signature": "void glTextureSubImage3D(GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, const void *pixels)",
       "purpose": "specify a three-dimensional texture subimage",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the texture is bound for <function>glTexSubImage3D</function>. Must be `GL_TEXTURE_3D` or `GL_TEXTURE_2D_ARRAY`. </para> </listitem>",
         "texture": "<listitem> <para> Specifies the texture object name for <function>glTextureSubImage3D</function>. The effective target of <parameter>texture</parameter> must be one of the valid <parameter>target</parameter> values above. </para> </listitem>",
         "level": "<listitem> <para> Specifies the level-of-detail number. Level 0 is the base image level. Level <emphasis>n</emphasis> is the <emphasis>n</emphasis>th mipmap reduction image. </para> </listitem>",
         "xoffset": "<listitem> <para> Specifies a texel offset in the x direction within the texture array. </para> </listitem>",
@@ -25389,15 +25196,13 @@
       "signature": "GLboolean glUnmapBuffer(GLenum target)",
       "purpose": "release the mapping of a buffer object's data store into the client's address space",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glUnmapBuffer</function>, which must be one of the buffer binding targets in the following table: </para> <include href=\"bufferbindings.xml\" /> </listitem>",
-        "buffer": "<listitem> <para> Specifies the name of the buffer object for <function>glUnmapNamedBuffer</function>. </para> </listitem>"
+        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glUnmapBuffer</function>, which must be one of the following buffer bindings: `GL_ARRAY_BUFFER`, `GL_ATOMIC_COUNTER_BUFFER`, `GL_COPY_READ_BUFFER`, `GL_COPY_WRITE_BUFFER`, `GL_DISPATCH_INDIRECT_BUFFER`, `GL_DRAW_INDIRECT_BUFFER`, `GL_ELEMENT_ARRAY_BUFFER`, `GL_PIXEL_PACK_BUFFER`, `GL_PIXEL_UNPACK_BUFFER`, `GL_QUERY_BUFFER`, `GL_SHADER_STORAGE_BUFFER`, `GL_TEXTURE_BUFFER`, `GL_TRANSFORM_FEEDBACK_BUFFER`, `GL_UNIFORM_BUFFER` </listitem>"
       }
     },
     "glUnmapNamedBuffer": {
       "signature": "GLboolean glUnmapNamedBuffer(GLuint buffer)",
       "purpose": "release the mapping of a buffer object's data store into the client's address space",
       "parameters": {
-        "target": "<listitem> <para> Specifies the target to which the buffer object is bound for <function>glUnmapBuffer</function>, which must be one of the buffer binding targets in the following table: </para> <include href=\"bufferbindings.xml\" /> </listitem>",
         "buffer": "<listitem> <para> Specifies the name of the buffer object for <function>glUnmapNamedBuffer</function>. </para> </listitem>"
       }
     },
@@ -26259,7 +26064,6 @@
       "signature": "void glVertexAttribBinding(GLuint attribindex, GLuint bindingindex)",
       "purpose": "associate a vertex attribute and a vertex buffer binding for a vertex array object",
       "parameters": {
-        "vaobj": "<listitem> <para> Specifies the name of the vertex array object for <function>glVertexArrayAttribBinding</function>. </para> </listitem>",
         "attribindex": "<listitem> <para> The index of the attribute to associate with a vertex buffer binding. </para> </listitem>",
         "bindingindex": "<listitem> <para> The index of the vertex buffer binding with which to associate the generic vertex attribute. </para> </listitem>"
       }
@@ -26285,7 +26089,6 @@
       "signature": "void glVertexAttribFormat(GLuint attribindex, GLint size, GLenum type, GLboolean normalized, GLuint relativeoffset)",
       "purpose": "specify the organization of vertex arrays",
       "parameters": {
-        "vaobj": "<listitem> <para>Specifies the name of the vertex array object for <function>glVertexArrayAttrib{I, L}Format</function> functions.</para> </listitem>",
         "attribindex": "<listitem> <para>The generic vertex attribute array being described.</para> </listitem>",
         "size": "<listitem> <para>The number of values per vertex that are stored in the array.</para> </listitem>",
         "type": "<listitem> <para>The type of the data stored in the array.</para> </listitem>",
@@ -26297,7 +26100,6 @@
       "signature": "void glVertexAttribIFormat(GLuint attribindex, GLint size, GLenum type, GLuint relativeoffset)",
       "purpose": "specify the organization of vertex arrays",
       "parameters": {
-        "vaobj": "<listitem> <para>Specifies the name of the vertex array object for <function>glVertexArrayAttrib{I, L}Format</function> functions.</para> </listitem>",
         "attribindex": "<listitem> <para>The generic vertex attribute array being described.</para> </listitem>",
         "size": "<listitem> <para>The number of values per vertex that are stored in the array.</para> </listitem>",
         "type": "<listitem> <para>The type of the data stored in the array.</para> </listitem>",
@@ -26309,7 +26111,6 @@
       "signature": "void glVertexAttribLFormat(GLuint attribindex, GLint size, GLenum type, GLuint relativeoffset)",
       "purpose": "specify the organization of vertex arrays",
       "parameters": {
-        "vaobj": "<listitem> <para>Specifies the name of the vertex array object for <function>glVertexArrayAttrib{I, L}Format</function> functions.</para> </listitem>",
         "attribindex": "<listitem> <para>The generic vertex attribute array being described.</para> </listitem>",
         "size": "<listitem> <para>The number of values per vertex that are stored in the array.</para> </listitem>",
         "type": "<listitem> <para>The type of the data stored in the array.</para> </listitem>",
@@ -26321,7 +26122,6 @@
       "signature": "void glVertexArrayAttribFormat(GLuint vaobj, GLuint attribindex, GLint size, GLenum type, GLboolean normalized, GLuint relativeoffset)",
       "purpose": "specify the organization of vertex arrays",
       "parameters": {
-        "vaobj": "<listitem> <para>Specifies the name of the vertex array object for <function>glVertexArrayAttrib{I, L}Format</function> functions.</para> </listitem>",
         "attribindex": "<listitem> <para>The generic vertex attribute array being described.</para> </listitem>",
         "size": "<listitem> <para>The number of values per vertex that are stored in the array.</para> </listitem>",
         "type": "<listitem> <para>The type of the data stored in the array.</para> </listitem>",
@@ -26333,7 +26133,6 @@
       "signature": "void glVertexArrayAttribIFormat(GLuint vaobj, GLuint attribindex, GLint size, GLenum type, GLuint relativeoffset)",
       "purpose": "specify the organization of vertex arrays",
       "parameters": {
-        "vaobj": "<listitem> <para>Specifies the name of the vertex array object for <function>glVertexArrayAttrib{I, L}Format</function> functions.</para> </listitem>",
         "attribindex": "<listitem> <para>The generic vertex attribute array being described.</para> </listitem>",
         "size": "<listitem> <para>The number of values per vertex that are stored in the array.</para> </listitem>",
         "type": "<listitem> <para>The type of the data stored in the array.</para> </listitem>",
@@ -26345,7 +26144,6 @@
       "signature": "void glVertexArrayAttribLFormat(GLuint vaobj, GLuint attribindex, GLint size, GLenum type, GLuint relativeoffset)",
       "purpose": "specify the organization of vertex arrays",
       "parameters": {
-        "vaobj": "<listitem> <para>Specifies the name of the vertex array object for <function>glVertexArrayAttrib{I, L}Format</function> functions.</para> </listitem>",
         "attribindex": "<listitem> <para>The generic vertex attribute array being described.</para> </listitem>",
         "size": "<listitem> <para>The number of values per vertex that are stored in the array.</para> </listitem>",
         "type": "<listitem> <para>The type of the data stored in the array.</para> </listitem>",
@@ -26393,7 +26191,6 @@
       "signature": "void glVertexBindingDivisor(GLuint bindingindex, GLuint divisor)",
       "purpose": "modify the rate at which generic vertex attributes    advance",
       "parameters": {
-        "vaobj": "<listitem> <para>Specifies the name of the vertex array object for <function>glVertexArrayBindingDivisor</function> function.</para> </listitem>",
         "bindingindex": "<listitem> <para>The index of the binding whose divisor to modify.</para> </listitem>",
         "divisor": "<listitem> <para>The new value for the instance step rate to apply.</para> </listitem>"
       }

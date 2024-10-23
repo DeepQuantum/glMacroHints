@@ -2,15 +2,30 @@ import json
 import os
 import re
 import xml.etree.ElementTree as ET
-from typing import NoReturn
+from typing import Any, NoReturn
 
 VERSIONS = ("es1.1", "es2.0", "es3", "es3.0", "es3.1", "gl2.1", "gl4")
-
-NAMESPACE = "{http://docbook.org/ns/docbook}"
 
 TAG_REGEX = re.compile(r"(<\/?(function|parameter)>)")
 
 NAMESPACE_RE = re.compile(r"(\{.*\})|(.*:)")
+
+BUFFER_BINDINGS = (
+    "`GL_ARRAY_BUFFER`",
+    "`GL_ATOMIC_COUNTER_BUFFER`",
+    "`GL_COPY_READ_BUFFER`",
+    "`GL_COPY_WRITE_BUFFER`",
+    "`GL_DISPATCH_INDIRECT_BUFFER`",
+    "`GL_DRAW_INDIRECT_BUFFER`",
+    "`GL_ELEMENT_ARRAY_BUFFER`",
+    "`GL_PIXEL_PACK_BUFFER`",
+    "`GL_PIXEL_UNPACK_BUFFER`",
+    "`GL_QUERY_BUFFER`",
+    "`GL_SHADER_STORAGE_BUFFER`",
+    "`GL_TEXTURE_BUFFER`",
+    "`GL_TRANSFORM_FEEDBACK_BUFFER`",
+    "`GL_UNIFORM_BUFFER`",
+)
 
 def process_file_refs(path: str) -> list[str]:
     refs: list[str] = []
@@ -50,7 +65,15 @@ def remove_namespaces(element: ET.Element) -> ET.Element:
 
 
 def text_recursive(element: ET.Element) -> str:
-    return " ".join(ET.tostring(element, encoding="unicode").split()).replace("<constant>", "`").replace("</constant>", "`")
+    return (
+        " ".join(ET.tostring(element, encoding="unicode").split())
+        .replace("<constant>", "`")
+        .replace("</constant>", "`")
+        .replace(
+            'buffer binding targets in the following table: </para> <include href="bufferbindings.xml" />',
+            "following buffer bindings: " + str(BUFFER_BINDINGS).replace("'", "")[1:-1],
+        )
+    )
 
 
 def get_doc_from_xml(xml: ET.Element) -> dict[str, dict[str, str | dict[str, str]]]:
@@ -72,14 +95,17 @@ def get_doc_from_xml(xml: ET.Element) -> dict[str, dict[str, str | dict[str, str
             raise ValueError("")
         itemtext = text_recursive(item)
         parameters[term_text] = itemtext
-    return {
-        signature[0]: {
-            "signature": signature[1],
-            "purpose": purposetext,
-            "parameters": parameters,
-        }
-        for signature in function_sigs
+    result: dict[str, dict[str, Any]] = {
+        signature[0]: {"signature": signature[1], "purpose": purposetext, "parameters": {}} for signature in function_sigs
     }
+    for function in result:
+        for name, text in parameters.items():
+            if (match := re.search(r"for <function>(.*)<\/function>", text)) is not None:
+                if match.group(1) == function:
+                    result[function]["parameters"][name] = text
+            else:
+                result[function]["parameters"][name] = text
+    return result
 
 
 def create_gldoc_json() -> None:

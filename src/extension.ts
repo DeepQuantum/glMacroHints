@@ -5,13 +5,13 @@ const config: vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration(
 
 const version: string = config.get("version") || "gl4";
 const active: boolean = config.get("active") || true;
-const jsonPath: string = __dirname.slice(0, -3) + `src/docs/${version}/docmap.json`;
+const jsonPath: string = __dirname.slice(0, -3) + `src/doclibrary.json`;
 
 // TODO: add json cache
 var json: any;
 
 const getDocumentationString = (word: string): vscode.MarkdownString => {
-	const entry = json[word];
+	const entry = json[version][word];
 	var docstring = new vscode.MarkdownString();
 	docstring.appendCodeblock(entry.signature, 'cpp');
 	docstring.appendMarkdown("---");
