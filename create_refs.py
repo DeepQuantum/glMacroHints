@@ -1,8 +1,9 @@
 import json
 import os
 import re
+import threading
 import xml.etree.ElementTree as ET
-from typing import Any, NoReturn
+from typing import Any
 
 VERSIONS = ("es1.1", "es2.0", "es3", "es3.0", "es3.1", "gl2.1", "gl4")
 
@@ -112,42 +113,36 @@ def create_gldoc_json() -> None:
     jsonf = open(f"src/doclibrary.json", "r+")
     jsonf.seek(0)
     library: dict[str, dict[str, dict[str, str | dict[str, str]]]] = {k: {} for k in VERSIONS}
+    threads: list[threading.Thread] = []
     for ver in VERSIONS:
-        for fp in os.listdir(f"src/docs/{ver}/"):
-            if not fp.endswith(".xml"):
-                continue
-            with open(f"src/docs/{ver}/{fp}", "r", encoding="utf-8") as f:
-                content = f.read().replace("mml:", "")
-            content = re.sub(r"&\w+;", "", content)
-            xml = ET.XML(content)
-            xml = remove_namespaces(xml)
-            if xml.tag != "refentry":
-                continue
-            function_doc = get_doc_from_xml(xml)
-            for k, v in function_doc.items():
-                library[ver][k] = v
-        print(f"added {ver} docs to json")
+        _thread = threading.Thread(target=add_library_version, args=[library, ver])
+        _thread.start()
+        threads.append(_thread)
+    for thread in threads:
+        thread.join()
     json.dump(library, jsonf, indent=2)
     jsonf.close()
 
 
+def add_library_version(library: dict, ver: str) -> None:
+    for fp in os.listdir(f"src/docs/{ver}/"):
+        if not fp.endswith(".xml"):
+            continue
+        with open(f"src/docs/{ver}/{fp}", "r", encoding="utf-8") as f:
+            content = f.read().replace("mml:", "")
+        content = re.sub(r"&\w+;", "", content)
+        xml = ET.XML(content)
+        xml = remove_namespaces(xml)
+        if xml.tag != "refentry":
+            continue
+        function_doc = get_doc_from_xml(xml)
+        for k, v in function_doc.items():
+            library[ver][k] = v
+    print(f"added {ver} docs to json")
+
+
 def main():
     create_gldoc_json()
-    # for dir in os.listdir("src/docs"):
-    #     if not dir in VERSIONS:
-    #         continue
-    #     version_refs = {}
-    #     for file in os.listdir("src/docs/" + dir):
-    #         if not file.endswith(".xml"):
-    #             continue
-    #         refs = process_file_refs("src/docs/" + dir + "/" + file)
-    #         if len(refs) == 0:
-    #             continue
-    #         for ref in refs:
-    #             version_refs[ref] = file
-    #     with open("src/docs/" + dir + "/refs.txt", "w") as f:
-    #         for ref, file in version_refs.items():
-    #             f.write(f"{ref} {file}\n")
 
 
 if __name__ == "__main__":
