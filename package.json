@@ -3,6 +3,10 @@
   "displayName": "gl Macro Hints",
   "description": "This small extension expands the commonly used C/C++ OpenGL macros with their documentation from the khronos.org website to show the definition of the function and its parameters in detail.",
   "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com//DeepQuantum/glMacroHints.git"
+  },
   "engines": {
     "vscode": "^1.94.0"
   },
