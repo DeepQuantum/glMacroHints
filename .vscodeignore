@@ -10,6 +10,5 @@ vsc-extension-quickstart.md
 **/.vscode-test.*
 create_refs.py
 **/*.ts
-CHANGELOG.md
-README.md
-image.png
+showcase.png
+.mypy_cache

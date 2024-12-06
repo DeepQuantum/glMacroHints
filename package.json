@@ -1,6 +1,7 @@
 {
   "name": "gl-macro-hints",
   "displayName": "gl Macro Hints",
+  "publisher": "deepquantum",
   "description": "This small extension expands the commonly used C/C++ OpenGL macros with their documentation from the khronos.org website to show the definition of the function and its parameters in detail.",
   "version": "1.0.0",
   "repository": {
