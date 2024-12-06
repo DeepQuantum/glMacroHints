@@ -7,6 +7,9 @@ vsc-extension-quickstart.md
 **/tsconfig.json
 **/eslint.config.mjs
 **/*.map
-**/*.ts
 **/.vscode-test.*
 create_refs.py
+**/*.ts
+CHANGELOG.md
+README.md
+image.png
