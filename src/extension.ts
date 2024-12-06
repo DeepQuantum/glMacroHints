@@ -4,7 +4,7 @@ import fs from 'fs';
 const config: vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration('glMacroHints');
 
 const version: string = config.get("glVersion") || "gl4";
-const jsonPath: string = __dirname.slice(0, -3) + `src/doclibrary.json`;
+const jsonPath: string = __dirname + "/doclibrary.json";
 
 var json: any;
 

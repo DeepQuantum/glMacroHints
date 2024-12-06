@@ -12,3 +12,6 @@ create_refs.py
 **/*.ts
 showcase.png
 .mypy_cache
+node_modules
+esbuild.js
+tsconfig.json
