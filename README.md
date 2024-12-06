@@ -1,6 +1,6 @@
 # gl Macro Hints
 
-![Showcase image for the extension](https://github.com/DeepQuantum/glMacroHints/blob/master/showcase.png)
+![Showcase image for the extension](showcase.png)
 
 A small extension to display the definitions of OpenGL functions and their parameters as a small window when hovering over such a macro.
 
