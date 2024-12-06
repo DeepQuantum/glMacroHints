@@ -1,10 +1,9 @@
 import * as vscode from 'vscode';
 import fs from 'fs';
 
-const config: vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration('opengl-macro-ext');
+const config: vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration('glMacroHints');
 
-const version: string = config.get("version") || "gl4";
-const active: boolean = config.get("active") || true;
+const version: string = config.get("glVersion") || "gl4";
 const jsonPath: string = __dirname.slice(0, -3) + `src/doclibrary.json`;
 
 var json: any;
@@ -26,11 +25,6 @@ const getDocumentationString = (word: string): vscode.MarkdownString => {
 };
 
 export function activate(context: vscode.ExtensionContext) {
-
-	if (!active) {
-		return;
-	}
-
 	try {
 		var data = fs.readFileSync(jsonPath);
 		json = JSON.parse(data.toString());
@@ -40,7 +34,7 @@ export function activate(context: vscode.ExtensionContext) {
 		throw err;
 	}
 
-	let disposable = vscode.languages.registerHoverProvider('cpp', {
+	let disposable = vscode.languages.registerHoverProvider(['c', 'cpp'], {
 	 	async provideHover(document, position, token) {
 			const word = document.getText(document.getWordRangeAtPosition(position));
 			if (word.toLowerCase().startsWith("gl")) {
@@ -52,6 +46,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	context.subscriptions.push(disposable);
 }
+
 
 // This method is called when your extension is deactivated
 export function deactivate() {}

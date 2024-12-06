@@ -1,8 +1,8 @@
 {
-  "name": "opengl-macro-ext",
-  "displayName": "opengl-macro-ext",
-  "description": "This extension expands the commonly used C/C++ OpenGL macros with their documentation from the khronos.org website.",
-  "version": "0.0.1",
+  "name": "gl-macro-hints",
+  "displayName": "gl Macro Hints",
+  "description": "This small extension expands the commonly used C/C++ OpenGL macros with their documentation from the khronos.org website to show the definition of the function and its parameters in detail.",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.94.0"
   },
@@ -18,18 +18,9 @@
       {
         "title": "OpenGL Documentation",
         "properties": {
-          "openglMacroExt.enable": {
-            "type": "boolean",
-            "default": true,
-            "description": "Enable/Disable the extension"
-          },
-          "openglMacroExt.language": {
-            "type": "[string]",
-            "default": "[cpp, c]",
-            "description": "The languages to use for the documentation"
-          },
-          "openglMacroExt.glVersion": {
-            "type": ["es1.1", "es2.0", "es3", "es3.0", "es3.1", "gl2.1", "gl4"],
+          "glMacroHints.glVersion": {
+            "type": "string",
+            "enum": ["es1.1", "es2.0", "es3", "es3.0", "es3.1", "gl2.1", "gl4"],
             "default": "gl4",
             "description": "The OpenGL version to use for the documentation"
           }
