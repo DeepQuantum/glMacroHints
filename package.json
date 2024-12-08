@@ -18,6 +18,12 @@
   "activationEvents": [
     "*"
   ],
+  "keywords": [
+    "OpenGL",
+    "C++",
+    "Macros",
+    "Hints"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
     "configuration": [
