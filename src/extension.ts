@@ -8,7 +8,10 @@ const jsonPath: string = __dirname + "/doclibrary.json";
 
 var json: any;
 
-const getDocumentationString = (word: string): vscode.MarkdownString => {
+const getDocumentationString = (word: string): vscode.MarkdownString | null => {
+	if (!(word in json[version])) {
+		return null;
+	}
 	const entry = json[version][word];
 	var docstring = new vscode.MarkdownString();
 	docstring.appendCodeblock(entry.signature, 'cpp');
@@ -39,10 +42,17 @@ export function activate(context: vscode.ExtensionContext) {
 			const word = document.getText(document.getWordRangeAtPosition(position));
 			if (word.toLowerCase().startsWith("gl")) {
 				const text = getDocumentationString(word);
+				if (text === null) {
+					return null;
+				}
 				return new vscode.Hover(text);
 			}
 		}
 	});
+
+	if (!disposable) { 
+		return;
+	};
 
 	context.subscriptions.push(disposable);
 }

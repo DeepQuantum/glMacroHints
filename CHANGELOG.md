@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.1.3]
+
+- Fixed logs being littered by non-existing gl functions
+
 ## [1.1.2]
 
 - Added tags
